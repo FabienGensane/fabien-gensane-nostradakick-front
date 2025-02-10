@@ -46,14 +46,19 @@
         }
 
         &__logo {
-            width: 30px;
+            position: absolute;
+            top: -0.7rem;
+            cursor: pointer;
+            width: 80px;
             margin: 0.5rem 1.5rem;
+            z-index: 10;
         }
 
         &__buttons {
             display: flex;
             gap: 1rem;
             margin: 0.5rem 0.4rem;
+            z-index: 10;
 
             &__subscribe, &__login {
                 text-decoration: none;
@@ -77,6 +82,13 @@
                 cursor: pointer;
                 background-color: #3B9CF1;
                 color: #FEFFED;
+
+                &:hover {
+                    color: #3B9CF1;
+                    outline: 1px solid #3B9CF1;
+                    background-color: transparent;
+                    transition: 300ms;
+                }
             }
         }
     }
