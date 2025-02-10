@@ -1,0 +1,83 @@
+.menu__desktop {
+    width: 100%;
+    position: fixed;
+
+    &__header {
+        width: 90%;
+        margin: 1rem auto 0;
+        position: relative;
+        height: 50px;
+        
+        background-color: rgba(3, 13, 30, 0.2);
+        border-radius: 3rem;
+
+        backdrop-filter: blur(14.5px); /* mettre du flou en fond*/
+        -webkit-backdrop-filter: blur(14.5px);
+        /* compatibilité navigateur pour mettre du flou en fond*/
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 1.5px; 
+            z-index: 1; /* Placer la bordure derrière le contenu */
+
+            border-radius: inherit; /* Hériter du border-radius du parent */
+            background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
+        
+            mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+
+            -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+
+        }
+
+        &__logo {
+            width: 30px;
+            margin: 0.5rem 1.5rem;
+        }
+
+        &__buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 0.5rem 0.4rem;
+
+            &__subscribe, &__login {
+                text-decoration: none;
+                border-radius: 3rem;
+                padding: 0.4rem 2rem;
+            }
+
+            &__subscribe {
+                cursor: pointer;
+                color: #3B9CF1;
+                border: 1px solid #3B9CF1;
+                transition: 300ms;
+
+                &:hover {
+                    background-color: #3B9CF1;
+                    color: #FEFFED;
+                }
+            }
+
+            &__login {
+                cursor: pointer;
+                background-color: #3B9CF1;
+                color: #FEFFED;
+            }
+        }
+    }
+}

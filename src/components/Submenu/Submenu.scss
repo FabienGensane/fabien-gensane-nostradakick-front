@@ -23,7 +23,7 @@
         right: 0;
         bottom: 0;
 
-        padding: 1px; 
+        padding: 1.5px; 
         z-index: 1; /* Placer la bordure derrière le contenu */
 
         border-radius: inherit; /* Hériter du border-radius du parent */
@@ -48,7 +48,7 @@
         list-style: none;
         
         & li {
-            padding: 0.5rem 0; 
+            padding: 0.3rem 0; 
             
             & a {
               color: #FEFFED;
@@ -59,7 +59,12 @@
 
 
         &__stats, &__predicts {
-            border-bottom: 1px solid white;      
+            
+            &__spacing {
+                margin-top: 0.5rem;
+                background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
+                height: 1px;
+            }
         }
 
         

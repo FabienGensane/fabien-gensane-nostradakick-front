@@ -3,17 +3,21 @@ import logo from "../../assets/Header/Logo.svg";
 
 export default function () {
 	return (
-		<div className="menu">
-			<header className="header">
+		<div className="menu__desktop">
+			<header className="menu__desktop__header">
 				<a href="/">
-					<img src={logo} alt="logo NostradaKick" />
+					<img
+						src={logo}
+						alt="logo NostradaKick"
+						className="menu__desktop__header__logo"
+					/>
 				</a>
 
-				<div className="header__buttons">
-					<a href="/" className="header__buttons__subscribe__link">
+				<div className="menu__desktop__header__buttons">
+					<a href="/" className="menu__desktop__header__buttons__subscribe">
 						S'inscrire
 					</a>
-					<a href="/" className="header__buttons__login__link">
+					<a href="/" className="menu__desktop__header__buttons__login">
 						Se connecter
 					</a>
 				</div>
