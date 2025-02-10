@@ -3,11 +3,16 @@ import pictoHome from "../../assets/Header/picto_home.svg";
 import pictoProfil from "../../assets/Header/picto_profil.svg";
 import pictoRank from "../../assets/Header/picto_rank.svg";
 import pictoResult from "../../assets/Header/picto_result.svg";
-// import Menu_mobile from "../Menu-mobile/Menu_mobile";
+import Submenu from "../Submenu/Submenu";
+import { useState } from "react";
 
 export default function () {
+
+	const [isShowSubmenu, setIsShowSubmenu]=useState(false);
+
 	return (
 		<div className="menu__mobile">
+			<Submenu />
 			<header className="header">
 				<nav className="header__nav">
 					<ul className="header__nav__list">
@@ -50,7 +55,6 @@ export default function () {
 					</ul>
 				</nav>
 			</header>
-			{/* <Menu_mobile /> */}
 		</div>
 	);
 }

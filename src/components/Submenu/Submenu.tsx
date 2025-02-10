@@ -1,18 +1,19 @@
 import "./Submenu.scss";
 
 export default function () {
-return (
-
-<div className="submenu">
-        <ul className="submenu__list">
-            <li className="submenu__list__profil">Changer mon profil</li>
-            <li className="submenu__list__password">Changer mon mot de passe</li>
-            <li className="submenu__list__account">Supprimer mon compte</li>
-        </ul>
-
-        </div>
-)
-
-
-
+	return (
+		<div className="submenu">
+			<ul className="submenu__list">
+				<li className="submenu__list__stats">
+					<a href="/">Mes Stats</a>
+				</li>
+				<li className="submenu__list__predicts">
+					<a href="/">Mes prédictions</a>
+				</li>
+				<li className="submenu__list__settings">
+					<a href="/">Paramètres</a>
+				</li>
+			</ul>
+		</div>
+	);
 }
