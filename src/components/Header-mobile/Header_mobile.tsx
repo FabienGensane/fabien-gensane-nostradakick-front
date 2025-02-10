@@ -7,12 +7,18 @@ import Submenu from "../Submenu/Submenu";
 import { useState } from "react";
 
 export default function () {
+	const [isShowSubmenu, setIsShowSubmenu] = useState(false);
 
-	const [isShowSubmenu, setIsShowSubmenu]=useState(false);
+	function handleShowSubmenu(
+		event: React.MouseEvent<HTMLLIElement, MouseEvent>,
+	) {
+		event.preventDefault();
+		setIsShowSubmenu(!isShowSubmenu);
+	}
 
 	return (
 		<div className="menu__mobile">
-			<Submenu />
+			{isShowSubmenu && <Submenu />}
 			<header className="header">
 				<nav className="header__nav">
 					<ul className="header__nav__list">
@@ -43,7 +49,15 @@ export default function () {
 								/>
 							</a>
 						</li>
-						<li className="header__nav__list__item">
+						<li
+							className={
+								isShowSubmenu
+									? "header__nav__list__item header__nav__list__item--background"
+									: "header__nav__list__item"
+							}
+							onClick={handleShowSubmenu}
+							onKeyDown={() => setIsShowSubmenu(!isShowSubmenu)}
+						>
 							<a href="/" className="header__nav__list__item__link">
 								<img
 									src={pictoProfil}
