@@ -1,6 +1,7 @@
-.menu__desktop {
-    width: 100%;
-    position: fixed;
+.menu__desktop__logged {
+        width: 100%;
+        position: fixed;
+        font-size: 0.9rem;
 
     &__header {
         width: 90%;
@@ -57,44 +58,68 @@
             z-index: 10;
         }
 
-        &__buttons {
+        &__list {
             display: flex;
             justify-content: space-between;
-            gap: 1rem;
-
-            margin: 0.5rem 0.4rem;
+            gap : 1rem;
+            list-style: none;
             z-index: 10;
-            width: 100%;
+            padding: 0;
+            margin-left: 0.3rem;
+            
 
-            &__subscribe, &__login {
-                text-decoration: none;
-                border-radius: 3rem;
-                padding: 0.4rem 2rem;
-            }
+            &__item {
 
-            &__subscribe {
-                background-color: #3B9CF1;
-                color: #FEFFED;
-                transition: 500ms;
-
-                &:hover {
-                    color: #3B9CF1;
-                    outline: 1px solid #3B9CF1;
-                    background-color: transparent;
+                &__link {
+                    text-decoration: none;
+                    color : #FEFFEF;
+                    padding: 0.7rem 2rem;
+                    border-radius: 3rem;
+                    transition: 300ms;
+                    
+                    &:hover {
+                        background-color: #FEFFEF;
+                        color: #0D1F3C;
+                    }
+                    
                 }
-            }
-
-            &__login {
-                background-color: #3B9CF1;
-                color: #FEFFED;
-                transition: 500ms;
-
-                &:hover {
-                    color: #3B9CF1;
-                    outline: 1px solid #3B9CF1;
-                    background-color: transparent;
-                }
-            }
+            
+            }   
         }
+        &__logProfile  {
+            display: flex;
+            justify-content: space-between;
+            gap : 1rem;
+            align-items: center;
+            margin-right: 0.3rem;
+            background-color: #0D1F3C;
+            border-radius: 3rem;
+            padding: 5px;
+            z-index: 10;
+            
+            &__profile img{
+                width: 30px;
+                transition: 300ms;
+
+                &:hover {
+                    outline: 2px solid #3B9CF1;
+                    border-radius: 50%;
+                }
+            }
+            
+            &__logout {
+                padding: 0.3rem 1rem;
+                color : #FEFFEF;
+                text-decoration: none;
+                background-color: #061126;
+                border-radius: 3rem;
+                transition: 300ms;
+
+                &:hover {
+                    background-color: #FEFFEF;
+                    color: #0D1F3C;
+                }
+            }
+        } 
     }
 }
