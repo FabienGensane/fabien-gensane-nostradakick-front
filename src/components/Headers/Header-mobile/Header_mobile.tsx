@@ -1,9 +1,9 @@
 import "./Header_mobile.scss";
-import pictoHome from "../../assets/Header/picto_home.svg";
-import pictoProfil from "../../assets/Header/picto_profil.svg";
-import pictoRank from "../../assets/Header/picto_rank.svg";
-import pictoResult from "../../assets/Header/picto_result.svg";
-import Submenu from "../Submenu/Submenu";
+import pictoHome from "../../../assets/Header/picto_home.svg";
+import pictoProfil from "../../../assets/Header/picto_profil.svg";
+import pictoRank from "../../../assets/Header/picto_rank.svg";
+import pictoResult from "../../../assets/Header/picto_result.svg";
+import Submenu from "./Submenu/Submenu";
 import { useState } from "react";
 
 export default function () {

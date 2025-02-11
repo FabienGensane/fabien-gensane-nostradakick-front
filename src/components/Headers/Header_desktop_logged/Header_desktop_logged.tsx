@@ -1,6 +1,7 @@
+
 import "./Header_desktop_logged.scss";
-import logo from "../../assets/Header/Logo.svg";
-import photoProfile from "../../assets/Header/photo_profile.png";
+import logo from "../../../assets/Header/Logo.svg";
+import photoProfile from "../../../assets/Header/photo_profile.png";
 
 export default function () {
 	return (

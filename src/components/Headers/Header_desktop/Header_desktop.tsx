@@ -1,5 +1,5 @@
 import "./Header_desktop.scss";
-import logo from "../../assets/Header/Logo.svg";
+import logo from "../../../assets/Header/Logo.svg";
 
 export default function () {
 	return (

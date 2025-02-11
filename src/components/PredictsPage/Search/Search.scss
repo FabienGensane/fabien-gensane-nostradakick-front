@@ -1,0 +1,32 @@
+.search__form {
+width : 40%;
+margin: 0 auto;
+background-color: #0B1C39;
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 0.8rem;
+padding: 0;
+border-radius: 0.5rem;
+
+    &__input {
+        padding-left: 1rem;
+        flex: 10;
+        color : #FEFFED;
+        height: 45px;
+        border: none;
+        background-color: transparent;
+        border-radius: 0.5rem;
+    }
+
+    &__btn {
+        flex: 0.5;
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        border: none;
+        
+    }
+}
+
+
