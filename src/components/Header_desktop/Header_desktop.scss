@@ -55,6 +55,13 @@
             width: 120px;
             margin: 0.5rem 1.5rem;
             z-index: 10;
+            transition: 300ms;
+
+            &:hover {
+                width: 130px;
+                top: -2.7rem;
+                left: 43.6%;
+            }
         }
 
         &__buttons {
@@ -75,7 +82,7 @@
             &__subscribe {
                 background-color: #3B9CF1;
                 color: #FEFFED;
-                transition: 500ms;
+                transition: 300ms;
 
                 &:hover {
                     color: #3B9CF1;
@@ -87,7 +94,7 @@
             &__login {
                 background-color: #3B9CF1;
                 color: #FEFFED;
-                transition: 500ms;
+                transition: 300ms;
 
                 &:hover {
                     color: #3B9CF1;
