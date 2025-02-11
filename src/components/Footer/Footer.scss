@@ -1,0 +1,31 @@
+.footer {
+    background-color: #061126;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem 5.2rem;
+    width: 100%;
+    
+    &__logo {
+        width: 50px   
+    }
+
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        gap : 1rem;
+        list-style: none;
+        
+
+        &__item {
+
+            &__link {
+                text-decoration: none;
+                    color : #FEFFEF;
+                    padding: 0.7rem 2rem;
+                    border-radius: 3rem;
+                    transition: 300ms;
+            }
+        }
+    }
+}

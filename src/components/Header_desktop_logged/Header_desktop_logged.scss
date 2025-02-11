@@ -56,6 +56,13 @@
             width: 120px;
             margin: 0.5rem 1.5rem;
             z-index: 10;
+            transition: 300ms;
+
+            &:hover {
+                width: 130px;
+                top: -2.7rem;
+                left: 43.6%;
+            }
         }
 
         &__list {
@@ -111,7 +118,6 @@
                 padding: 0.3rem 1rem;
                 color : #FEFFEF;
                 text-decoration: none;
-                background-color: #061126;
                 border-radius: 3rem;
                 transition: 300ms;
 
