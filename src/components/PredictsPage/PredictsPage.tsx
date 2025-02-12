@@ -12,6 +12,7 @@ export const PredictsPage = () => {
                 <Predict_Card />
                 <Predict_Card />
                 <Predict_Card />
+				
             </div>
 		</main>
 	);
