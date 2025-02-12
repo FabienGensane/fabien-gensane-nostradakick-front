@@ -8,7 +8,7 @@ import "./App.scss";
 import { PredictsPage } from "../PredictsPage/PredictsPage";
 
 function App() {
-	const [sizeWindow, setSizeWindow] = useState(491);
+	const [sizeWindow, setSizeWindow] = useState(492);
 	const [islogged, setIsLogged] = useState(true);
 
 	useEffect(() => {

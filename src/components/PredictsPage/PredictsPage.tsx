@@ -3,36 +3,35 @@ import Predict_Card from "./Predict_Card/Predict_Card";
 
 import "./PredicstPage.scss";
 import { useEffect, useState } from "react";
+import { IMatch } from "../../@types";
 
 export const PredictsPage = () => {
+	const [matchs, setMatchs] = useState<IMatch[]>([]);
 
-	const [predicts, setPredicts] = useState([]);
-
-	const fetchPredicts = async () => {
-		try {
-			const response = await fetch("http://localhost:3000/api/predictions");
-			const data = await response.json();
-			console.log(data);
-			setPredicts(data);
-		} catch (error) {
-			console.log('erreur');
-		}
-	}
-	
-	useEffect (()=> {	
+	useEffect(() => {
+		const fetchPredicts = async () => {
+			try {
+				const response = await fetch("http://localhost:3000/api/matchs");
+				const data = await response.json();
+				setMatchs(data);
+			} catch (error) {
+				console.log("erreur");
+			}
+		};
 		fetchPredicts();
-	}, [])
-	
+	}, []);
 
-	console.log(predicts)
-	
+	// Trier les débuts de matchs par ordre croissant
+	matchs.sort((a, b) => a.date.localeCompare(b.date));
+
 	return (
 		<main className="main__predicts">
 			<Search />
 			<div className="main__predicts__container">
-                <Predict_Card />
-				
-            </div>
+				{matchs.map((match) => (
+					<Predict_Card key={match.match_id} match={match} />
+				))}
+			</div>
 		</main>
 	);
 };
