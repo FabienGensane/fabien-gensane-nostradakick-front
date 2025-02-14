@@ -21,6 +21,7 @@ export default function () {
                         <button
                             type="button"
                             className="loginPage__loginCard__hidenPassword">
+                            <img src="" alt="" />
                         </button>
                     </div>
 
