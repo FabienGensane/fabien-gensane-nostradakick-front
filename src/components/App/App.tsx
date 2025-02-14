@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import Authentification from "../Authentification/authentification";
 import Header_mobile from "../Headers/Header-mobile/Header_mobile";
 import Header_desktop from "../Headers/Header_desktop/Header_desktop";
 import Footer from "../Footer/Footer";
 import Header_desktop_logged from "../Headers/Header_desktop_logged/Header_desktop_logged";
+
 
 import "./App.scss";
 import { PredictsPage } from "../PredictsPage/PredictsPage";
@@ -24,19 +26,22 @@ function App() {
 			window.removeEventListener("resize", handleResize);
 		};
 	}, []);
-
+	
 	return (
-		<>
-			{sizeWindow < 490 ? (
-				<Header_mobile />
-			) : islogged ? (
-				<Header_desktop_logged />
-			) : (
-				<Header_desktop />
-			)}
-			<PredictsPage />
+		/*{sizeWindow < 490 ? (
+			<Header_mobile />
+		) : islogged ? (
+			<Header_desktop_logged />
+		) : (
+			<Header_desktop />
+		)}
+		<PredictsPage />
+	
+		{sizeWindow > 490 && <Footer />}*/
 
-			{sizeWindow > 490 && <Footer />}
+		//<Authentification/>
+
+		<>
 		</>
 	);
 }
