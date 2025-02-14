@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 
 // Import Composant Page
-import Authentification from "../Authentification/authentification";
 import { PredictsPage } from "../PredictsPage/PredictsPage";
 import { NotFoundPage } from "../NotFoundPage/NotFoundPage";
 import { RankPage } from "../RankPage/RankPage";
@@ -18,10 +17,12 @@ import Footer from "../Footer/Footer";
 import Header_desktop_logged from "../Headers/Header_desktop_logged/Header_desktop_logged";
 
 import "./App.scss";
+import Auth from "../Authentification/authentification";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
 	const [sizeWindow, setSizeWindow] = useState(window.innerWidth);
-	const [isLogged, setIsLogged] = useState(true);
+	const [isLogged, setIsLogged] = useState(false);
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -50,14 +51,22 @@ function App() {
 			<Routes>
 				{/* Page public */}
 				<Route path="/" element={<MainPage />} />
-				<Route path="/login" element={<Authentification />} />
+				<Route path="/login" element={<Auth />} />
 				<Route path="/signup" element={<Signup />} />
 
 				{/* Page Privée */}
-				{isLogged && <Route path="/prediction" element={<PredictsPage />} />}
-				{isLogged && <Route path="/resultats" element={<ResultPage />} />}
-				{isLogged && <Route path="/classement" element={<RankPage />} />}
-				{isLogged && <Route path="/profil" element={<ProfilPage />} />}
+
+				<Route
+					path="/predictions"
+					element={
+						<ProtectedRoute>
+							<PredictsPage />
+						</ProtectedRoute>
+					}
+				/>
+				<Route path="/resultats" element={<ResultPage />} />
+				<Route path="/classement" element={<RankPage />} />
+				<Route path="/profil" element={<ProfilPage />} />
 
 				{/* Page 404 */}
 				<Route path="*" element={<NotFoundPage />} />

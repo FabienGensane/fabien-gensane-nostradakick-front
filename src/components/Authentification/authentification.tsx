@@ -1,16 +1,57 @@
+import { useNavigate } from "react-router";
 import logo from "../../assets/Header/Logo.svg";
 import "./authentification.scss";
 
-export default function () {
+export default function Auth() {
+	const navigate = useNavigate();
+
+	const loginFetch = async (user) => {
+		try {
+			const res = await fetch("http://localhost:3000/api/signin", {
+				method: "POST",
+				headers: {
+					"Content-type": "application/json; charset=UTF-8",
+				},
+				body: JSON.stringify(user),
+			});
+
+			if (!res.ok) {
+				return console.error("Mauvais identifiant !");
+			}
+
+			const data = await res.json();
+
+			if (data.message === "Authentifié avec succès") {
+				navigate("/predictions");
+			}
+		} catch (error) {}
+	};
+
+	const HandleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		const myFormData = new FormData(event.currentTarget);
+		const userLogin = {
+			email: myFormData.get("email") as string,
+			password: myFormData.get("password") as string,
+		};
+		console.log(userLogin);
+		loginFetch(userLogin);
+	};
+
 	return (
 		<div className="loginPage">
 			<div className="loginPage__loginCard">
-				<form>
+				<form onSubmit={HandleLogin}>
 					<img src={logo} alt="Logo" className="loginPage__loginCard__logo" />
 
 					<label>Mot de passe</label>
 					<div className="loginPage__loginCard__password">
-						<input type="text" placeholder="Votre mot de passe" required />
+						<input
+							type="email"
+							placeholder="Votre mot de passe"
+							required
+							name="email"
+						/>
 						<button
 							type="button"
 							className="loginPage__loginCard__hidenPassword"
@@ -21,7 +62,12 @@ export default function () {
 
 					<label>Mot de passe</label>
 					<div className="loginPage__loginCard__password">
-						<input type="text" placeholder="Votre mot de passe" required />
+						<input
+							type="password"
+							placeholder="Votre mot de passe"
+							required
+							name="password"
+						/>
 						<button
 							type="button"
 							className="loginPage__loginCard__hidenPassword"
