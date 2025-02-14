@@ -2,7 +2,6 @@ import "./Predict_Card.scss";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 
-import logoOL from "../../../assets/PredictPage/Logo_OL.png";
 import iconTrash from "../../../assets/PredictPage/trash_delete.svg";
 import iconEdit from "../../../assets/PredictPage/pen_edit.svg";
 import iconChrono from "../../../assets/PredictPage/Chrono.svg";
@@ -13,11 +12,22 @@ interface IProspMatch {
 	match: IMatch;
 }
 
+interface IPropsCreatePredict {
+	match_id: number;
+	score_predi_away: number;
+	score_predi_home: number;
+	user_id: number;
+}
+
 dayjs.extend(duration);
 
 const Predict_Card = ({ match }: IProspMatch) => {
 	const [chrono, setChrono] = useState("");
+	const [scorePredict, setScorePredict] = useState<IPropsCreatePredict>();
 
+	console.log(scorePredict);
+
+	// Timer
 	useEffect(() => {
 		// Fonction formatage de la date
 		const updateCountdown = () => {
@@ -39,6 +49,7 @@ const Predict_Card = ({ match }: IProspMatch) => {
 		return () => clearInterval(timer);
 	}, [match.date]);
 
+	// Bloquer les inputs
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		// Autoriser uniquement les touches numériques et quelques touches spéciales
 		if (
@@ -49,10 +60,48 @@ const Predict_Card = ({ match }: IProspMatch) => {
 		}
 	};
 
+	// Submit predict
+	const handleSubmitPredict = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		const myFormData = new FormData(event.currentTarget);
+		const newPredict = {
+			user_id: 2,
+			match_id: match.match_id,
+			score_predi_home: Number(myFormData.get("home")),
+			score_predi_away: Number(myFormData.get("away")),
+		};
+		createPredict(newPredict);
+		setScorePredict(newPredict);
+	};
+
+	// Post predict
+	const createPredict = async (data: IPropsCreatePredict) => {
+		try {
+			const response = await fetch("http://localhost:3000/api/predictions", {
+				method: "POST",
+				headers: {
+					"Content-type": "application/json; charset=UTF-8",
+				},
+				body: JSON.stringify(data),
+			});
+
+			if (!response.ok) {
+				const errorMessage = await response.text();
+				console.error(`Error: ${response.status} - ${errorMessage}`);
+				throw new Error(errorMessage);
+			}
+
+			console.log("Creation de ta prédiction");
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
 		<form
 			className="predictCard"
 			style={chrono === "00:00:00:00" ? { display: "none" } : {}}
+			onSubmit={handleSubmitPredict}
 		>
 			<div className="predictCard__containerChrono">
 				<img
@@ -81,6 +130,7 @@ const Predict_Card = ({ match }: IProspMatch) => {
 							name="home"
 							onKeyDown={handleKeyDown}
 							maxLength={2}
+							value={scorePredict?.score_predi_home}
 						/>
 						<button
 							type="button"
@@ -101,6 +151,7 @@ const Predict_Card = ({ match }: IProspMatch) => {
 							name="away"
 							onKeyDown={handleKeyDown}
 							maxLength={2}
+							value={scorePredict?.score_predi_away}
 						/>
 						<button
 							type="button"
@@ -125,7 +176,7 @@ const Predict_Card = ({ match }: IProspMatch) => {
 					</p>
 				</div>
 			</div>
-			<button type="button" className="predictCard__btnValidate">
+			<button type="submit" className="predictCard__btnValidate">
 				À moi la victoire !
 			</button>
 			<button type="button" className="predictCard__btnDelete">

@@ -35,6 +35,7 @@ function App() {
 				<Header_desktop />
 			)}
 			<PredictsPage />
+			{/* <button type="button" onClick={}>Change</button> */}
 
 			{sizeWindow > 490 && <Footer />}
 		</>
