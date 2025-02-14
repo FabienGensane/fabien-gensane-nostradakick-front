@@ -1,0 +1,78 @@
+
+.loginPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../../assets/hero_homePage/bg_hero.png") no-repeat center center/cover;
+
+    &__loginCard {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        width: 350px;
+        text-align: center;
+        opacity: 95%;
+
+        &__logo {
+            position: absolute;
+            top: 9rem;
+            left: 50%;
+            width: 80px;
+            margin-bottom: 15px;
+            transform: translateX(-50%);
+        }
+
+        label {
+            font-weight: bold;
+            text-align: left;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        &__password {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            
+
+           
+        }
+
+        &__forgotPassword {
+            display: block;
+            margin: 10px 0;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        &__loginButton {
+            background: #2C2C2C;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        &__terms {
+            font-size: 12px;
+            color: red;
+            margin-top: 10px;
+
+            
+        }
+    }
+}

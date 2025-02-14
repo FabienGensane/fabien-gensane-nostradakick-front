@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import Header_mobile from "../Headers/Header-mobile/Header_mobile";
-import Header_desktop from "../Headers/Header_desktop/Header_desktop";
-import Footer from "../Footer/Footer";
-import Header_desktop_logged from "../Headers/Header_desktop_logged/Header_desktop_logged";
+// import Authentification from "../Authentification/authentification";
+// import Header_mobile from "../Headers/Header-mobile/Header_mobile";
+// import Header_desktop from "../Headers/Header_desktop/Header_desktop";
+// import Footer from "../Footer/Footer";
+// import Header_desktop_logged from "../Headers/Header_desktop_logged/Header_desktop_logged";
 
 import "./App.scss";
-import { PredictsPage } from "../PredictsPage/PredictsPage";
+// import { PredictsPage } from "../PredictsPage/PredictsPage";
 
 function App() {
 	const [sizeWindow, setSizeWindow] = useState(492);
@@ -26,19 +27,20 @@ function App() {
 	}, []);
 
 	return (
-		<>
-			{sizeWindow < 490 ? (
-				<Header_mobile />
-			) : islogged ? (
-				<Header_desktop_logged />
-			) : (
-				<Header_desktop />
-			)}
-			<PredictsPage />
-			{/* <button type="button" onClick={}>Change</button> */}
+		/*{sizeWindow < 490 ? (
+			<Header_mobile />
+		) : islogged ? (
+			<Header_desktop_logged />
+		) : (
+			<Header_desktop />
+		)}
+		<PredictsPage />
+	
+		{sizeWindow > 490 && <Footer />}*/
 
-			{sizeWindow > 490 && <Footer />}
-		</>
+		//<Authentification/>
+
+		<></>
 	);
 }
 
