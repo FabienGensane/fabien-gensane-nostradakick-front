@@ -5,11 +5,19 @@ export default function () {
 	return (
 		<div className="loginPage">
 			<div className="loginPage__loginCard">
-				<img src={logo} alt="Logo" className="loginPage__loginCard__logo" />
-
 				<form>
-					<label>Email</label>
-					<input type="email" placeholder="Votre email" required />
+					<img src={logo} alt="Logo" className="loginPage__loginCard__logo" />
+
+					<label>Mot de passe</label>
+					<div className="loginPage__loginCard__password">
+						<input type="text" placeholder="Votre mot de passe" required />
+						<button
+							type="button"
+							className="loginPage__loginCard__hidenPassword"
+						>
+							<img src="" alt="" />
+						</button>
+					</div>
 
 					<label>Mot de passe</label>
 					<div className="loginPage__loginCard__password">
