@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router";
 
 // Import Composant Page
 import { PredictsPage } from "../PredictsPage/PredictsPage";
-import { NotFoundPage } from "../NotFoundPage/NotFoundPage";
+import { NotFoundPage } from "../ErrorPages/404";
 import { RankPage } from "../RankPage/RankPage";
 import { ResultPage } from "../ResultPage/ResultPage";
 import { ProfilPage } from "../ProfilPage/ProfilPage";
