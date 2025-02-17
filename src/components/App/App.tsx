@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router";
 
 // Import Composant Page
 import { PredictsPage } from "../PredictsPage/PredictsPage";
-import { NotFoundPage } from "../NotFoundPage/NotFoundPage";
+import { NotFoundPage } from "../ErrorPages/404";
 import { RankPage } from "../RankPage/RankPage";
 import { ResultPage } from "../ResultPage/ResultPage";
 import { ProfilPage } from "../ProfilPage/ProfilPage";
@@ -40,7 +40,18 @@ function App() {
 
 	return (
 		<>
+<<<<<<< HEAD
 			<Headers />
+=======
+		{/* Header */}
+			{sizeWindow < 375 ? (
+				<Header_mobile />
+			) : isLogged ? (
+				<Header_desktop_logged />
+			) : (
+				<Header_desktop />
+			)}
+>>>>>>> 499b3262e945e35af99f1940d7c6917cfa65c635
 
 			<Routes>
 				{/* Page public */}

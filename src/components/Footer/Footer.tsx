@@ -1,5 +1,6 @@
 import "./Footer.scss";
 import logo from "../../assets/Header/Logo.svg";
+import { Link } from 'react-router';
 
 const Footer = () => {
 	return (
@@ -7,19 +8,19 @@ const Footer = () => {
 			<img src={logo} alt="" className="footer__logo" />
 			<ul className="footer__list">
 				<li className="footer__list__item">
-					<a href="/" className="footer__list__item__link">
+					<Link to="/" className="footer__list__item__link">
 						Mentions légales
-					</a>
+					</Link>
 				</li>
 				<li className="footer__list__item">
-					<a href="/" className="footer__list__item__link">
+					<Link to="/" className="footer__list__item__link">
 						CGU
-					</a>
+					</Link>
 				</li>
 				<li className="footer__list__item">
-					<a href="/" className="footer__list__item__link">
+					<Link to="/" className="footer__list__item__link">
 						Régles du jeu
-					</a>
+					</Link>
 				</li>
 			</ul>
 		</footer>
