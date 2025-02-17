@@ -13,13 +13,16 @@ export default function Auth() {
 					"Content-type": "application/json; charset=UTF-8",
 				},
 				body: JSON.stringify(user),
-			});
+			})
 
 			if (!res.ok) {
 				return console.error("Mauvais identifiant !");
 			}
 
 			const data = await res.json();
+
+			localStorage.setItem("jwt", data.token);
+			console.log("token enregistré !");
 
 			if (data.message === "Authentifié avec succès") {
 				navigate("/predictions");

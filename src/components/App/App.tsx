@@ -11,18 +11,18 @@ import { Signup } from "../Signup/Signup";
 import { MainPage } from "../MainPage/MainPage";
 
 // Import composant Hearder et footer
-import Header_mobile from "../Headers/Header-mobile/Header_mobile";
-import Header_desktop from "../Headers/Header_desktop/Header_desktop";
+// import Header_mobile from "../Headers/Header-mobile/Header_mobile";
+// import Header_desktop from "../Headers/Header_desktop/Header_desktop";
 import Footer from "../Footer/Footer";
-import Header_desktop_logged from "../Headers/Header_desktop_logged/Header_desktop_logged";
+// import Header_desktop_logged from "../Headers/Header_desktop_logged/Header_desktop_logged";
 
 import "./App.scss";
 import Auth from "../Authentification/authentification";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Headers from "../Headers/Headers";
 
 function App() {
 	const [sizeWindow, setSizeWindow] = useState(window.innerWidth);
-	const [isLogged, setIsLogged] = useState(false);
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -40,13 +40,7 @@ function App() {
 
 	return (
 		<>
-			{sizeWindow < 375 ? (
-				<Header_mobile />
-			) : isLogged ? (
-				<Header_desktop_logged />
-			) : (
-				<Header_desktop />
-			)}
+			<Headers />
 
 			<Routes>
 				{/* Page public */}
@@ -64,9 +58,30 @@ function App() {
 						</ProtectedRoute>
 					}
 				/>
-				<Route path="/resultats" element={<ResultPage />} />
-				<Route path="/classement" element={<RankPage />} />
-				<Route path="/profil" element={<ProfilPage />} />
+				<Route
+					path="/resultats"
+					element={
+						<ProtectedRoute>
+							<ResultPage />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path="/classement"
+					element={
+						<ProtectedRoute>
+							<RankPage />
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path="/profil"
+					element={
+						<ProtectedRoute>
+							<ProfilPage />
+						</ProtectedRoute>
+					}
+				/>
 
 				{/* Page 404 */}
 				<Route path="*" element={<NotFoundPage />} />

@@ -9,7 +9,9 @@ const useAuth = () => {
 			try {
 				const response = await fetch("http://localhost:3000/api/auth/check", {
 					method: "GET",
-					credentials: "include",
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("jwt")}`, // Ajouter le token dans le header Authorization
+					},
 				});
 
 				if (response.ok) {
