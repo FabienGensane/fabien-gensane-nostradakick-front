@@ -14,10 +14,13 @@ export default function () {
 				</a>
 
 				<div className="menu__desktop__header__buttons">
-					<a href="/" className="menu__desktop__header__buttons__subscribe">
+					<a
+						href="/signup"
+						className="menu__desktop__header__buttons__subscribe"
+					>
 						S'inscrire
 					</a>
-					<a href="/" className="menu__desktop__header__buttons__login">
+					<a href="/login" className="menu__desktop__header__buttons__login">
 						Se connecter
 					</a>
 				</div>

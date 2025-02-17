@@ -24,8 +24,8 @@ export interface ITeam {
 export interface IPredicts {
 	match: IMatch;
 	match_id: number;
-	player: IUser;
-	player_id: number;
+	user: IUser;
+	user_id: number;
 	points_outcome: number;
 	points_score: number;
 	prediction_id: number;
