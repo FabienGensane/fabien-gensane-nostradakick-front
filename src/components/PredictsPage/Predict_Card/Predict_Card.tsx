@@ -1,8 +1,6 @@
 import "./Predict_Card.scss";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
-
-import logoOL from "../../../assets/PredictPage/Logo_OL.png";
 import iconTrash from "../../../assets/PredictPage/trash_delete.svg";
 import iconEdit from "../../../assets/PredictPage/pen_edit.svg";
 import iconChrono from "../../../assets/PredictPage/Chrono.svg";
