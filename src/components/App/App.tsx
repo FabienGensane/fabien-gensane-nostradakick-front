@@ -40,6 +40,7 @@ function App() {
 
 	return (
 		<>
+		{/* Header */}
 			{sizeWindow < 375 ? (
 				<Header_mobile />
 			) : isLogged ? (
