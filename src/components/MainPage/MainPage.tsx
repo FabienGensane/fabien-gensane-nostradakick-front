@@ -40,10 +40,10 @@ export const MainPage = () => {
 				))}
         </div>
         <div className="homePage__container__joinUs">
-          <h2>Rejoins NostradaKick
+          <h2 className="homePage__container__joinUs__title">Rejoins NostradaKick
           dès maintenant...</h2>
-          <p>et prouve que tu es le meilleur pronostiqueur !</p>
-          <a href="/login" className="homePage__container__catchPhrases__callToAction">Rejoins le jeu gratuitement!</a>
+          <p className="homePage__container__joinUs__paragraph">et prouve que tu es le meilleur pronostiqueur !</p>
+          <a href="/login" className="homePage__container__joinUs__callToAction">Rejoins le jeu gratuitement!</a>
         </div>
 			</div>
 		</main>
