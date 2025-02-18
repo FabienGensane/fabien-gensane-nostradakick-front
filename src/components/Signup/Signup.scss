@@ -1,0 +1,102 @@
+.registrePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../../assets/hero_homePage/bg_hero.png") no-repeat center
+    center/cover;
+  font-size: 15px;
+
+
+
+  &__registreCard {
+    color: #e5dcb4;
+    background: #061126;
+    padding: 1rem 2rem 3rem 2rem;
+    border: 5px solid #e5dcb4;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    height: 90vh;
+    width: 620px;
+    text-align: center;
+    opacity: 95%;
+    position: relative;
+    margin-top: 60px;
+    
+
+    &__logo {
+      position: absolute;
+      top: -9%;
+      left: 50%;
+      width: 100px;
+      margin-bottom: 15px;
+      transform: translateX(-50%);
+    }
+
+    label {
+      font-weight: bold;
+      text-align: left;
+      display: block;
+      margin-top: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #e5dcb4;
+      background-color: #132648;
+      border-radius: 5px;
+      color: #e5dcb4;
+      
+      
+    }
+
+    &__password {
+      position: relative;
+
+      &__hidenPassword {
+        position: absolute;
+        margin-top: 1.25rem;
+        margin-right: 1rem;
+        border: none;
+        background: none;
+        top: 0;
+        right: 0;
+        color: #e5dcb4;        
+      }
+      
+    
+    }
+
+    &__confirmedPassword {
+        position: relative;
+    
+    
+}
+
+    &__terms {
+      font-size: px;
+      color: e5dcb4;
+      margin-top: 8px;
+    }
+
+    &__signupButton {
+      background: #3b9cf1;
+      color: rgb(255, 255, 255);
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      width: 100%;
+    }
+    &__existingAccount {
+      padding-top: 1rem;
+      
+    }
+    &__personalData {
+      font-size: 10px;
+    }
+  }
+}

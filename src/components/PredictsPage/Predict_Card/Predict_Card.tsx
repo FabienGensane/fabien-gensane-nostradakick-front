@@ -1,7 +1,6 @@
 import "./Predict_Card.scss";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
-
 import iconTrash from "../../../assets/PredictPage/trash_delete.svg";
 
 import { IMatch } from "../../../@types";
