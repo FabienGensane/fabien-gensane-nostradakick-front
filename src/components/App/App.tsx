@@ -7,7 +7,7 @@ import { NotFoundPage } from "../NotFoundPage/NotFoundPage";
 import { RankPage } from "../RankPage/RankPage";
 import { ResultPage } from "../ResultPage/ResultPage";
 import { ProfilPage } from "../ProfilPage/ProfilPage";
-import { Signup } from "../Signup/Signup";
+import Signup from "../Signup/Signup";
 import { MainPage } from "../MainPage/MainPage";
 
 // Import composant Hearder et footer
