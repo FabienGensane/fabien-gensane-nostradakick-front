@@ -40,18 +40,7 @@ function App() {
 
 	return (
 		<>
-<<<<<<< HEAD
 			<Headers />
-=======
-		{/* Header */}
-			{sizeWindow < 375 ? (
-				<Header_mobile />
-			) : isLogged ? (
-				<Header_desktop_logged />
-			) : (
-				<Header_desktop />
-			)}
->>>>>>> 499b3262e945e35af99f1940d7c6917cfa65c635
 
 			<Routes>
 				{/* Page public */}

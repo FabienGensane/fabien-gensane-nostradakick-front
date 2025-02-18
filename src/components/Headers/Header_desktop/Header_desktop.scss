@@ -1,6 +1,7 @@
 .menu__desktop {
     width: 100%;
     position: fixed;
+    z-index: 2;
 
     &__header {
         width: 90%;
@@ -25,10 +26,10 @@
             top: 0;
             left: 0;
             right: 0;
-            bottom: 1;
+            bottom: 0;
 
             padding: 1.5px; 
-            z-index: 0; /* Placer la bordure derrière le contenu */
+            z-index: 1; /* Placer la bordure derrière le contenu */
 
             border-radius: inherit; /* Hériter du border-radius du parent */
             background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
@@ -49,7 +50,8 @@
         &__logo {
             position: absolute;
             top: -2.3rem;
-            left: 44%;
+            left: 50%;
+            transform: translateX(-65%);
 
             cursor: pointer;
             width: 120px;
