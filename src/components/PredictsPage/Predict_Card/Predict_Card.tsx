@@ -8,10 +8,9 @@ import { useRef, useState } from "react";
 import Chrono from "./Chrono/Chrono";
 import Input from "./Input/Input";
 import Team from "./Team/Team";
+import { useUserData } from "../../../hooks/userData";
 
-interface IProspMatch {
-	match: IMatch;
-}
+
 
 interface IPropsCreatePredict {
 	match_id: number;
@@ -21,12 +20,15 @@ interface IPropsCreatePredict {
 
 dayjs.extend(duration);
 
-const Predict_Card = ({ match }: IProspMatch) => {
+const Predict_Card = ({ match }: {match:IMatch}) => {
 	const [chrono, setChrono] = useState("");
 	const [scorePredict, setScorePredict] = useState<IPropsCreatePredict>();
 	// Etat qui permet de vérifier si une prédiction a été postée. D'origine, l'état est faux.
 	const [isValidated, setIsValidated] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
+	const {user} = useUserData();
+	console.log(user);
+	
 
 	// Méthode qui permet d'aller chercher en BDD les scores "prédits" par l'utilisateur afin de les afficher
 
@@ -35,8 +37,6 @@ const Predict_Card = ({ match }: IProspMatch) => {
 	const handleSubmitPredict = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const myFormData = new FormData(event.currentTarget);
-		const user = localStorage.getItem("jwt");
-		console.log(user);
 		const newPredict = {
 			match_id: match.match_id,
 			score_predi_home: Number(myFormData.get("home")),
