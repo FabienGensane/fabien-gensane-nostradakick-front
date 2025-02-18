@@ -1,28 +1,28 @@
 import "./Header_desktop.scss";
+import { Link } from 'react-router';
 import logo from "../../../assets/Header/Logo.svg";
 
 export default function () {
 	return (
 		<div className="menu__desktop">
 			<header className="menu__desktop__header">
-				<a href="/">
+				<Link to="/">
 					<img
 						src={logo}
 						alt="logo NostradaKick"
 						className="menu__desktop__header__logo"
 					/>
-				</a>
+				</Link>
 
 				<div className="menu__desktop__header__buttons">
-					<a
-						href="/signup"
+					<Link to="/signup"
 						className="menu__desktop__header__buttons__subscribe"
 					>
 						S'inscrire
-					</a>
-					<a href="/login" className="menu__desktop__header__buttons__login">
+					</Link>
+					<Link to="/login" className="menu__desktop__header__buttons__login">
 						Se connecter
-					</a>
+					</Link>
 				</div>
 			</header>
 		</div>

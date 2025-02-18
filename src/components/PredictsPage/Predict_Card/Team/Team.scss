@@ -1,0 +1,12 @@
+.predictCard__containerPredict__Team {
+        text-align: center;
+        width: 6rem;
+        &__logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 0.5rem;
+        }
+        &__name{
+            font-weight: 700;
+        }
+    }

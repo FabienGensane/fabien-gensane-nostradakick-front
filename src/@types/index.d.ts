@@ -46,3 +46,11 @@ export interface IUser {
 	created_at: string;
 	updated_at: null | string;
 }
+
+export interface ICompetition {
+	name: string;
+	season: string;
+	logo: string;
+	created_at: string;
+	updated_at: null | string;
+}
