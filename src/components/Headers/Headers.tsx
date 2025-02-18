@@ -23,8 +23,8 @@ const Headers = () => {
 	}, []);
 
 	const headerRender = () => {
-		if (sizeWindow < 375) return <Header_mobile />;
-		if (sizeWindow < 375 && !isAuthenticated) return <></>;
+		if (sizeWindow < 426) return <Header_mobile />;
+		if (sizeWindow < 426 && !isAuthenticated) return <></>;
 		if (!isAuthenticated) return <Header_desktop />;
 		return <Header_desktop_logged />;
 	};

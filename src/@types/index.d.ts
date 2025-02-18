@@ -41,8 +41,9 @@ export interface IUser {
 	last_name: string;
 	password: string;
 	picture: null | string;
-	player_id: 8;
+	user_id: 8;
 	pseudo: string;
+	prediction: IPredicts[];
 	created_at: string;
 	updated_at: null | string;
 }
