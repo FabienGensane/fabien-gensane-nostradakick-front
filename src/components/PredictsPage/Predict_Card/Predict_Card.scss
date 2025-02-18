@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 .predictCard {
-    width: 30%;
-    margin: 3rem auto 0;
+    // Modification de la width passée de 30% à 80%
+    width: 80%;
+    // Modification passée 
+    margin: 2rem auto;
     position: relative;
     height: auto;
     z-index: 0;
@@ -12,6 +14,7 @@
 
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     gap: 1rem;
     padding: 1.5rem;
@@ -46,6 +49,19 @@
 
     }
 
+    &__containerChrono {
+        z-index: 1;
+        background-color: #112242;
+        border-radius: 0.3rem;
+        display: flex;
+        justify-content: space-between;
+        padding: 0.2rem 0.5rem;
+        // Modification passage de 28% à 40%
+        width: 40%;
+        font-family: "Montserrat", serif;
+        font-optical-sizing: auto;
+
+    }
     
     &__containerPredict {
         width: 100%;
@@ -61,11 +77,74 @@
 
             margin-top: -1.8rem;
         }
+        
+        &__input {
+            position: relative;
+
+            &__score{
+                font-family: "Montserrat", serif;
+                font-optical-sizing: auto;
+                font-weight: 700;
+                font-size: 1.8rem;
+                
+                width: 65px;
+                height: 65px;
+                
+                text-align: center;
+                color: #3B9CF1 ;
+
+                background-color: #112242;
+                border: none;
+                border-radius: 2rem;
+
+                
+            }
+            
+            &__edit {
+                position: absolute;
+                top: -0.2rem;
+                right: -0.2rem;
+
+                width: 20px;
+                height: 20px;
+
+                border: none;
+                border-radius: 50%;
+                background-color: #FEFFED;
+
+                cursor: pointer;
+
+                 transition: 500ms;
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+    
+    &__containerPredict__Team {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: 80%;
+        width: 6rem;
+        &__logo {
+            width: auto;
+            height: 63px;
+            margin: 0 auto 0.5rem;
+        }
+        &__name{
+            font-weight: 700;
+            width: 7rem;
+        }
     }
     
 
     &__btnValidate {
-        margin: -1rem auto 0;
+        // Passage de -1rem à 2rem
+        margin: 2rem auto 0;
         padding: 0.5rem 2rem;
         border-radius: 3rem;
         background-color: #3B9CF1;
