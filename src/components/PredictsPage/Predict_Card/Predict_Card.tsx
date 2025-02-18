@@ -8,7 +8,7 @@ import { useRef, useState } from "react";
 import Chrono from "./Chrono/Chrono";
 import Input from "./Input/Input";
 import Team from "./Team/Team";
-import { useUserData } from "../../../hooks/userData";
+import { useUserData } from "../../../hooks/UserData";
 
 
 
@@ -49,14 +49,17 @@ const Predict_Card = ({ match }: {match:IMatch}) => {
 	// Méthode qui permet de créer une prédiction en BDD
 	const createPredict = async (data: IPropsCreatePredict) => {
 		try {
+			console.log(user);
 			const response = await fetch("http://localhost:3000/api/predictions/",{
 				method: "POST",
 				headers: {
 					"Content-type": "application/json; charset=UTF-8",
 					Authorization: `Bearer ${localStorage.getItem("jwt")}`, // Ajouter le token dans le header Authorization
 				},
-				body: JSON.stringify(data),
+				body: JSON.stringify(user),
 			});
+			
+			
 
 			if (!response.ok) {
 				const errorMessage = await response.text();
