@@ -72,7 +72,7 @@ export const RankPage = () => {
 				))}
 			</div>
 				{/* Création du classement des autres users */}
-				<UserRankLogged  user={user} position={positionUserLogged}/>
+				{/* <UserRankLogged  user={user} position={positionUserLogged}/> */}
 
 			<div className="rank__List">
 				<div className="rank__List__head">
