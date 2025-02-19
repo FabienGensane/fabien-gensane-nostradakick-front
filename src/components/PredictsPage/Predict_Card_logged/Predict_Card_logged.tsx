@@ -1,4 +1,4 @@
-import "./Predict_Card_logged.scss"
+import "./Predict_Card_logged.scss";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import iconTrash from "../../../assets/PredictPage/trash_delete.svg";
@@ -10,8 +10,6 @@ import Input from "./Input/Input";
 import Team from "./Team/Team";
 import { useUserData } from "../../../hooks/UserData";
 
-
-
 interface IPropsCreatePredict {
 	match_id: number;
 	score_predi_away: number;
@@ -20,22 +18,15 @@ interface IPropsCreatePredict {
 
 dayjs.extend(duration);
 
-const Predict_Card_logged = ({ match }: {match:IMatch}) => {
+const Predict_Card_logged = ({ match }: { match: IMatch }) => {
 	const [chrono, setChrono] = useState("");
 	const [scorePredict, setScorePredict] = useState<IPropsCreatePredict>();
 	// Etat qui permet de vérifier si une prédiction a été postée. D'origine, l'état est faux.
 	const [isValidated, setIsValidated] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
-	const {user} = useUserData();
-<<<<<<< HEAD:src/components/PredictsPage/Predict_Card/Predict_Card.tsx
-
-=======
-	
->>>>>>> 6d6443c84e0d762533d0f64c30dcd2252c16c364:src/components/PredictsPage/Predict_Card_logged/Predict_Card_logged.tsx
-	
+	const { user } = useUserData();
 
 	// Méthode qui permet d'aller chercher en BDD les scores "prédits" par l'utilisateur afin de les afficher
-
 
 	// Méthode qui permet de récupérer dans le formulaire "predict_card" les informations nécessaires à la création d'une prédiction
 	const handleSubmitPredict = (event: React.FormEvent<HTMLFormElement>) => {
@@ -53,17 +44,14 @@ const Predict_Card_logged = ({ match }: {match:IMatch}) => {
 	// Méthode qui permet de créer une prédiction en BDD
 	const createPredict = async (data: IPropsCreatePredict) => {
 		try {
-			console.log("étape5:", user);
-			const response = await fetch("http://localhost:3000/api/predictions/",{
+			const response = await fetch("http://localhost:3000/api/predictions/", {
 				method: "POST",
 				headers: {
 					"Content-type": "application/json; charset=UTF-8",
 					Authorization: `Bearer ${localStorage.getItem("jwt")}`, // Ajouter le token dans le header Authorization
 				},
-				body: JSON.stringify(user),
+				body: JSON.stringify(data),
 			});
-			
-			
 
 			if (!response.ok) {
 				const errorMessage = await response.text();
@@ -84,20 +72,23 @@ const Predict_Card_logged = ({ match }: {match:IMatch}) => {
 	) => {
 		event.preventDefault();
 		try {
-			const response = await fetch(`http://localhost:3000/api/predictions/${scorePredict?.match_id}`, {
-				method: "DELETE",
-				headers: {
-					"Content-type": "application/json; charset=UTF-8",
-					Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+			const response = await fetch(
+				`http://localhost:3000/api/predictions/${scorePredict?.match_id}`,
+				{
+					method: "DELETE",
+					headers: {
+						"Content-type": "application/json; charset=UTF-8",
+						Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+					},
 				},
-			});
-	
+			);
+
 			if (!response.ok) {
 				const errorMessage = await response.text();
 				console.error(`Error: ${response.status} - ${errorMessage}`);
 				throw new Error(errorMessage);
 			}
-	
+
 			console.log("Suppression de la prédiction");
 			formRef.current!.reset();
 			setIsValidated(false);

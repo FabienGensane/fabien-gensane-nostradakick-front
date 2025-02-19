@@ -1,5 +1,4 @@
 import { Search } from "./Search/Search";
-import Predict_Card from "./Predict_Card_logged/Predict_Card_logged";
 
 import "./PredicstPage.scss";
 import { useEffect, useState } from "react";
@@ -8,7 +7,7 @@ import Predict_Card_logged from "./Predict_Card_logged/Predict_Card_logged";
 
 export const PredictsPage = () => {
 	const [matchs, setMatchs] = useState<IMatch[]>([]);
-// UseEffect qui permet de récupérer tous les matchs en BDD afin de les afficher
+	// UseEffect qui permet de récupérer tous les matchs en BDD afin de les afficher
 	useEffect(() => {
 		const fetchPredicts = async () => {
 			try {
@@ -21,7 +20,7 @@ export const PredictsPage = () => {
 		};
 		fetchPredicts();
 	}, []);
-// UseEffect qui permet de récupérer toutes les données du user connecté pour afficher les prédictions du USER
+	// UseEffect qui permet de récupérer toutes les données du user connecté pour afficher les prédictions du USER
 	useEffect(() => {
 		const fetchPredicts = async () => {
 			try {
@@ -40,7 +39,7 @@ export const PredictsPage = () => {
 
 	return (
 		<main className="main__predicts">
-			<Search className="main__predicts__search"/>
+			<Search className="main__predicts__search" />
 			<div className="main__predicts__container">
 				{matchs.map((match) => (
 					<Predict_Card_logged key={match.match_id} match={match} />

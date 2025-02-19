@@ -45,7 +45,7 @@ export const RankPage = () => {
 
 				setUsers(data);
 			} catch (error) {
-				console.error(error);	
+				console.error(error);
 			}
 		};
 		getUsers();
@@ -56,11 +56,8 @@ export const RankPage = () => {
 		return calculPoint(b) - calculPoint(a);
 	});
 
-	
-	
-	let positionUserLogged = users?.findIndex(u => u.pseudo === user?.pseudo);
-	positionUserLogged! += 1
-	
+	let positionUserLogged = users?.findIndex((u) => u.pseudo === user?.pseudo);
+	positionUserLogged! += 1;
 
 	return (
 		<main className="rank">
@@ -71,8 +68,8 @@ export const RankPage = () => {
 					<BestScore key={user.user_id} user={user} />
 				))}
 			</div>
-				{/* Création du classement des autres users */}
-				<UserRankLogged  user={user} position={positionUserLogged}/>
+			{/* Création du classement du user connecté */}
+			{/* <UserRankLogged userLogin={user} positionLogin={positionUserLogged} /> */}
 
 			<div className="rank__List">
 				<div className="rank__List__head">

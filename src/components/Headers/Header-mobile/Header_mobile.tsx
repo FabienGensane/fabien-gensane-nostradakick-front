@@ -5,7 +5,7 @@ import pictoRank from "../../../assets/Header/picto_rank.svg";
 import pictoResult from "../../../assets/Header/picto_result.svg";
 import Submenu from "./Submenu/Submenu";
 import { useState } from "react";
-import { NavLink } from 'react-router';
+import { NavLink } from "react-router";
 
 export default function () {
 	const [isShowSubmenu, setIsShowSubmenu] = useState(false);
@@ -24,7 +24,10 @@ export default function () {
 				<nav className="header__nav">
 					<ul className="header__nav__list">
 						<li className="header__nav__list__item">
-							<NavLink to="/predictions" className="header__nav__list__item__link">
+							<NavLink
+								to="/predictions"
+								className="header__nav__list__item__link"
+							>
 								<img
 									src={pictoHome}
 									alt=""
@@ -33,7 +36,10 @@ export default function () {
 							</NavLink>
 						</li>
 						<li className="header__nav__list__item">
-							<NavLink to="/resultats" className="header__nav__list__item__link">
+							<NavLink
+								to="/resultats"
+								className="header__nav__list__item__link"
+							>
 								<img
 									src={pictoResult}
 									alt=""
@@ -42,7 +48,10 @@ export default function () {
 							</NavLink>
 						</li>
 						<li className="header__nav__list__item">
-							<NavLink to="/classements" className="header__nav__list__item__link">
+							<NavLink
+								to="/classement"
+								className="header__nav__list__item__link"
+							>
 								<img
 									src={pictoRank}
 									alt=""
