@@ -1,5 +1,5 @@
 import { Search } from "./Search/Search";
-import Predict_Card from "./Predict_Card/Predict_Card";
+import Predict_Card from "./Predict_Card_logged/Predict_Card_logged";
 
 import "./PredicstPage.scss";
 import { useEffect, useState } from "react";

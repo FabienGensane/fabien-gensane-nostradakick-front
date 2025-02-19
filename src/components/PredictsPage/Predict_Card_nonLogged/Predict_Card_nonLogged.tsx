@@ -1,14 +1,13 @@
-import "./Predict_Card.scss";
+import "./Predict_Card_nonLogged.scss";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
-import iconTrash from "../../../assets/PredictPage/trash_delete.svg";
-
 import { IMatch } from "../../../@types";
 import { useRef, useState } from "react";
 import Chrono from "./Chrono/Chrono";
 import Input from "./Input/Input";
 import Team from "./Team/Team";
 import { useUserData } from "../../../hooks/UserData";
+import { useNavigate } from "react-router";
 
 
 
@@ -20,36 +19,33 @@ interface IPropsCreatePredict {
 
 dayjs.extend(duration);
 
-const Predict_Card = ({ match }: {match:IMatch}) => {
+const Predict_Card_nonLogged = ({ match }: {match:IMatch}) => {
+	const navigate = useNavigate();
 	const [chrono, setChrono] = useState("");
 	const [scorePredict, setScorePredict] = useState<IPropsCreatePredict>();
 	// Etat qui permet de vérifier si une prédiction a été postée. D'origine, l'état est faux.
 	const [isValidated, setIsValidated] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
 	const {user} = useUserData();
-	console.log(user);
+	
 	
 
 	// Méthode qui permet d'aller chercher en BDD les scores "prédits" par l'utilisateur afin de les afficher
 
 
 	// Méthode qui permet de récupérer dans le formulaire "predict_card" les informations nécessaires à la création d'une prédiction
-	const handleSubmitPredict = (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		const myFormData = new FormData(event.currentTarget);
-		const newPredict = {
-			match_id: match.match_id,
-			score_predi_home: Number(myFormData.get("home")),
-			score_predi_away: Number(myFormData.get("away")),
-		};
-		createPredict(newPredict);
-		setScorePredict(newPredict);
+	const handleSubmitPredict = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+        // Votre logique de soumission ici
+        
+        // Redirection
+        navigate('/login');
 	};
 
 	// Méthode qui permet de créer une prédiction en BDD
 	const createPredict = async (data: IPropsCreatePredict) => {
 		try {
-			console.log(user);
+			console.log("étape5:", user);
 			const response = await fetch("http://localhost:3000/api/predictions/",{
 				method: "POST",
 				headers: {
@@ -109,7 +105,7 @@ const Predict_Card = ({ match }: {match:IMatch}) => {
 			onSubmit={handleSubmitPredict}
 			ref={formRef}
 		>
-			{/* Timer */}
+			{/* Minuteur */}
 			<Chrono chrono={chrono} setChrono={setChrono} match={match} />
 			{/* Prédiction */}
 			<div className="predictCard__containerPredict">
@@ -124,17 +120,17 @@ const Predict_Card = ({ match }: {match:IMatch}) => {
 				<Team team={match.team[1]} />
 			</div>
 			<button type="submit" className="predictCard__btnValidate">
-				{isValidated ? "À moi la victoire !" : "Modifier votre Prédiction"}
+				Prédis l'issue du match!
 			</button>
-			<button
+			{/* <button
 				type="button"
 				className="predictCard__btnDelete"
 				// onClick={handleDeletePredict}
 			>
 				<img src={iconTrash} alt="" className="predictCard__btnDelete__icon" />
-			</button>
+			</button> */}
 		</form>
 	);
 };
 
-export default Predict_Card;
+export default Predict_Card_nonLogged;

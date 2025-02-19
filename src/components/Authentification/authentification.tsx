@@ -47,11 +47,11 @@ export default function Auth() {
 				<form onSubmit={HandleLogin}>
 					<img src={logo} alt="Logo" className="loginPage__loginCard__logo" />
 
-					<label>Mot de passe</label>
+					<label>Email
 					<div className="loginPage__loginCard__password">
 						<input
 							type="email"
-							placeholder="Votre mot de passe"
+							placeholder="email@nostradakick.fr"
 							required
 							name="email"
 						/>
@@ -62,8 +62,9 @@ export default function Auth() {
 							<img src="" alt="" />
 						</button>
 					</div>
+					</label>
 
-					<label>Mot de passe</label>
+					<label>Mot de passe
 					<div className="loginPage__loginCard__password">
 						<input
 							type="password"
@@ -78,6 +79,7 @@ export default function Auth() {
 							<img src="" alt="" />
 						</button>
 					</div>
+					</label>
 
 					<a href="/" className="loginPage__loginCard__forgotPassword">
 						Mot de passe oublié
