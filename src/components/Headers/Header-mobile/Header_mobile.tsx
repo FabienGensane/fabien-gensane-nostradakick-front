@@ -24,7 +24,7 @@ export default function () {
 				<nav className="header__nav">
 					<ul className="header__nav__list">
 						<li className="header__nav__list__item">
-							<NavLink to="/" className="header__nav__list__item__link">
+							<NavLink to="/predictions" className="header__nav__list__item__link">
 								<img
 									src={pictoHome}
 									alt=""
@@ -33,7 +33,7 @@ export default function () {
 							</NavLink>
 						</li>
 						<li className="header__nav__list__item">
-							<NavLink to="/" className="header__nav__list__item__link">
+							<NavLink to="/resultats" className="header__nav__list__item__link">
 								<img
 									src={pictoResult}
 									alt=""
@@ -42,7 +42,7 @@ export default function () {
 							</NavLink>
 						</li>
 						<li className="header__nav__list__item">
-							<NavLink to="/" className="header__nav__list__item__link">
+							<NavLink to="/classements" className="header__nav__list__item__link">
 								<img
 									src={pictoRank}
 									alt=""
@@ -59,7 +59,7 @@ export default function () {
 							onClick={handleShowSubmenu}
 							onKeyDown={() => setIsShowSubmenu(!isShowSubmenu)}
 						>
-							<NavLink to="/" className="header__nav__list__item__link">
+							<NavLink to="/profil" className="header__nav__list__item__link">
 								<img
 									src={pictoProfil}
 									alt=""

@@ -1,7 +1,7 @@
 .menu__desktop {
     width: 100%;
     position: fixed;
-    z-index: 2;
+    z-index: 10;
 
     &__header {
         width: 90%;
@@ -29,7 +29,7 @@
             bottom: 0;
 
             padding: 1.5px; 
-            z-index: 1; /* Placer la bordure derrière le contenu */
+            z-index: 10; /* Placer la bordure derrière le contenu */
 
             border-radius: inherit; /* Hériter du border-radius du parent */
             background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
@@ -61,8 +61,7 @@
 
             &:hover {
                 width: 130px;
-                top: -2.7rem;
-                left: 43.6%;
+                
             }
         }
 

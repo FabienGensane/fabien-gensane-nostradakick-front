@@ -1,0 +1,44 @@
+.predictCard__containerPredict__input {
+
+            position: relative;
+
+            &__score{
+                font-family: "Montserrat", serif;
+                font-optical-sizing: auto;
+                font-weight: 700;
+                font-size: 1.8rem;
+                
+                width: 65px;
+                height: 65px;
+                
+                text-align: center;
+                color: #3B9CF1 ;
+
+                background-color: #112242;
+                border: none;
+                border-radius: 2rem;
+
+                
+            }
+            
+            &__edit {
+                position: absolute;
+                top: -0.2rem;
+                right: -0.2rem;
+
+                width: 20px;
+                height: 20px;
+
+                border: none;
+                border-radius: 50%;
+                background-color: #FEFFED;
+
+                cursor: pointer;
+
+                 transition: 500ms;
+
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+    }

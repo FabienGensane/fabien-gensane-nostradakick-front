@@ -1,0 +1,137 @@
+.bestof3 {
+margin-top: 2rem;
+
+
+    &__img {
+        margin: 0 auto;
+        width: 150px;
+        margin-bottom: 1rem;
+        border-radius: 50%;
+
+        width: 180px;
+        height: 180px;
+        position:relative;
+
+        &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+
+                padding: 1.5px; 
+                z-index: 1; /* Placer la bordure derrière le contenu */
+
+                border-radius: inherit; /* Hériter du border-radius du parent */
+                background: linear-gradient(180deg, #030D1E, #FEFFED, #030D1E);
+            
+                // Mask pour le contour en dégradé
+                mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+                mask-composite: exclude;
+
+                -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+                -webkit-mask-composite: destination-out;
+            }
+    }
+
+    &__pseudo {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    &__data {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        
+        &__Exact, &__Good, &__Points{
+            display: flex;
+            flex-direction: column;
+
+            position: relative;
+            border-radius: 50%;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+
+                padding: 1.5px; 
+                z-index: 0; /* Placer la bordure derrière le contenu */
+
+                border-radius: inherit; /* Hériter du border-radius du parent */
+                background: linear-gradient(180deg, #030D1E, #FEFFED, #030D1E);
+            
+                // Mask pour le contour en dégradé
+                mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+                mask-composite: exclude;
+
+                -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+                -webkit-mask-composite: destination-out;
+            }
+            
+            & strong {
+                font-size: 2rem;
+                
+            }
+
+            & h2 {
+                margin-top: -0.5rem;
+                font-size: 1rem;
+                font-weight: 400;
+            }
+
+        }
+
+        &__Exact, &__Good {
+            width: 80px;
+            height: 80px;
+        }
+
+        &__Exact {
+            margin-right: -1.5rem;
+        }
+
+        &__Good {
+            margin-left: -1.5rem;
+        }
+
+        &__Points {
+            z-index: 2;
+            width: 100px;
+            height: 100px;
+            padding: 1rem;
+            background-color: #030D1E;
+
+        }
+    }
+
+}
+
+.bestof3:first-child {
+    // background-color: aqua;
+    order: 2;
+}
+.bestof3:nth-child(2) {
+    // background-color: chartreuse;
+    order: 1;
+    transform: scale(0.8);
+}
+.bestof3:nth-child(3) {
+    // background-color: red;
+    order: 3;
+    transform: scale(0.8);
+}
