@@ -27,7 +27,7 @@ const Predict_Card = ({ match }: {match:IMatch}) => {
 	const [isValidated, setIsValidated] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
 	const {user} = useUserData();
-	console.log(user);
+
 	
 
 	// Méthode qui permet d'aller chercher en BDD les scores "prédits" par l'utilisateur afin de les afficher

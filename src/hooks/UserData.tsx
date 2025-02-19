@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
 import { IUser } from '../@types'
 
 export const useUserData = () => {
-const [user, setUser] = useState<IUser[]>()
+const [user, setUser] = useState<IUser>();
 
     useEffect(()=> {
         const getUserData = async () => {
             try {
                 const token = localStorage.getItem("jwt");
+                
                 if (!token) {
                     throw new Error("Le Token n'a pas été trouvé");
                 }
@@ -17,13 +18,13 @@ const [user, setUser] = useState<IUser[]>()
 						Authorization: `Bearer ${token}`, // Ajouter le token dans le header Authorization
 					},
                 });
-                console.log(response);
                 
                 if(!response) {
                     throw new Error("Aucune donnée n'a été trouvée");
                     
                 }
                 const data = await response.json();
+                
                 setUser(data);
             } catch (error) {
                 console.error(error);
@@ -31,6 +32,7 @@ const [user, setUser] = useState<IUser[]>()
         }
         getUserData();
     }, []);
+    
 
     return {user}
 };

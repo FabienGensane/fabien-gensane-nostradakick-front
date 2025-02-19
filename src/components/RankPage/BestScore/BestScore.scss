@@ -66,7 +66,7 @@ margin-top: 2rem;
                 bottom: 0;
 
                 padding: 1.5px; 
-                z-index: 1; /* Placer la bordure derrière le contenu */
+                z-index: 0; /* Placer la bordure derrière le contenu */
 
                 border-radius: inherit; /* Hériter du border-radius du parent */
                 background: linear-gradient(180deg, #030D1E, #FEFFED, #030D1E);
@@ -110,7 +110,7 @@ margin-top: 2rem;
         }
 
         &__Points {
-            z-index: 3;
+            z-index: 2;
             width: 100px;
             height: 100px;
             padding: 1rem;
