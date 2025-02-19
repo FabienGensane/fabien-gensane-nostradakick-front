@@ -90,9 +90,21 @@
       cursor: pointer;
       margin-top: 10px;
       width: 100%;
+
+      &:disabled {
+      background-color: rgb(84, 94, 116);
+      color: rgb(255, 255, 255);
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      width: 100%;
+      }
     }
     &__existingAccount {
       padding-top: 1rem;
+      
       
     }
     &__personalData {
@@ -100,3 +112,25 @@
     }
   }
 }
+
+.toast__password {
+  padding: 1rem 3rem;
+  background-color: rgba(255, 0, 0, 0.171);
+  border: 1px solid red;
+  color: rgb(193, 124, 124);
+  margin-top: 0.5rem;
+  text-align: start;
+  border-radius: 0.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
