@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router";
 import logo from "../../assets/Header/Logo.svg";
+import { IUser } from "../../@types";
 import "./authentification.scss";
 
 export default function Auth() {
 	const navigate = useNavigate();
 
-	const loginFetch = async (user) => {
+	const loginFetch = async (user:Iuser) => {
 		try {
 			const res = await fetch("http://localhost:3000/api/signin", {
 				method: "POST",

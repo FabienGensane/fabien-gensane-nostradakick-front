@@ -2,11 +2,32 @@
     padding-top: 11rem;
     margin: 0 auto;
 
-    &__container {
-        display: flex;
-        flex-wrap: wrap;
-
+    &__search{
+        margin: 3rem;
     }
+
+    &__container{
+        color: white;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+        height: auto;
+        padding: 0 0rem;
+        position: relative; 
+        
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color:#0D1F3C;
+        opacity: 0.6; 
+        z-index: -1; 
+    }
+
+
+}
 }
 
 @media screen and (max-width: 765px) {
