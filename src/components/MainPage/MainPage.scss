@@ -10,7 +10,7 @@
     &__container {
         display: flex;
         flex-direction: column;
-        width: 100vw;
+        width: 100dvw;
 
 // CSS pilotant l'affichage du premier container
         &__catchPhrases {
@@ -19,8 +19,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            height: 100vh;
+            height: 100dvh;
+            height: 100dvh;
             padding: 0 2rem;
             position: relative; /* Ajoutez cette ligne pour permettre le positionnement absolu du pseudo-élément */
 
@@ -65,7 +65,7 @@
                 text-align: center;
 
                 @media (min-width: 748px) {
-                    width: 70vh;
+                    width: 70dvh;
                 }
             }
 
@@ -141,7 +141,7 @@
 
         // CSS pilotant l'affichage du troisième container
         &__ranking{
-            height: 100vh;
+            height: auto;
             padding: 2rem 0;
             color: white;
             display: flex;
@@ -150,6 +150,10 @@
             justify-content: center;
             position: relative;
             z-index: 0;
+
+            @media (min-width: 768px) {
+                height: 100dvh;
+        }
 
             &::before {
                 content: "";
