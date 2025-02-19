@@ -4,6 +4,7 @@ import { calculPoint } from "../RankPage";
 import { calculExact } from "../RankPage";
 import { calculGood } from "../RankPage";
 
+
 const BestScore = ({ user }: { user: IUser }) => {
 	return (
 		<div className="bestof3">

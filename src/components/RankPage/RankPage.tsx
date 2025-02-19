@@ -4,7 +4,7 @@ import UserRank from "./UserRank/UserRank";
 import "./RankPage.scss";
 import { IUser } from "../../@types";
 import { useUserData } from "../../hooks/UserData";
-import UserRankLogged from "./UserRankLogged/UserRankLogged";
+// import UserRankLogged from "./UserRankLogged/UserRankLogged";
 
 export const calculPoint = (user: IUser) => {
 	let totalPoint = 0;
