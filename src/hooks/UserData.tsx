@@ -5,6 +5,10 @@ export const useUserData = () => {
 const [user, setUser] = useState<IUser>();
 
     useEffect(()=> {
+
+        // Ajout d'un flag pour éviter les appels multiples
+        let isMounted = true;
+
         const getUserData = async () => {
             try {
                 const token = localStorage.getItem("jwt");
@@ -19,18 +23,27 @@ const [user, setUser] = useState<IUser>();
 					},
                 });
                 
-                if(!response) {
+                
+                if(!response.ok) {
                     throw new Error("Aucune donnée n'a été trouvée");
                     
                 }
                 const data = await response.json();
-                
-                setUser(data);
+                // Vérifier si le composant est toujours monté
+                if (isMounted) {
+                    setUser(data);
+                    // Déplacer le console.log ici pour voir uniquement les données reçues
+                    console.log("Données reçues :", data);
+                }
             } catch (error) {
                 console.error(error);
             }
         }
         getUserData();
+        // Nettoie la fonction
+        return () => {
+            isMounted = false;
+        }
     }, []);
     
 

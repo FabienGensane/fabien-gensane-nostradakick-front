@@ -1,7 +1,8 @@
-import Predict_Card from "../PredictsPage/Predict_Card/Predict_Card";
+import Predict_Card_nonLogged from "../PredictsPage/Predict_Card_nonLogged/Predict_Card_nonLogged";
 import "./MainPage.scss";
 import { useEffect, useState } from "react";
 import { IMatch } from "../../@types";
+
 
 
 export const MainPage = () => {
@@ -11,7 +12,7 @@ export const MainPage = () => {
   useEffect(() => {
 		const fetchPredicts = async () => {
 			try {
-				const response = await fetch("http://localhost:3000/api/matchs");
+				const response = await fetch("http://localhost:3000/api/calendar");
 				const data = await response.json();
 				setMatchs(data);
 			} catch (error) {
@@ -36,7 +37,7 @@ export const MainPage = () => {
         </div>
         <div className="homePage__container__matchs">
         {matchs.slice(0,6).map((match) => (
-					<Predict_Card key={match.match_id} match={match} />
+					<Predict_Card_nonLogged key={match.match_id} match={match} />
 				))}
         </div>
         <div className="homePage__container__joinUs">

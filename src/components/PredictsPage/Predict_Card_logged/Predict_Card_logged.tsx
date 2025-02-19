@@ -1,4 +1,4 @@
-import "./Predict_Card.scss";
+import "./Predict_Card_logged.scss"
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import iconTrash from "../../../assets/PredictPage/trash_delete.svg";
@@ -20,14 +20,18 @@ interface IPropsCreatePredict {
 
 dayjs.extend(duration);
 
-const Predict_Card = ({ match }: {match:IMatch}) => {
+const Predict_Card_logged = ({ match }: {match:IMatch}) => {
 	const [chrono, setChrono] = useState("");
 	const [scorePredict, setScorePredict] = useState<IPropsCreatePredict>();
 	// Etat qui permet de vérifier si une prédiction a été postée. D'origine, l'état est faux.
 	const [isValidated, setIsValidated] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
 	const {user} = useUserData();
+<<<<<<< HEAD:src/components/PredictsPage/Predict_Card/Predict_Card.tsx
 
+=======
+	
+>>>>>>> 6d6443c84e0d762533d0f64c30dcd2252c16c364:src/components/PredictsPage/Predict_Card_logged/Predict_Card_logged.tsx
 	
 
 	// Méthode qui permet d'aller chercher en BDD les scores "prédits" par l'utilisateur afin de les afficher
@@ -49,7 +53,7 @@ const Predict_Card = ({ match }: {match:IMatch}) => {
 	// Méthode qui permet de créer une prédiction en BDD
 	const createPredict = async (data: IPropsCreatePredict) => {
 		try {
-			console.log(user);
+			console.log("étape5:", user);
 			const response = await fetch("http://localhost:3000/api/predictions/",{
 				method: "POST",
 				headers: {
@@ -109,7 +113,7 @@ const Predict_Card = ({ match }: {match:IMatch}) => {
 			onSubmit={handleSubmitPredict}
 			ref={formRef}
 		>
-			{/* Timer */}
+			{/* Minuteur */}
 			<Chrono chrono={chrono} setChrono={setChrono} match={match} />
 			{/* Prédiction */}
 			<div className="predictCard__containerPredict">
@@ -137,4 +141,4 @@ const Predict_Card = ({ match }: {match:IMatch}) => {
 	);
 };
 
-export default Predict_Card;
+export default Predict_Card_logged;

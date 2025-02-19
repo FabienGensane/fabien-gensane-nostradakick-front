@@ -1,9 +1,12 @@
 import "./Search.scss";
 import Search_button from "../../../assets/PredictPage/icon_search.svg";
 
-export const Search = () => {
+interface SearchProps {
+    className?: string;
+}
+export const Search = ({ className }: SearchProps) => {
 	return (
-		<form className="search__form"> 
+		<form className={`search__form ${className}`}> 
 			<input
 				type="text"
 				id="search"
