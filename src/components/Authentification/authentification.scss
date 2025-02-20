@@ -6,6 +6,13 @@
     height: 100vh;
     background: url("../../assets/hero_homePage/bg_hero.png") no-repeat center center/cover;
 
+    .menu__desktop__login__header__buttons__homePage {
+        width: 100%;      
+        z-index: 10;
+    }
+
+
+
     &__loginCard {
         background: rgba(255, 255, 255, 0.9);
         padding: 2rem;
@@ -66,10 +73,11 @@
 
         &__terms {
             font-size: 12px;
-            color: red;
+            color: rgb(63, 63, 63);
             margin-top: 10px;
 
             
         }
+        
     }
 }
