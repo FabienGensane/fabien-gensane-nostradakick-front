@@ -5,6 +5,7 @@ import { useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router";
 
 
 
@@ -43,11 +44,11 @@ export default function Signup() {
     const myFormData = new FormData(event.currentTarget);
   
     const createUser = {
-      first_name: myFormData.get("first_name") ?.toString() ?? "",
-      last_name: myFormData.get("last_name")?.toString() ?? "",
-      pseudo: myFormData.get("pseudo")?.toString() ?? "",
-      email: myFormData.get("email")?.toString() ?? "",
-      password: myFormData.get("password")?.toString() ?? "",
+      first_name: myFormData.get("first_name") as string,
+      last_name: myFormData.get("last_name")as string,
+      pseudo: myFormData.get("pseudo")as string,
+      email: myFormData.get("email")as string,
+      password: myFormData.get("password") as string,
       
     };
     const confirmPassword = myFormData.get("confirmPassword")?.toString() ?? "";
@@ -99,11 +100,15 @@ export default function Signup() {
     <div className="registrePage">
       <div className="registrePage__registreCard">
         <form onSubmit={handleRegister}>
+
+        <Link to="/">
           <img
-            src={logo}
+            src={logo} 
             alt="Logo"
             className="registrePage__registreCard__logo"
+            
           />
+          </Link>
 
           <label>Prénom</label>
           <div className="registrePage__registreCard__firstName">

@@ -1,20 +1,14 @@
-import { ReactElement, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import Header_mobile from "./Header-mobile/Header_mobile";
 import useAuth from "../../hooks/Auth";
 import Header_desktop from "./Header_desktop/Header_desktop";
 import Header_desktop_logged from "./Header_desktop_logged/Header_desktop_logged";
 
-type HeaderComponentType =
-	| ReactElement<typeof Header_mobile>
-	| ReactElement<typeof Header_desktop>
-	| ReactElement<typeof Header_desktop_logged>
-	| null;
-
 const Headers = () => {
 	const { isAuthenticated } = useAuth();
 	const [sizeWindow, setSizeWindow] = useState(window.innerWidth);
-	const [headerComponent, setHeaderComponent] =
-		useState<HeaderComponentType>(null);
+	const location = useLocation();
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -30,17 +24,24 @@ const Headers = () => {
 		};
 	}, []);
 
-	useEffect(() => {
-		if (sizeWindow < 426) {
-			setHeaderComponent(<Header_mobile />);
-		} else if (!isAuthenticated) {
-			setHeaderComponent(<Header_desktop />);
-		} else {
-			setHeaderComponent(<Header_desktop_logged />);
-		}
-	}, [sizeWindow, isAuthenticated]);
+	const headerRender = () => {
+		if (sizeWindow < 426) return <Header_mobile />;
+		if (!isAuthenticated) return <Header_desktop />;
+		if (sizeWindow < 426 && !isAuthenticated) return <></>;
+		
+		return <Header_desktop_logged />;
+	};
 
-	return <div>{headerComponent}</div>;
+	// Ne pas rendre le header sur les pages /login et /signup
+    if (location.pathname === "/login" || location.pathname === "/signup") {
+        return null;
+    }
+
+	if (location.pathname === "/predictions" || location.pathname === "/resultats" || location.pathname === "/classement") {
+        return <Header_desktop_logged />;
+	}
+
+	return <div>{headerRender()}</div>;
 };
 
 export default Headers;
