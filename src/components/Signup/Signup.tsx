@@ -97,6 +97,7 @@ export default function Signup() {
   );
 
   return (
+    
     <div className="registrePage">
       <div className="registrePage__registreCard">
         <form onSubmit={handleRegister}>
