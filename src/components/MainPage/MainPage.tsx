@@ -73,7 +73,7 @@ export const MainPage = () => {
           <div className="homePage__container__ranking__top">
             {/* Création des 3 meilleures users */}
 				    {users?.slice(0, 3).map((user) => (
-					  <BestScore key={user.user_id} user={user} />
+					  <BestScore key={user.user_id} user={user}/>
 				))}
           </div>
           

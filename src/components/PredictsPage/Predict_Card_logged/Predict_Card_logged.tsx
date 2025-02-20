@@ -3,26 +3,29 @@ import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import iconTrash from "../../../assets/PredictPage/trash_delete.svg";
 
-import { IMatch } from "../../../@types";
+import { IMatch, IPropsCreatePredict } from "../../../@types";
 import { useRef, useState } from "react";
 import Chrono from "./Chrono/Chrono";
 import Input from "./Input/Input";
 import Team from "./Team/Team";
 import { useUserData } from "../../../hooks/UserData";
 
-interface IPropsCreatePredict {
-	match_id: number;
-	score_predi_away: number;
-	score_predi_home: number;
+interface PredictCardLoggedProps {
+    match: IMatch;
+    initialPrediction?: IPropsCreatePredict;
 }
+
+
 
 dayjs.extend(duration);
 
-const Predict_Card_logged = ({ match }: { match: IMatch }) => {
+const Predict_Card_logged = ({ match, initialPrediction }: PredictCardLoggedProps) => {
 	const [chrono, setChrono] = useState("");
-	const [scorePredict, setScorePredict] = useState<IPropsCreatePredict>();
+	const [scorePredict, setScorePredict] = useState<IPropsCreatePredict | null>(initialPrediction || null);
 	// Etat qui permet de vérifier si une prédiction a été postée. D'origine, l'état est faux.
-	const [isValidated, setIsValidated] = useState(false);
+	const [isValidated, setIsValidated] = useState(!!initialPrediction);
+	const [homeScore, setHomeScore] = useState(initialPrediction?.score_predi_home.toString() || "");
+    const [awayScore, setAwayScore] = useState(initialPrediction?.score_predi_away.toString() || "");
 	const formRef = useRef<HTMLFormElement>(null);
 	const { user } = useUserData();
 
@@ -31,11 +34,11 @@ const Predict_Card_logged = ({ match }: { match: IMatch }) => {
 	// Méthode qui permet de récupérer dans le formulaire "predict_card" les informations nécessaires à la création d'une prédiction
 	const handleSubmitPredict = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		const myFormData = new FormData(event.currentTarget);
+		// const myFormData = new FormData(event.currentTarget);
 		const newPredict = {
 			match_id: match.match_id,
-			score_predi_home: Number(myFormData.get("home")),
-			score_predi_away: Number(myFormData.get("away")),
+			score_predi_home: Number(homeScore),
+			score_predi_away: Number(awayScore),
 		};
 		createPredict(newPredict);
 		setScorePredict(newPredict);
@@ -50,6 +53,7 @@ const Predict_Card_logged = ({ match }: { match: IMatch }) => {
 					"Content-type": "application/json; charset=UTF-8",
 					Authorization: `Bearer ${localStorage.getItem("jwt")}`, // Ajouter le token dans le header Authorization
 				},
+				body: JSON.stringify(data),
 				body: JSON.stringify(data),
 			});
 
@@ -111,15 +115,15 @@ const Predict_Card_logged = ({ match }: { match: IMatch }) => {
 				{/* Home Team */}
 				<Team team={match.team[0]} />
 				<div className="predictCard__containerPredict__inputContent">
-					<Input name={"home"} />
+					<Input name="home" value={homeScore} onChange={(e) => setHomeScore(e.target.value)} />
 					<p>VS</p>
 					{/* Away Team */}
-					<Input name={"away"} />
+					<Input name={"away"} value={awayScore} onChange={(e) => setAwayScore(e.target.value)} />
 				</div>
 				<Team team={match.team[1]} />
 			</div>
 			<button type="submit" className="predictCard__btnValidate">
-				{isValidated ? "À moi la victoire !" : "Modifier votre Prédiction"}
+				{isValidated ? "Modifier votre Prédiction" : "À moi la victoire !"}
 			</button>
 			<button
 				type="button"

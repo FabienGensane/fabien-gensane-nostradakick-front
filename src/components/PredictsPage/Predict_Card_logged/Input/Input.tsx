@@ -1,7 +1,14 @@
 import "./Input.scss";
 import iconEdit from "../../../../assets/PredictPage/pen_edit.svg";
+import { RxValue } from "react-icons/rx";
 
-const Input = ({ name }: { name: string }) => {
+interface InputProps {
+    name: string;
+    value?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const Input: React.FC<InputProps> = ({ name, value = "", onChange }) => {
 	// Bloquer les inputs
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		// Autoriser uniquement les touches numériques et quelques touches spéciales
@@ -19,6 +26,8 @@ const Input = ({ name }: { name: string }) => {
 				type="text"
 				className="predictCard__containerPredict__input__score"
 				name={name}
+				value={value}
+				onChange={onChange}
 				onKeyDown={handleKeyDown}
 				maxLength={2}
 			/>
