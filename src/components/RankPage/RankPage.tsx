@@ -11,7 +11,6 @@ export const calculPoint = (user: IUser) => {
 	for (const predict of user.prediction) {
 		totalPoint += predict.points_score * 50 + predict.points_outcome * 10;
 	}
-
 	return totalPoint;
 };
 
@@ -26,7 +25,7 @@ export const calculExact = (user: IUser) => {
 export const calculGood = (user: IUser) => {
 	let totalGood = 0;
 	for (const predict of user.prediction) {
-		totalGood += predict.points_score;
+		totalGood += predict.points_outcome;
 	}
 	return totalGood;
 };
@@ -34,7 +33,7 @@ export const calculGood = (user: IUser) => {
 export const RankPage = () => {
 	// Stockage du des users
 	const [users, setUsers] = useState<IUser[]>();
-	const { user } = useUserData();
+	// const { user } = useUserData();
 
 	// Récupération des users avec leurs prédictions
 	useEffect(() => {
@@ -56,8 +55,8 @@ export const RankPage = () => {
 		return calculPoint(b) - calculPoint(a);
 	});
 
-	let positionUserLogged = users?.findIndex((u) => u.pseudo === user?.pseudo);
-	positionUserLogged! += 1;
+	// let positionUserLogged = users?.findIndex((u) => u.pseudo === user?.pseudo);
+	// positionUserLogged! += 1;
 
 	return (
 		<main className="rank">

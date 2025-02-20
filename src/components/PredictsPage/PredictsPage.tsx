@@ -8,18 +8,18 @@ import Predict_Card_logged from "./Predict_Card_logged/Predict_Card_logged";
 export const PredictsPage = () => {
 	const [matchs, setMatchs] = useState<IMatch[]>([]);
 	// UseEffect qui permet de récupérer tous les matchs en BDD afin de les afficher
-	useEffect(() => {
-		const fetchPredicts = async () => {
-			try {
-				const response = await fetch("http://localhost:3000/api/matchs");
-				const data = await response.json();
-				setMatchs(data);
-			} catch (error) {
-				console.log("erreur");
-			}
-		};
-		fetchPredicts();
-	}, []);
+	// useEffect(() => {
+	// 	const fetchPredicts = async () => {
+	// 		try {
+	// 			const response = await fetch("http://localhost:3000/api/matchs");
+	// 			const data = await response.json();
+	// 			setMatchs(data);
+	// 		} catch (error) {
+	// 			console.log("erreur");
+	// 		}
+	// 	};
+	// 	fetchPredicts();
+	// }, []);
 	// UseEffect qui permet de récupérer toutes les données du user connecté pour afficher les prédictions du USER
 	useEffect(() => {
 		const fetchPredicts = async () => {

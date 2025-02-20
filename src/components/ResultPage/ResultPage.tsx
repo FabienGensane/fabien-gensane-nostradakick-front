@@ -3,11 +3,54 @@ import { IMatch } from "../../@types";
 import Team from "../PredictsPage/Predict_Card_logged/Team/Team";
 import DateResult from "./DateResult/DateResult";
 import "./ResultPage.scss";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+import { useUserData } from "../../hooks/UserData";
+import ResultMatch from "./ResultMatch/ResultMatch";
+
+dayjs.extend(customParseFormat);
+
+export interface IDate {
+	date: number;
+	day: string;
+	month: string;
+	year: number;
+}
+
+const initalDate = () => {
+	const daysOfWeek = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+	const daysOfMonth = [
+		"Janvier",
+		"Février",
+		"Mars",
+		"Avril",
+		"Mai",
+		"Juin",
+		"Juillet",
+		"Août",
+		"Septembre",
+		"Octobre",
+		"Novembre",
+		"Décembre",
+	];
+	const date = new Date();
+	const currentDate = date.getDate() as number;
+	const arrayDate = {
+		date: currentDate,
+		day: daysOfWeek[date.getDay()],
+		month: daysOfMonth[date.getMonth()],
+		year: date.getFullYear(),
+	};
+	return arrayDate;
+};
+
+console.log(initalDate());
 
 export const ResultPage = () => {
 	const [matchs, setMatchs] = useState<IMatch[]>([]);
+	const [ActiveDate, setActiveDate] = useState(initalDate());
 	const { user } = useUserData();
-
 
 	useEffect(() => {
 		const fetchPredicts = async () => {
@@ -22,95 +65,80 @@ export const ResultPage = () => {
 		fetchPredicts();
 	}, []);
 
-	const dateArray = [
-		{
-			date: "04",
-			jour: "Mar",
-		},
-		{
-			date: "05",
-			jour: "Mer",
-		},
-		{
-			date: "06",
-			jour: "Jeu",
-		},
-		{
-			date: "07",
-			jour: "Ven",
-		},
-		{
-			date: "08",
-			jour: "Sam",
-		},
-		{
-			date: "09",
-			jour: "Dim",
-		},
-		{
-			date: "10",
-			jour: "Lun",
-		},
-		{
-			date: "11",
-			jour: "Mar",
-		},
-		{
-			date: "12",
-			jour: "Mer",
-		},
-		{
-			date: "13",
-			jour: "Jeu",
-		},
-		{
-			date: "14",
-			jour: "Ven",
-		},
-	];
+	const calendar = () => {
+		const daysOfWeek = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+		const daysOfMonth = [
+			"Janvier",
+			"Février",
+			"Mars",
+			"Avril",
+			"Mai",
+			"Juin",
+			"Juillet",
+			"Août",
+			"Septembre",
+			"Octobre",
+			"Novembre",
+			"Décembre",
+		];
+		const date = new Date();
+		const currentDate = date.getDate();
+		const arrayDate = [
+			{
+				date: currentDate,
+				day: daysOfWeek[date.getDay()],
+				month: daysOfMonth[date.getMonth()],
+				year: date.getFullYear(),
+			},
+		];
 
-	
+		const addDates = (start: number, increment: number, count: number) => {
+			for (let i = 1; i <= count; i++) {
+				const newDate = new Date(date);
+				newDate.setDate(start + i * increment);
+				arrayDate.push({
+					date: newDate.getDate(),
+					day: daysOfWeek[newDate.getDay()],
+					month: daysOfMonth[date.getMonth()],
+					year: date.getFullYear(),
+				});
+			}
+		};
+
+		addDates(currentDate, 1, 5); // Ajoute les 5 dates suivantes
+		addDates(currentDate, -1, 5); // Ajoute les 5 dates précédentes
+
+		arrayDate.sort((a, b) => a.date - b.date); // Trie le tableau par ordre croissant de date
+
+		return arrayDate;
+	};
+
+	const dateMatch = calendar();
+
+	const newMatchs = matchs.filter((match) => {
+		return Number(dayjs(match.date).format("D")) === ActiveDate?.date;
+	});
 
 	return (
 		<div className="result">
 			<h1 className="result__title">Résultats</h1>
 			<div className="result__containerDate">
 				{/*  */}
-				{dateArray.map((date) => (
-					<DateResult date={date} key={date.date} />
+				{dateMatch.map((date) => (
+					<DateResult
+						date={date}
+						key={date.date}
+						setActiveDate={setActiveDate}
+						ActiveDate={ActiveDate}
+					/>
 				))}
 				{/*  */}
 			</div>
 			<div className="result__MatchContainer">
-				{matchs.map((match) => (
-					<div key={match.match_id}>
-						{/* Prédiction */}
-						<div className="predictCard__containerPredict">
-							{/* Home Team */}
-							<Team team={match.team[0]} />
-							<div className="predictCard__containerPredict__inputContent">
-								<p>
-									{match.score_home} - {match.score_away}
-								</p>
-							</div>
-							<Team team={match.team[1]} />
-						</div>
-						<div>
-							<div>
-								<h3>Ma prédiction</h3>
-								<p>2 - 1</p>
-							</div>
-							<div>
-								<p>60 pts</p>
-								<img src="" alt="" />
-							</div>
-						</div>
-					</div>
+				{newMatchs.map((match) => (
+					<ResultMatch match={match} key={match.match_id} />
 				))}
 			</div>
 		</div>
 	);
 };
-
-import "./ResultPage.scss";
-import { useUserData } from "../../hooks/UserData";
