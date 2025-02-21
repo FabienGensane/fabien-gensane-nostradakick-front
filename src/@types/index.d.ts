@@ -57,6 +57,7 @@ export interface ICompetition {
 }
 
 export interface IPropsCreatePredict {
+	prediction_id: number;
 	match_id: number;
 	score_predi_away: number;
 	score_predi_home: number;
