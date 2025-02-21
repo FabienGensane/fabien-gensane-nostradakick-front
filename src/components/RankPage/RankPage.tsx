@@ -4,14 +4,13 @@ import UserRank from "./UserRank/UserRank";
 import "./RankPage.scss";
 import { IUser } from "../../@types";
 import { useUserData } from "../../hooks/UserData";
-import UserRankLogged from "./UserRankLogged/UserRankLogged";
+// import UserRankLogged from "./UserRankLogged/UserRankLogged";
 
 export const calculPoint = (user: IUser) => {
 	let totalPoint = 0;
 	for (const predict of user.prediction) {
 		totalPoint += predict.points_score * 50 + predict.points_outcome * 10;
 	}
-
 	return totalPoint;
 };
 
@@ -34,7 +33,7 @@ export const calculGood = (user: IUser) => {
 export const RankPage = () => {
 	// Stockage du des users
 	const [users, setUsers] = useState<IUser[]>();
-	const { user } = useUserData();
+	// const { user } = useUserData();
 
 	// Récupération des users avec leurs prédictions
 	useEffect(() => {
@@ -45,7 +44,7 @@ export const RankPage = () => {
 
 				setUsers(data);
 			} catch (error) {
-				console.error(error);	
+				console.error(error);
 			}
 		};
 		getUsers();
@@ -56,11 +55,8 @@ export const RankPage = () => {
 		return calculPoint(b) - calculPoint(a);
 	});
 
-	
-	
-	let positionUserLogged = users?.findIndex(u => u.pseudo === user?.pseudo);
-	positionUserLogged! += 1
-	
+	// let positionUserLogged = users?.findIndex((u) => u.pseudo === user?.pseudo);
+	// positionUserLogged! += 1;
 
 	return (
 		<main className="rank">
@@ -71,8 +67,8 @@ export const RankPage = () => {
 					<BestScore key={user.user_id} user={user} />
 				))}
 			</div>
-				{/* Création du classement des autres users */}
-				<UserRankLogged  user={user} position={positionUserLogged}/>
+			{/* Création du classement du user connecté */}
+			{/* <UserRankLogged userLogin={user} positionLogin={positionUserLogged} /> */}
 
 			<div className="rank__List">
 				<div className="rank__List__head">

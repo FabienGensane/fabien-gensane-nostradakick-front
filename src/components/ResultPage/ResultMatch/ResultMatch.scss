@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.resultMatch {
+    width: 50%;
+    margin: 2rem auto;
+    border-radius: 1rem;
+    position: relative;
+    padding: 2rem;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        padding: 1.5px; 
+        z-index: -1; /* Placer la bordure derrière le contenu */
+
+        border-radius: inherit; /* Hériter du border-radius du parent */
+        background: linear-gradient(45deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+        // Mask pour le contour en dégradé
+        mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+
+        -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+
+    }
+
+    &__match {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 0 0 1px 0; 
+            z-index: -1; /* Placer la bordure derrière le contenu */
+
+            border-radius: inherit; /* Hériter du border-radius du parent */
+            background: linear-gradient(100deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+            // Mask pour le contour en dégradé
+            mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+
+            -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+
+        }
+
+        &__score {
+            font-size: 2.5rem;
+            font-family: "Montserrat", serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+        }
+    }
+
+
+    &__prediction {
+
+        &__title {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        &__content {
+            position: relative;
+
+            &__score {
+                text-align: center;
+                font-size: 1.2rem;
+            }
+
+            &__totalPoints {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+
+                width: 14%;
+
+                background-color: #0D1F3C;
+
+                padding: 0.5rem 1rem;
+                border-radius: 0.3rem;
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+    }
+}

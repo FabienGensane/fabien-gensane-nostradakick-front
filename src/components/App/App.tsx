@@ -20,6 +20,7 @@ import "./App.scss";
 import Auth from "../Authentification/authentification";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Headers from "../Headers/Headers";
+import PublicRoute from "../ProtectedRoute/PublicRoute";
 
 function App() {
 	const [sizeWindow, setSizeWindow] = useState(window.innerWidth);
@@ -44,9 +45,30 @@ function App() {
 
 			<Routes>
 				{/* Page public */}
-				<Route path="/" element={<MainPage />} />
-				<Route path="/login" element={<Auth />} />
-				<Route path="/signup" element={<Signup />} />
+				<Route
+					path="/"
+					element={
+						<PublicRoute>
+							<MainPage />
+						</PublicRoute>
+					}
+				/>
+				<Route
+					path="/login"
+					element={
+						<PublicRoute>
+							<Auth />
+						</PublicRoute>
+					}
+				/>
+				<Route
+					path="/signup"
+					element={
+						<PublicRoute>
+							<Signup />
+						</PublicRoute>
+					}
+				/>
 
 				{/* Page Privée */}
 

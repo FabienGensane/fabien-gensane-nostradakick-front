@@ -1,51 +1,59 @@
 import { Search } from "./Search/Search";
-import Predict_Card from "./Predict_Card_logged/Predict_Card_logged";
-
 import "./PredicstPage.scss";
 import { useEffect, useState } from "react";
-import { IMatch } from "../../@types";
+import { IMatch, IPropsCreatePredict } from "../../@types";
+import { useUserData } from "../../hooks/UserData";
 import Predict_Card_logged from "./Predict_Card_logged/Predict_Card_logged";
 
 export const PredictsPage = () => {
-	const [matchs, setMatchs] = useState<IMatch[]>([]);
-// UseEffect qui permet de récupérer tous les matchs en BDD afin de les afficher
-	useEffect(() => {
-		const fetchPredicts = async () => {
-			try {
-				const response = await fetch("http://localhost:3000/api/matchs");
-				const data = await response.json();
-				setMatchs(data);
-			} catch (error) {
-				console.log("erreur");
-			}
-		};
-		fetchPredicts();
-	}, []);
-// UseEffect qui permet de récupérer toutes les données du user connecté pour afficher les prédictions du USER
-	useEffect(() => {
-		const fetchPredicts = async () => {
-			try {
-				const response = await fetch("http://localhost:3000/api/matchs");
-				const data = await response.json();
-				setMatchs(data);
-			} catch (error) {
-				console.log("erreur");
-			}
-		};
-		fetchPredicts();
-	}, []);
+    const [matchs, setMatchs] = useState<IMatch[]>([]);
+    const { user } = useUserData();
 
-	// Trier les débuts de matchs par ordre croissant
-	matchs.sort((a, b) => a.date.localeCompare(b.date));
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:3000/api/calendar/profil", {
+                    method: "GET",
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8",
+                        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+                    },
+                });
 
-	return (
-		<main className="main__predicts">
-			<Search className="main__predicts__search"/>
-			<div className="main__predicts__container">
-				{matchs.map((match) => (
-					<Predict_Card_logged key={match.match_id} match={match} />
-				))}
-			</div>
-		</main>
-	);
+                if (!response.ok) {
+                    const errorMessage = await response.text();
+                    console.error(`Error: ${response.status} - ${errorMessage}`);
+                    throw new Error(errorMessage);
+                }
+
+                const data = await response.json();
+                setMatchs(data);
+            } catch (error) {
+                console.error("Erreur lors de la récupération des données:", error);
+            }
+        };
+
+        fetchData();
+    }, [user]);
+
+    // Trier les débuts de matchs par ordre croissant
+    const sortedMatchs = matchs.sort((a, b) => a.date.localeCompare(b.date));
+
+    return (
+        <main className="main__predicts">
+            <Search className="main__predicts__search" />
+            <div className="main__predicts__container">
+                {sortedMatchs.map((match) => {
+                    const initialPrediction = match.prediction.find(pred => pred.user_id === user.user_id);
+                    return (
+                        <Predict_Card_logged
+                            key={match.match_id}
+                            match={match}
+                            initialPrediction={initialPrediction}
+                        />
+                    );
+                })}
+            </div>
+        </main>
+    );
 };

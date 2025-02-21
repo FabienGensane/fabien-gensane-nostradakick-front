@@ -117,10 +117,13 @@
             
             &__logout {
                 padding: 0.3rem 1rem;
+                background-color: #0D1F3C;
+                border: none;
                 color : #FEFFEF;
                 text-decoration: none;
                 border-radius: 3rem;
                 transition: 300ms;
+                cursor: pointer;
 
                 &:hover {
                     background-color: #FEFFEF;
