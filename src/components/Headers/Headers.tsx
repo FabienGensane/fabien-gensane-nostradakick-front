@@ -37,6 +37,10 @@ const Headers = () => {
         return null;
     }
 
+	if (location.pathname === "/") {
+		return <Header_desktop/>;
+	}
+
 	if (location.pathname === "/predictions" || location.pathname === "/resultats" || location.pathname === "/classement") {
         return <Header_desktop_logged />;
 	}

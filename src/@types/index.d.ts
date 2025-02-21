@@ -55,3 +55,10 @@ export interface ICompetition {
 	created_at: string;
 	updated_at: null | string;
 }
+
+export interface IPropsCreatePredict {
+	prediction_id: number;
+	match_id: number;
+	score_predi_away: number;
+	score_predi_home: number;
+}
