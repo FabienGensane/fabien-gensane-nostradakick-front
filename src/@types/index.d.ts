@@ -24,7 +24,7 @@ export interface ITeam {
 export interface IPredicts {
 	match: IMatch;
 	match_id: number;
-	user: IUser;
+	user: IUser[];
 	user_id: number;
 	points_outcome: number;
 	points_score: number;

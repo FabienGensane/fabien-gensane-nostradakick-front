@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { IMatch } from "../../@types";
-import Team from "../PredictsPage/Predict_Card_logged/Team/Team";
 import DateResult from "./DateResult/DateResult";
 import "./ResultPage.scss";
 import dayjs from "dayjs";
@@ -50,7 +49,6 @@ console.log(initalDate());
 export const ResultPage = () => {
 	const [matchs, setMatchs] = useState<IMatch[]>([]);
 	const [ActiveDate, setActiveDate] = useState(initalDate());
-	const { user } = useUserData();
 
 	useEffect(() => {
 		const fetchPredicts = async () => {
@@ -123,21 +121,23 @@ export const ResultPage = () => {
 		<div className="result">
 			<h1 className="result__title">Résultats</h1>
 			<div className="result__containerDate">
-				{/*  */}
 				{dateMatch.map((date) => (
 					<DateResult
-						date={date}
 						key={date.date}
+						date={date}
 						setActiveDate={setActiveDate}
 						ActiveDate={ActiveDate}
 					/>
 				))}
-				{/*  */}
 			</div>
 			<div className="result__MatchContainer">
-				{newMatchs.map((match) => (
-					<ResultMatch match={match} key={match.match_id} />
-				))}
+				{newMatchs.length > 0 ? (
+					newMatchs.map((match) => (
+						<ResultMatch match={match} key={match.match_id} />
+					))
+				) : (
+					<p>Aucun match ce jour !</p>
+				)}
 			</div>
 		</div>
 	);

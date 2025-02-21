@@ -1,6 +1,7 @@
 
 .loginPage {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -21,14 +22,23 @@
         width: 350px;
         text-align: center;
         opacity: 95%;
+        position: relative;
+        box-shadow: 0 3rem 20px #00000086;
 
         &__logo {
             position: absolute;
-            top: 9rem;
+            top: -3.3rem;
             left: 50%;
             width: 80px;
             margin-bottom: 15px;
             transform: translateX(-50%);
+            cursor: pointer;
+            transition: 300ms;
+
+            &:hover {
+                transform: scale(1.2);
+                left: 39%;
+            }
         }
 
         label {
@@ -77,6 +87,22 @@
             margin-top: 10px;
 
             
+        }
+
+        &__linkToHome {
+            color: #FEFFEF;
+            font-weight: 700;
+            margin-top: 1rem;
+            z-index: 11;
+            text-decoration: none;
+
+            &:hover {
+                transform: translateX(10px);
+            }
+        }
+
+        &__CreateAccount {
+            margin-top: 2rem;
         }
         
     }

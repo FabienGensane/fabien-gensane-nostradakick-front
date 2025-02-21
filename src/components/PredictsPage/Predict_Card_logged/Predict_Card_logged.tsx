@@ -14,6 +14,8 @@ interface IPropsCreatePredict {
 	match_id: number;
 	score_predi_away: number;
 	score_predi_home: number;
+	points_score: number;
+	points_outcome: number;
 }
 
 dayjs.extend(duration);
@@ -36,6 +38,8 @@ const Predict_Card_logged = ({ match }: { match: IMatch }) => {
 			match_id: match.match_id,
 			score_predi_home: Number(myFormData.get("home")),
 			score_predi_away: Number(myFormData.get("away")),
+			points_score: 0,
+			points_outcome: 0,
 		};
 		createPredict(newPredict);
 		setScorePredict(newPredict);
