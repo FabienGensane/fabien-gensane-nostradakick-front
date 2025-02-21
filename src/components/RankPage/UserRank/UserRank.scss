@@ -37,7 +37,7 @@
     &__left {
         display: flex;
         align-items: center;
-        gap: 2.2rem;
+        gap: 10%;
 
         &__title {
             text-align: center;
@@ -56,10 +56,9 @@
     &__right {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 10%;
 
         &__title {
-            width: 100px;
             text-align: center;
         }
     }

@@ -58,6 +58,8 @@ export const ResultPage = () => {
 				const response = await fetch("http://localhost:3000/api/matchs");
 				const data = await response.json();
 				setMatchs(data);
+				console.log(data);
+				
 			} catch (error) {
 				console.log("erreur");
 			}
