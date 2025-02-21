@@ -27,11 +27,7 @@ const Predict_Card_logged = ({ match }: {match:IMatch}) => {
 	const [isValidated, setIsValidated] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
 	const {user} = useUserData();
-<<<<<<< HEAD:src/components/PredictsPage/Predict_Card/Predict_Card.tsx
-
-=======
 	
->>>>>>> 6d6443c84e0d762533d0f64c30dcd2252c16c364:src/components/PredictsPage/Predict_Card_logged/Predict_Card_logged.tsx
 	
 
 	// Méthode qui permet d'aller chercher en BDD les scores "prédits" par l'utilisateur afin de les afficher

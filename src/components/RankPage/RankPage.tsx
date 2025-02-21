@@ -26,7 +26,7 @@ export const calculExact = (user: IUser) => {
 export const calculGood = (user: IUser) => {
 	let totalGood = 0;
 	for (const predict of user.prediction) {
-		totalGood += predict.points_score;
+		totalGood += predict.points_outcome;
 	}
 	return totalGood;
 };
