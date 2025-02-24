@@ -41,7 +41,7 @@ function App() {
 
 	return (
 		<>
-			{/*<Headers />*/}
+			{<Headers />}
 
 			<Routes>
 				{/* Page public */}
