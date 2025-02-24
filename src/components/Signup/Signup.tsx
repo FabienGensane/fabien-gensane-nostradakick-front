@@ -6,232 +6,250 @@ import { FaEyeSlash } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router";
+import { apiRequest } from "../utils/api";
 
-
-
+interface ICreateUser {
+	first_name: string;
+	last_name: string;
+	pseudo: string;
+	email: string;
+	password: string;
+}
 
 export default function Signup() {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
+	const createUser = async (data?: ICreateUser) => {
+		try {
+			const createUser = await apiRequest<ICreateUser>("/users", "POST", data);
 
-  const RegistrFetch = async (user : any) => {
-    try {
-      const res = await fetch("http://localhost:3000/api/users", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-        body: JSON.stringify(user),
-      });
+			console.log(createUser);
 
-      if (!res.ok) {
-        return console.error("Erreur message !");
-      }
+			if (createUser) {
+				navigate("/login");
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
-      const data = await res.json();
+	const handleRegister = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
 
-      if (data.message === "Votre profil a bien été créé")
-        console.log(data.message)
-      {
-        navigate("/login");
-      }
-    } catch (error) {}
-  };
+		const myFormData = new FormData(event.currentTarget);
 
-  const handleRegister = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  
-    const myFormData = new FormData(event.currentTarget);
-  
-    const createUser = {
-      first_name: myFormData.get("first_name") as string,
-      last_name: myFormData.get("last_name")as string,
-      pseudo: myFormData.get("pseudo")as string,
-      email: myFormData.get("email")as string,
-      password: myFormData.get("password") as string,
-      
-    };
-    const confirmPassword = myFormData.get("confirmPassword")?.toString() ?? "";
-    setError(createUser.password !== confirmPassword);
-  
-    console.log(createUser);
-  
-    RegistrFetch(createUser);
-  };
+		const createUserData = {
+			first_name: myFormData.get("first_name") as string,
+			last_name: myFormData.get("last_name") as string,
+			pseudo: myFormData.get("pseudo") as string,
+			email: myFormData.get("email") as string,
+			password: myFormData.get("password") as string,
+		};
+		const confirmPassword = myFormData.get("confirmPassword")?.toString() ?? "";
+		setError(createUserData.password !== confirmPassword);
 
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [visiblePassword, setVisiblePassword] = useState(false);
-  const [visibleConfirmPassword, setVisibleConfirmPassword] = useState(false);
-  const [error, setError] = useState(false); 
+		createUser(createUserData);
+	};
 
-  const [isValideMinChar, setIsValideMinChar] = useState(false);
-  const [isValideMaxChar, setIsValideMaxChar] = useState(true);
-  const [isValideMinuscule, setIsValideMinuscule] = useState(false);
-  const [isValideMajuscule, setIsValideMajuscule] = useState(false);
-  const [isValideMinNumber, setIsValideMinNumber] = useState(false); 
-  const [isValideSpecialChar, setIsValideSpecialChar] = useState(false);
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
+	const [visiblePassword, setVisiblePassword] = useState(false);
+	const [visibleConfirmPassword, setVisibleConfirmPassword] = useState(false);
+	const [error, setError] = useState(false);
 
-  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setConfirmPassword(e.target.value);
-  }
+	const [isValideMinChar, setIsValideMinChar] = useState(false);
+	const [isValideMaxChar, setIsValideMaxChar] = useState(true);
+	const [isValideMinuscule, setIsValideMinuscule] = useState(false);
+	const [isValideMajuscule, setIsValideMajuscule] = useState(false);
+	const [isValideMinNumber, setIsValideMinNumber] = useState(false);
+	const [isValideSpecialChar, setIsValideSpecialChar] = useState(false);
 
-  const validatePassword = (password: string) => {
-  setIsValideMinChar(password.length >= 8);
-  setIsValideMaxChar(password.length <= 32);
-  setIsValideMinuscule(/[a-z]/.test(password));
-  setIsValideMajuscule(/[A-Z]/.test(password));
-  setIsValideMinNumber(/\d/.test(password));
-  setIsValideSpecialChar(/[@$!%*?&]/.test(password));
-  };
-  
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const newPassword = e.target.value;
-  setPassword(newPassword);
-  validatePassword(newPassword);
-  };
-  
-  const showPasswordRules = password.length > 0 && (
-  !isValideMinChar || !isValideMaxChar || !isValideMinuscule || 
-  !isValideMajuscule || !isValideMinNumber || !isValideSpecialChar
-  );
+	const handleConfirmPasswordChange = (
+		e: React.ChangeEvent<HTMLInputElement>,
+	) => {
+		setConfirmPassword(e.target.value);
+	};
 
-  return (
-    
-    <div className="registrePage">
-      <div className="registrePage__registreCard">
-        <form onSubmit={handleRegister}>
+	const validatePassword = (password: string) => {
+		setIsValideMinChar(password.length >= 8);
+		setIsValideMaxChar(password.length <= 32);
+		setIsValideMinuscule(/[a-z]/.test(password));
+		setIsValideMajuscule(/[A-Z]/.test(password));
+		setIsValideMinNumber(/\d/.test(password));
+		setIsValideSpecialChar(/[@$!%*?&]/.test(password));
+	};
 
-        <Link to="/">
-          <img
-            src={logo} 
-            alt="Logo"
-            className="registrePage__registreCard__logo"
-            
-          />
-          </Link>
+	const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const newPassword = e.target.value;
+		setPassword(newPassword);
+		validatePassword(newPassword);
+	};
 
-          <label>Prénom</label>
-          <div className="registrePage__registreCard__firstName">
-            <input
-              type="text"
-              placeholder="Votre Prénom"
-              required
-              name="first_name"
-            />
-          </div>
+	const showPasswordRules =
+		password.length > 0 &&
+		(!isValideMinChar ||
+			!isValideMaxChar ||
+			!isValideMinuscule ||
+			!isValideMajuscule ||
+			!isValideMinNumber ||
+			!isValideSpecialChar);
 
-          <label>Nom</label>
-          <div className="registrePage__registreCard__lastName">
-            <input 
-            type="text" 
-            placeholder="Votre Nom" 
-            required name="last_name" />
-          </div>
+	return (
+		<div className="registrePage">
+			<div className="registrePage__registreCard">
+				<form onSubmit={handleRegister}>
+					<Link to="/">
+						<img
+							src={logo}
+							alt="Logo"
+							className="registrePage__registreCard__logo"
+						/>
+					</Link>
 
-          <label>Pseudo</label>
-          <div className="registrePage__registreCard__pseudo">
-            <input
-              type="pseudo"
-              placeholder="Votre Pseudo"
-              required
-              name="pseudo"
-            />
-          </div>
+					<label htmlFor="first_name">Prénom</label>
+					<div className="registrePage__registreCard__firstName">
+						<input
+							type="text"
+							placeholder="Votre Prénom"
+							required
+							name="first_name"
+						/>
+					</div>
 
-          <label>Email</label>
-          <div className="registrePage__registreCard__email">
-            <input
-              type="email"
-              placeholder="Votre Email"
-              required
-              name="email"
-            />
-          </div>
+					<label htmlFor="last_name">Nom</label>
+					<div className="registrePage__registreCard__lastName">
+						<input
+							type="text"
+							placeholder="Votre Nom"
+							required
+							name="last_name"
+						/>
+					</div>
 
-          <label>Mot de passe</label>
-          <div className="registrePage__registreCard__password">
-            <input
-              placeholder="Votre Mot de passe"
-              required
-              name="password"
-              value={password}
-              type={visiblePassword ? "text" : "password"}
-              id="password"
-              onChange={handlePasswordChange}
-            />
-            {showPasswordRules && (
-                <ul className="toast__password">
-                {!isValideMinChar && <li>Le mot de passe doit contenir au moins 8 caractères.</li>}
-                {!isValideMaxChar && <li>Le mot de passe ne doit pas dépasser 32 caractères.</li>}
-                {!isValideMajuscule && <li>Le mot de passe doit contenir au moins une majuscule.</li>}
-                {!isValideMinuscule && <li>Le mot de passe doit contenir au moins une minuscule.</li>}
-                {!isValideMinNumber && <li>Le mot de passe doit contenir au moins un chiffre.</li>}
-                {!isValideSpecialChar && <li>Le mot de passe doit contenir au moins un caractère spécial (@$!%*?&).</li>}
-                </ul>
-            )}
+					<label htmlFor="pseudo">Pseudo</label>
+					<div className="registrePage__registreCard__pseudo">
+						<input
+							type="pseudo"
+							placeholder="Votre Pseudo"
+							required
+							name="pseudo"
+						/>
+					</div>
 
-            <button
-              type="button"
-              className="registrePage__registreCard__password__hidenPassword"
-              onClick={() => setVisiblePassword(!visiblePassword)}
-            >
-              <div className="registrePage__registreCard__password__eyesButton">
-                {visiblePassword ? <FaEyeSlash /> : <IoEyeSharp />}
-              </div>
-            </button>
-          </div>
+					<label htmlFor="email">Email</label>
+					<div className="registrePage__registreCard__email">
+						<input
+							type="email"
+							placeholder="Votre Email"
+							required
+							name="email"
+						/>
+					</div>
 
-          <label>Confirmer mot de passe</label>
-          <div className="registrePage__registreCard__confirmedPassword">
-            
-            <input
-              placeholder="Confirmez votre mot de passe"
-              required
-              name="confirmer_mot_de_passe"
-              value={confirmPassword}
-              type={visibleConfirmPassword ? "text" : "password"}
-              id="confirmPassword"
-              onChange={handleConfirmPasswordChange}/>  
-              
-            <button
-              type="button"
-              className="registrePage__registreCard__password__hidenPassword"
-              onClick={() => setVisibleConfirmPassword(!visibleConfirmPassword)}
-            >
-              <div className="eyesButton">
-                {visibleConfirmPassword ? <FaEyeSlash /> : <IoEyeSharp />}
-              </div>
-            </button>
-          </div>		  
+					<label htmlFor="password">Mot de passe</label>
+					<div className="registrePage__registreCard__password">
+						<input
+							placeholder="Votre Mot de passe"
+							required
+							name="password"
+							value={password}
+							type={visiblePassword ? "text" : "password"}
+							id="password"
+							onChange={handlePasswordChange}
+						/>
+						{showPasswordRules && (
+							<ul className="toast__password">
+								{!isValideMinChar && (
+									<li>Le mot de passe doit contenir au moins 8 caractères.</li>
+								)}
+								{!isValideMaxChar && (
+									<li>Le mot de passe ne doit pas dépasser 32 caractères.</li>
+								)}
+								{!isValideMajuscule && (
+									<li>Le mot de passe doit contenir au moins une majuscule.</li>
+								)}
+								{!isValideMinuscule && (
+									<li>Le mot de passe doit contenir au moins une minuscule.</li>
+								)}
+								{!isValideMinNumber && (
+									<li>Le mot de passe doit contenir au moins un chiffre.</li>
+								)}
+								{!isValideSpecialChar && (
+									<li>
+										Le mot de passe doit contenir au moins un caractère spécial
+										(@$!%*?&).
+									</li>
+								)}
+							</ul>
+						)}
 
-          <p className="registrePage__registreCard__terms">
-            En poursuivant, vous acceptez les conditions générales d'utilisation
-            et reconnaissez avoir lu la politique de protection des données.
-          </p>
+						<button
+							type="button"
+							className="registrePage__registreCard__password__hidenPassword"
+							onClick={() => setVisiblePassword(!visiblePassword)}
+						>
+							<div className="registrePage__registreCard__password__eyesButton">
+								{visiblePassword ? <FaEyeSlash /> : <IoEyeSharp />}
+							</div>
+						</button>
+					</div>
 
-          <button
-            type="submit"
-            className="registrePage__registreCard__signupButton  "
-            disabled={password !== confirmPassword || error} 
-                        
-          >
-            S'inscrire
-            
-          </button>
-          
-          <br />
+					<label htmlFor="confirmPassword">Confirmer mot de passe</label>
+					<div className="registrePage__registreCard__confirmedPassword">
+						<input
+							placeholder="Confirmez votre mot de passe"
+							required
+							name="confirmer_mot_de_passe"
+							value={confirmPassword}
+							type={visibleConfirmPassword ? "text" : "password"}
+							id="confirmPassword"
+							onChange={handleConfirmPasswordChange}
+						/>
 
-          <p className="registrePage__registreCard__existingAccount">
-            Vous avez déja un compte? <a href="/login" className="link">Connecter-vous</a>
-          </p>
-          <br />
+						<button
+							type="button"
+							className="registrePage__registreCard__password__hidenPassword"
+							onClick={() => setVisibleConfirmPassword(!visibleConfirmPassword)}
+						>
+							<div className="eyesButton">
+								{visibleConfirmPassword ? <FaEyeSlash /> : <IoEyeSharp />}
+							</div>
+						</button>
+					</div>
 
-          <p className="registrePage__registreCard__personalData">
-		  Vos données personnelles sont traitées conjointement par la Ligue de Football Professionnel et sa filiale LFP 1 (ci-après dénommées ensemble « LFP » pour plus de commodité) dans le but de créer et de gérer votre compte utilisateur. Pour en savoir plus sur le traitement de vos données et vos droits : Politique de protection des données.
-          </p>
-        </form>
-      </div>
-    </div>
-  );
+					<p className="registrePage__registreCard__terms">
+						En poursuivant, vous acceptez les conditions générales d'utilisation
+						et reconnaissez avoir lu la politique de protection des données.
+					</p>
+
+					<button
+						type="submit"
+						className="registrePage__registreCard__signupButton  "
+						disabled={password !== confirmPassword || error}
+					>
+						S'inscrire
+					</button>
+
+					<br />
+
+					<p className="registrePage__registreCard__existingAccount">
+						Vous avez déja un compte?{" "}
+						<a href="/login" className="link">
+							Connecter-vous
+						</a>
+					</p>
+					<br />
+
+					<p className="registrePage__registreCard__personalData">
+						Vos données personnelles sont traitées conjointement par la Ligue de
+						Football Professionnel et sa filiale LFP 1 (ci-après dénommées
+						ensemble « LFP » pour plus de commodité) dans le but de créer et de
+						gérer votre compte utilisateur. Pour en savoir plus sur le
+						traitement de vos données et vos droits : Politique de protection
+						des données.
+					</p>
+				</form>
+			</div>
+		</div>
+	);
 }

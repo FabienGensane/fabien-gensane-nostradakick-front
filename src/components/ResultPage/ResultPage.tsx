@@ -5,7 +5,6 @@ import "./ResultPage.scss";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
-import { useUserData } from "../../hooks/UserData";
 import ResultMatch from "./ResultMatch/ResultMatch";
 
 dayjs.extend(customParseFormat);
@@ -57,7 +56,6 @@ export const ResultPage = () => {
 				const data = await response.json();
 				setMatchs(data);
 				console.log(data);
-				
 			} catch (error) {
 				console.log("erreur");
 			}
@@ -99,21 +97,30 @@ export const ResultPage = () => {
 				arrayDate.push({
 					date: newDate.getDate(),
 					day: daysOfWeek[newDate.getDay()],
-					month: daysOfMonth[date.getMonth()],
-					year: date.getFullYear(),
+					month: daysOfMonth[newDate.getMonth()],
+					year: newDate.getFullYear(),
 				});
 			}
 		};
 
-		addDates(currentDate, 1, 5); // Ajoute les 5 dates suivantes
-		addDates(currentDate, -1, 5); // Ajoute les 5 dates précédentes
+		addDates(currentDate, 1, 5);
+		addDates(currentDate, -1, 5);
 
-		arrayDate.sort((a, b) => a.date - b.date); // Trie le tableau par ordre croissant de date
+		arrayDate.sort((a, b) => {
+			const monthIndex = (month: string) => daysOfMonth.indexOf(month);
+
+			const dateA = new Date(a.year, monthIndex(a.month), a.date);
+			const dateB = new Date(b.year, monthIndex(b.month), b.date);
+
+			return dateA.getTime() - dateB.getTime();
+		});
 
 		return arrayDate;
 	};
 
 	const dateMatch = calendar();
+
+	console.log(dateMatch);
 
 	const newMatchs = matchs.filter((match) => {
 		return Number(dayjs(match.date).format("D")) === ActiveDate?.date;

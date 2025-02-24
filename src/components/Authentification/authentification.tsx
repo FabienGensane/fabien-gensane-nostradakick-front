@@ -7,7 +7,7 @@ import { IUser } from "../../@types";
 export default function Auth() {
 	const navigate = useNavigate();
 
-	const loginFetch = async (user: IUser) => {
+	const loginFetch = async (user: { email: string; password: string }) => {
 		try {
 			const res = await fetch("http://localhost:3000/api/signin", {
 				method: "POST",
