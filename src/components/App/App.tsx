@@ -21,7 +21,7 @@ import Auth from "../Authentification/authentification";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Headers from "../Headers/Headers";
 import PublicRoute from "../ProtectedRoute/PublicRoute";
-
+import { ToastContainer } from "react-toastify";
 function App() {
 	const [sizeWindow, setSizeWindow] = useState(window.innerWidth);
 
@@ -41,6 +41,7 @@ function App() {
 
 	return (
 		<>
+			<ToastContainer/>
 			<Headers />
 
 			<Routes>

@@ -9,6 +9,7 @@ import Chrono from "./Chrono/Chrono";
 import Input from "./Input/Input";
 import Team from "./Team/Team";
 import { apiRequest } from "../../utils/api";
+import { toast } from "react-toastify";
 
 interface PredictCardLoggedProps {
 	match: IMatch;
@@ -58,15 +59,23 @@ const Predict_Card_logged = ({
 
 	// Méthode qui permet de créer une prédiction en BDD
 	const createdPredict = async (data: IPropsCreatePredict) => {
+		const creationToast = () => toast.success("Nostradamus a approuvé ta prédiction", {
+			className:'creationToast',
+			autoClose:2000,
+			hideProgressBar: true
+		})
 		try {
 			const predict = await apiRequest("/predictions", "POST", data);
+
 			console.log(predict);
+
 			if (!predict.prediction_id) {
 				console.error(
 					"❌ ERREUR: prediction_id est undefined après création !",
 				);
 				return;
 			}
+			creationToast();
 			updateScorePredict(predict);
 			setIsValidated(true);
 			console.log("prédiction valide !!");
@@ -75,14 +84,14 @@ const Predict_Card_logged = ({
 		}
 	};
 
-	// useEffect(() => {
-	// 	if (scorePredict?.prediction_id) {
-	// 		console.log("🎯 prediction_id mis à jour :", scorePredict.prediction_id);
-	// 	}
-	// }, [scorePredict]);
 
 	// Méthode qui permet de supprimer un pronostic en base de donnée
 	const handleDeletePredict = async () => {
+		const deletionToast = () => toast.success("Nostradamus a supprimé ta prédiction", {
+			className:'deletionToast',
+			autoClose:2000,
+			hideProgressBar: true
+		})
 		if (!scorePredict) {
 			return;
 		}
@@ -96,6 +105,7 @@ const Predict_Card_logged = ({
 
 			// Reset Front + from
 			formRef.current!.reset();
+			deletionToast();
 			setIsValidated(false);
 			updateScorePredict(null);
 		} catch (error) {
@@ -105,6 +115,11 @@ const Predict_Card_logged = ({
 
 	// Méthode qui permet de patcher un pronostic en base de donnée
 	const handlePatchPredict = async (data: IPropsCreatePredict) => {
+		const modificationToast = () => toast.success("Nostradamus a modifié ta prédiction", {
+			className:'modificationToast',
+			autoClose:2000,
+			hideProgressBar: true
+		})
 		if (!scorePredict) {
 			return;
 		}
@@ -119,6 +134,7 @@ const Predict_Card_logged = ({
 			);
 
 			console.log("Modification de la prédiction");
+			modificationToast();
 			setIsValidated(true);
 			updateScorePredict(patchPredict);
 		} catch (error) {
@@ -148,7 +164,7 @@ const Predict_Card_logged = ({
 				<Team team={match.team[0]} />
 				<div className="predictCard__containerPredict__inputContent">
 					<Input
-						name="home"
+						name={"home"}
 						value={homeScore}
 						onChange={(e) => setHomeScore(e.target.value)}
 					/>
