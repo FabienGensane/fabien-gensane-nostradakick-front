@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
 import ResultMatch from "./ResultMatch/ResultMatch";
+import { apiRequest } from "../utils/api";
 
 dayjs.extend(customParseFormat);
 
@@ -32,6 +33,7 @@ const initalDate = () => {
 		"Novembre",
 		"Décembre",
 	];
+
 	const date = new Date();
 	const currentDate = date.getDate() as number;
 	const arrayDate = {
@@ -43,24 +45,20 @@ const initalDate = () => {
 	return arrayDate;
 };
 
-console.log(initalDate());
-
 export const ResultPage = () => {
 	const [matchs, setMatchs] = useState<IMatch[]>([]);
 	const [ActiveDate, setActiveDate] = useState(initalDate());
 
 	useEffect(() => {
-		const fetchPredicts = async () => {
+		const fetchMatch = async () => {
 			try {
-				const response = await fetch("http://localhost:3000/api/matchs");
-				const data = await response.json();
+				const data = await apiRequest("/matchs", "GET");
 				setMatchs(data);
-				console.log(data);
 			} catch (error) {
 				console.log("erreur");
 			}
 		};
-		fetchPredicts();
+		fetchMatch();
 	}, []);
 
 	const calendar = () => {
@@ -119,12 +117,12 @@ export const ResultPage = () => {
 	};
 
 	const dateMatch = calendar();
-
-	console.log(dateMatch);
+	
 
 	const newMatchs = matchs.filter((match) => {
 		return Number(dayjs(match.date).format("D")) === ActiveDate?.date;
 	});
+
 
 	return (
 		<div className="result">

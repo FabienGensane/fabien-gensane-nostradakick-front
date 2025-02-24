@@ -39,6 +39,8 @@ const Predict_Card_logged = ({
 		initialPrediction?.score_predi_away.toString() || "",
 	);
 
+	const [pointsAdded, setPointsAdded] = useState(false);
+
 	// Méthode qui permet de récupérer dans le formulaire "predict_card" les informations nécessaires à la création d'une prédiction
 	const handleSubmitPredict = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -67,6 +69,7 @@ const Predict_Card_logged = ({
 				);
 				return;
 			}
+			addPointUser();
 			updateScorePredict(predict);
 			setIsValidated(true);
 			console.log("prédiction valide !!");
@@ -74,12 +77,6 @@ const Predict_Card_logged = ({
 			console.error(error);
 		}
 	};
-
-	// useEffect(() => {
-	// 	if (scorePredict?.prediction_id) {
-	// 		console.log("🎯 prediction_id mis à jour :", scorePredict.prediction_id);
-	// 	}
-	// }, [scorePredict]);
 
 	// Méthode qui permet de supprimer un pronostic en base de donnée
 	const handleDeletePredict = async () => {
@@ -91,7 +88,10 @@ const Predict_Card_logged = ({
 			scorePredict.prediction_id,
 		);
 		try {
-			await apiRequest(`/predictions/${scorePredict.prediction_id}`, "DELETE");
+			await apiRequest(
+				`/predictions/${initialPrediction?.prediction_id}`,
+				"DELETE",
+			);
 			console.log("Suppression de la prédiction");
 
 			// Reset Front + from
@@ -133,6 +133,49 @@ const Predict_Card_logged = ({
 		setAwayScore(predict !== null ? predict.score_predi_away.toString() : "");
 	};
 
+	const addPointUser = async () => {
+		if (!scorePredict) return;
+
+
+		const data = {
+			prediction_id: scorePredict.prediction_id,
+			match_id: match.match_id,
+			points_score: 0,
+			points_outcome: 0,
+			score_predi_home: scorePredict.score_predi_home,
+			score_predi_away: scorePredict.score_predi_away,
+		};
+
+		if (
+			scorePredict.score_predi_home === match.score_home &&
+			scorePredict.score_predi_away === match.score_away
+		) {
+			data.points_score = 1;
+		}
+
+		const predictResult = Math.sign(
+			scorePredict.score_predi_home - scorePredict.score_predi_away,
+		);
+		const matchResult = Math.sign(match.score_home - match.score_away);
+
+		
+		if (predictResult === matchResult) {
+			data.points_outcome = 1;
+		}
+
+		if (data.points_score > 0 || data.points_outcome > 0) {
+			console.log("Points à ajouter :", data);
+			await handlePatchPredict(data);
+			setPointsAdded(true);
+		}
+	};
+
+	useEffect(() => {
+		if (chrono === "00:00:00:00" && !pointsAdded && scorePredict) {
+			addPointUser();
+		}
+	}, [chrono, pointsAdded, scorePredict, addPointUser]);
+
 	return (
 		<form
 			className="predictCard"
@@ -163,7 +206,9 @@ const Predict_Card_logged = ({
 				<Team team={match.team[1]} />
 			</div>
 			<button type="submit" className="predictCard__btnValidate">
-				{isValidated ? "Modifier votre Prédiction" : "À moi la victoire !"}
+				{isValidated || initialPrediction
+					? "Modifier votre Prédiction"
+					: "À moi la victoire !"}
 			</button>
 			<button
 				type="button"

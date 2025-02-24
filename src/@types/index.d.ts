@@ -41,7 +41,7 @@ export interface IUser {
 	first_name: string;
 	last_name: string;
 	password: string;
-	picture: null | string;
+	picture: string;
 	user_id: number;
 	pseudo: string;
 	prediction: IPredicts[];

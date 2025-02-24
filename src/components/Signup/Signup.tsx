@@ -22,9 +22,6 @@ export default function Signup() {
 	const createUser = async (data?: ICreateUser) => {
 		try {
 			const createUser = await apiRequest<ICreateUser>("/users", "POST", data);
-
-			console.log(createUser);
-
 			if (createUser) {
 				navigate("/login");
 			}
