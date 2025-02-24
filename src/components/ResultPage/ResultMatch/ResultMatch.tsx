@@ -5,6 +5,7 @@ import "./ResultMatch.scss";
 import { useUserData } from "../../../hooks/UserData";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
+import useAddPoints from "../../../hooks/AddPoints";
 
 const ResultMatch = ({ match }: { match: IMatch }) => {
 	const { user } = useUserData();
@@ -13,6 +14,11 @@ const ResultMatch = ({ match }: { match: IMatch }) => {
 	const scorePredict: IPredicts | undefined = user?.prediction.find(
 		(predict) => predict.match_id === match.match_id,
 	);
+
+	const { addPoint } = useAddPoints({
+		match,
+		scorePredict: scorePredict || ({} as IPredicts),
+	});
 
 	const predictPoint = (predict: IPredicts) => {
 		if (predict) {
@@ -64,7 +70,7 @@ const ResultMatch = ({ match }: { match: IMatch }) => {
 					</p>
 					<div className="resultMatch__prediction__content__totalPoints">
 						<p className="resultMatch__prediction__content__totalPoints__points">
-							{scorePredict && isMatchEnd ? predictPoint(scorePredict) : 0}
+							{addPoint && isMatchEnd ? predictPoint(addPoint) : 0}
 						</p>
 						<img
 							src={pictoPoint}
