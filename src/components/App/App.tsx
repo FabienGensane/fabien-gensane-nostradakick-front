@@ -41,7 +41,7 @@ function App() {
 
 	return (
 		<>
-			{/*<Headers />*/}
+			<Headers />
 
 			<Routes>
 				{/* Page public */}
@@ -108,7 +108,7 @@ function App() {
 				{/* Page 404 */}
 				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
-			{/*sizeWindow > 375 && <Footer />*/}
+			{sizeWindow > 375 && <Footer />}
 		</>
 	);
 }

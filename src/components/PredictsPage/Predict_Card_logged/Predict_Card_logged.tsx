@@ -3,13 +3,12 @@ import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import iconTrash from "../../../assets/PredictPage/trash_delete.svg";
 
-import { IMatch, IPropsCreatePredict } from "../../../@types";
+import { IMatch, IPredicts, IPropsCreatePredict } from "../../../@types";
 import { useEffect, useRef, useState } from "react";
 import Chrono from "./Chrono/Chrono";
 import Input from "./Input/Input";
 import Team from "./Team/Team";
-import { useUserData } from "../../../hooks/UserData";
-import { data } from "react-router";
+import { apiRequest } from "../../utils/api";
 
 interface PredictCardLoggedProps {
 	match: IMatch;
@@ -22,21 +21,23 @@ const Predict_Card_logged = ({
 	match,
 	initialPrediction,
 }: PredictCardLoggedProps) => {
+	// useState
+	// Chrono
 	const [chrono, setChrono] = useState("");
+	// Score Prédiction
 	const [scorePredict, setScorePredict] = useState<IPropsCreatePredict | null>(
 		initialPrediction || null,
 	);
+	// Récupération du formulaire
+	const formRef = useRef<HTMLFormElement>(null);
 	// Etat qui permet de vérifier si une prédiction a été postée. D'origine, l'état est faux.
-	const [isValidated, setIsValidated] = useState(initialPrediction);
+	const [isValidated, setIsValidated] = useState(false);
 	const [homeScore, setHomeScore] = useState(
 		initialPrediction?.score_predi_home.toString() || "",
 	);
 	const [awayScore, setAwayScore] = useState(
 		initialPrediction?.score_predi_away.toString() || "",
 	);
-	const formRef = useRef<HTMLFormElement>(null);
-
-	// Méthode qui permet d'aller chercher en BDD les scores "prédits" par l'utilisateur afin de les afficher
 
 	// Méthode qui permet de récupérer dans le formulaire "predict_card" les informations nécessaires à la création d'une prédiction
 	const handleSubmitPredict = (event: React.FormEvent<HTMLFormElement>) => {
@@ -44,105 +45,59 @@ const Predict_Card_logged = ({
 
 		// const myFormData = new FormData(event.currentTarget);
 		const newPredict = {
+			prediction_id: initialPrediction?.prediction_id as number,
 			match_id: match.match_id,
 			score_predi_home: Number(homeScore),
 			score_predi_away: Number(awayScore),
 		};
-		if (!scorePredict) {
-			createPredict(newPredict);
-		} else {
-			handlePatchPredict(newPredict);
-		}
+
+		!scorePredict ? createdPredict(newPredict) : handlePatchPredict(newPredict);
 
 		setScorePredict(newPredict);
 	};
 
 	// Méthode qui permet de créer une prédiction en BDD
-	const createPredict = async (data: IPropsCreatePredict) => {
+	const createdPredict = async (data: IPropsCreatePredict) => {
 		try {
-			const response = await fetch("http://localhost:3000/api/predictions/", {
-				method: "POST",
-				headers: {
-					"Content-type": "application/json; charset=UTF-8",
-					Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-				},
-				body: JSON.stringify(data),
-			});
-
-			if (!response.ok) {
-				const errorMessage = await response.text();
-				console.error(`Error: ${response.status} - ${errorMessage}`);
-				throw new Error(errorMessage);
-			}
-
-			const createdPredict = await response.json();
-			console.log("✔ Prédiction créée avec succès :", createdPredict);
-
-			// ✅ Vérifions bien la valeur de prediction_id retournée
-			if (!createdPredict.prediction_id) {
+			const predict = await apiRequest("/predictions", "POST", data);
+			console.log(predict);
+			if (!predict.prediction_id) {
 				console.error(
 					"❌ ERREUR: prediction_id est undefined après création !",
 				);
 				return;
 			}
-
-			// ✅ Mettre à jour `scorePredict` avec `prediction_id`
-			setScorePredict((prev) => {
-				const updated = {
-					...prev,
-					...data,
-					prediction_id: createdPredict.prediction_id, // 🔥 On stocke l'ID ici !
-				};
-				console.log("🔄 Nouveau scorePredict après POST :", updated);
-				return updated;
-			});
-
+			updateScorePredict(predict);
 			setIsValidated(true);
+			console.log("prédiction valide !!");
 		} catch (error) {
 			console.error(error);
 		}
 	};
 
-	useEffect(() => {
-		if (scorePredict?.prediction_id) {
-			console.log("🎯 prediction_id mis à jour :", scorePredict.prediction_id);
-		}
-	}, [scorePredict]);
+	// useEffect(() => {
+	// 	if (scorePredict?.prediction_id) {
+	// 		console.log("🎯 prediction_id mis à jour :", scorePredict.prediction_id);
+	// 	}
+	// }, [scorePredict]);
 
 	// Méthode qui permet de supprimer un pronostic en base de donnée
 	const handleDeletePredict = async () => {
 		if (!scorePredict) {
 			return;
 		}
-		console.log("🔍 Delete : scorePredict actuel =", scorePredict);
+		console.log(
+			"🔍 Delete : scorePredict actuel =",
+			scorePredict.prediction_id,
+		);
 		try {
-			const response = await fetch(
-				`http://localhost:3000/api/predictions/${scorePredict.prediction_id}`,
-				{
-					method: "DELETE",
-					headers: {
-						"Content-type": "application/json; charset=UTF-8",
-						Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-					},
-				},
-			);
-			console.log(
-				"DELETE request URL:",
-				`http://localhost:3000/api/predictions/${scorePredict?.prediction_id}`,
-			);
-
-			if (!response.ok) {
-				const errorMessage = await response.text();
-				console.error(`Error: ${response.status} - ${errorMessage}`);
-				throw new Error(errorMessage);
-			}
-
+			await apiRequest(`/predictions/${scorePredict.prediction_id}`, "DELETE");
 			console.log("Suppression de la prédiction");
+
+			// Reset Front + from
 			formRef.current!.reset();
-			setIsValidated(true);
-			setScorePredict(null);
-			setHomeScore("");
-			setAwayScore("");
+			setIsValidated(false);
+			updateScorePredict(null);
 		} catch (error) {
 			console.error(error);
 		}
@@ -154,40 +109,28 @@ const Predict_Card_logged = ({
 			return;
 		}
 		console.log("🔍 PATCH : scorePredict actuel =", scorePredict);
+		console.log(localStorage.getItem("jwt"));
 
 		try {
-			const response = await fetch(
-				`http://localhost:3000/api/predictions/${scorePredict.prediction_id}`,
-				{
-					method: "PATCH",
-					headers: {
-						"Content-type": "application/json; charset=UTF-8",
-						Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-					},
-					body: JSON.stringify(data),
-				},
+			const patchPredict = await apiRequest(
+				`/predictions/${scorePredict.prediction_id}`,
+				"PATCH",
+				data,
 			);
-			console.log(
-				"PATCH request URL:",
-				`http://localhost:3000/api/predictions/${scorePredict.prediction_id}`,
-			);
-			console.log("Data sent:", data);
 
-			if (!response.ok) {
-				const errorMessage = await response.text();
-				console.error(`Error: ${response.status} - ${errorMessage}`);
-				throw new Error(errorMessage);
-			}
-
-			console.log("Suppression de la prédiction");
-			formRef.current!.reset();
+			console.log("Modification de la prédiction");
 			setIsValidated(true);
-			setScorePredict(data);
-			setHomeScore(data.score_predi_home.toString());
-			setAwayScore(data.score_predi_away.toString());
+			updateScorePredict(patchPredict);
 		} catch (error) {
 			console.error(error);
 		}
+	};
+
+	// Mise a jour de la prédictions
+	const updateScorePredict = (predict: IPredicts | null) => {
+		setScorePredict(predict);
+		setHomeScore(predict !== null ? predict.score_predi_home.toString() : "");
+		setAwayScore(predict !== null ? predict.score_predi_away.toString() : "");
 	};
 
 	return (

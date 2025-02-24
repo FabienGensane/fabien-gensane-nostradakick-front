@@ -7,6 +7,7 @@ export interface IMatch {
 	score_home: number;
 	stadium: string;
 	team: ITeam[];
+	prediction: IPredicts[];
 	created_at: string;
 	updated_at: null | string;
 }
