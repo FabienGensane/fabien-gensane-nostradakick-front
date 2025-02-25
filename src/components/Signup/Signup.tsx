@@ -7,6 +7,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router";
 import { apiRequest } from "../utils/api";
+import { toast } from "react-toastify";
 import { ToastContainer,toast } from "react-toastify";
 
 interface ICreateUser {
@@ -25,17 +26,18 @@ export default function Signup() {
 
 
 	const navigate = useNavigate();
+	const creationNotification = () =>
+		toast.success("Votre compte à bien été créé!", {
+			className: "creationUserToast",
+			autoClose: 975,
+		});
 
 	const createUser = async (data?: ICreateUser) => {
 		try {
 			const createUser = await apiRequest<ICreateUser>("/users", "POST", data);
-
-			console.log(createUser);
-
-			if (createUser.user_id) {
-				toastCreatUser(),
-				setTimeout(()=>navigate("/login"),2000);
-				
+			if (createUser) {
+				creationNotification();
+				setTimeout(() => navigate("/login"), 1500);
 			}
 		} catch (error) {
 			console.error(error);
@@ -54,12 +56,14 @@ export default function Signup() {
 			email: myFormData.get("email") as string,
 			password: myFormData.get("password") as string,
 		};
+		// Cette variable est en dehors de la data transmise car sert uniquement à vérifier l'équivalence avec le password qui sera envoyé en BDD
 		const confirmPassword = myFormData.get("confirmPassword")?.toString() ?? "";
 		setError(createUserData.password !== confirmPassword);
 
 		createUser(createUserData);
 	};
 
+	// const [pseudo, setPseudo] = useState
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [visiblePassword, setVisiblePassword] = useState(false);
@@ -117,25 +121,18 @@ export default function Signup() {
 
 					<label htmlFor="first_name">Prénom</label>
 					<div className="registrePage__registreCard__firstName">
-						<input
-							type="text"
-							placeholder="Votre Prénom"
-							required
-							name="first_name"
-						/>
+						<input type="text" placeholder="Votre Prénom" name="first_name" />
 					</div>
 
 					<label htmlFor="last_name">Nom</label>
 					<div className="registrePage__registreCard__lastName">
-						<input
-							type="text"
-							placeholder="Votre Nom"
-							required
-							name="last_name"
-						/>
+						<input type="text" placeholder="Votre Nom" name="last_name" />
 					</div>
 
-					<label htmlFor="pseudo">Pseudo</label>
+					<label htmlFor="pseudo">
+						Pseudo<span>*</span>
+						<i>(requis)</i>
+					</label>
 					<div className="registrePage__registreCard__pseudo">
 						<input
 							type="pseudo"
@@ -145,7 +142,10 @@ export default function Signup() {
 						/>
 					</div>
 
-					<label htmlFor="email">Email</label>
+					<label htmlFor="email">
+						Email<span>*</span>
+						<i>(requis)</i>
+					</label>
 					<div className="registrePage__registreCard__email">
 						<input
 							type="email"
@@ -155,7 +155,10 @@ export default function Signup() {
 						/>
 					</div>
 
-					<label htmlFor="password">Mot de passe</label>
+					<label htmlFor="password">
+						Mot de passe<span>*</span>
+						<i>(requis)</i>
+					</label>
 					<div className="registrePage__registreCard__password">
 						<input
 							placeholder="Votre Mot de passe"
@@ -203,7 +206,10 @@ export default function Signup() {
 						</button>
 					</div>
 
-					<label htmlFor="confirmPassword">Confirmer mot de passe</label>
+					<label htmlFor="confirmPassword">
+						Confirmer mot de passe<span>*</span>
+						<i>(requis)</i>
+					</label>
 					<div className="registrePage__registreCard__confirmedPassword">
 						<input
 							placeholder="Confirmez votre mot de passe"
@@ -239,8 +245,7 @@ export default function Signup() {
 						className="registrePage__registreCard__signupButton  "
 						disabled={password !== confirmPassword || error}>						
 						S'inscrire
-					</button>
-					<ToastContainer/>
+					</button>					
 					</div>
 					
 
@@ -252,6 +257,7 @@ export default function Signup() {
 							Connecter-vous
 						</a>
 					</p>
+
 					<br />
 
 					<p className="registrePage__registreCard__personalData">

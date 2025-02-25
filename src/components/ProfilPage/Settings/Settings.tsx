@@ -1,6 +1,6 @@
-import "./Menu_settings.scss";
+import "./Settings.scss";
 
-export default function () {
+export default function Settings() {
 	return (
 		<div className="submenu">
 			<ul className="submenu__list">

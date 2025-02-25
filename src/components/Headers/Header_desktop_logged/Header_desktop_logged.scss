@@ -21,6 +21,21 @@
         justify-content: space-between;
         align-items: center;
 
+        &__Logo {
+            position: absolute;
+            top: -2.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+
+            &:hover {
+                transform: scale(1.1);
+                left: 44%;
+                top: -2.3rem;
+            }
+
+        }
+
         &::before {
             content: "";
             position: absolute;
@@ -48,38 +63,18 @@
 
         }
 
-        &__logo {
-            position: absolute;
-            top: -2.3rem;
-            left: 44%;
-
-            cursor: pointer;
-            width: 120px;
-            margin: 0.5rem 1.5rem;
-            z-index: 10;
-            transition: 300ms;
-
-            &:hover {
-                width: 130px;
-                top: -2.7rem;
-                left: 43.6%;
-            }
-        }
-
         &__list {
             display: flex;
-            justify-content: space-between;
-            gap : 1rem;
             list-style: none;
             z-index: 1;
             padding: 0;
             margin-left: 0.3rem;
+            width: 100%;
             
 
             &__item {
                 position: relative;
                 color : #FEFFEF;
-                padding: 0.7rem 2rem;
                 border-radius: 3rem;
                 position: relative;
                 mix-blend-mode: difference;   
@@ -98,6 +93,8 @@
                 &__link {
                     text-decoration: none;
                     color: #FEFFED;
+                    padding: 0.7rem 2rem;
+                    border-radius: 3rem;
                 }
             }   
         }
@@ -113,8 +110,9 @@
             z-index: 10;
             
             &__profile img{
-                width: 30px;
+                width: 50px;
                 transition: 300ms;
+                border-radius: 50%;
 
                 &:hover {
                     outline: 2px solid #3B9CF1;
@@ -139,4 +137,16 @@
             }
         } 
     }
+}
+
+
+.Logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.link__home {
+    
 }
