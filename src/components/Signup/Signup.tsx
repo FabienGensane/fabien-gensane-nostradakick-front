@@ -18,8 +18,6 @@ interface ICreateUser {
 }
 
 export default function Signup() {
-	const toastCreatUser = () => toast("Votre compte à été crée avec succé !");
-
 	const navigate = useNavigate();
 	const creationNotification = () =>
 		toast.success("Votre compte à bien été créé!", {
@@ -234,7 +232,6 @@ export default function Signup() {
 
 					<div className="grid place-items-center h-dvh bg-zinc-900/15">
 						<button
-							onClick={toastCreatUser}
 							type="submit"
 							className="registrePage__registreCard__signupButton  "
 							disabled={password !== confirmPassword || error}
