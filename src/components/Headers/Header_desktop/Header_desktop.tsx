@@ -1,5 +1,5 @@
 import "./Header_desktop.scss";
-import { Link } from 'react-router';
+import { Link } from "react-router";
 import logo from "../../../assets/Header/Logo.svg";
 
 export default function () {
@@ -15,7 +15,8 @@ export default function () {
 				</Link>
 
 				<div className="menu__desktop__header__buttons">
-					<Link to="/signup"
+					<Link
+						to="/signup"
 						className="menu__desktop__header__buttons__subscribe"
 					>
 						S'inscrire

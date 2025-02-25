@@ -21,11 +21,17 @@
 
             &__link {
                 text-decoration: none;
-                    color : #FEFFEF;
-                    padding: 0.7rem 2rem;
-                    border-radius: 3rem;
-                    transition: 300ms;
+                color : #FEFFEF;
+                padding: 0.7rem 2rem;
+                border-radius: 3rem;
+                transition: 300ms;
             }
         }
-    }  
+    }
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    display: none;
+  }
 }

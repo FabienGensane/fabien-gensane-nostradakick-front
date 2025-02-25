@@ -2,8 +2,9 @@
     width: 90%;
     margin: 0 auto;
     position: relative;
-    height: 158px; ///
+    height: auto; ///
     padding: 1rem 2rem;
+    z-index: 12;
         
     background-color: rgba(3, 13, 30, 0.2);
     border-radius: 1rem;
@@ -24,7 +25,7 @@
         bottom: 0;
 
         padding: 1.5px; 
-        z-index: 1; /* Placer la bordure derrière le contenu */
+        z-index: -1; /* Placer la bordure derrière le contenu */
 
         border-radius: inherit; /* Hériter du border-radius du parent */
         background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
@@ -38,7 +39,6 @@
         linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
         -webkit-mask-composite: destination-out;
-
     }
 
     &__list {
@@ -46,14 +46,20 @@
         padding : 0;
         font-size: 1.1rem;
         list-style: none;
-        
+
+        &__login {
+
+            &__link {
+                background-color: none;
+            }
+        }
+
         & li {
             padding: 0.3rem 0; 
             
             & a {
               color: #FEFFED;
               text-decoration: none;
-
             }
         }
 

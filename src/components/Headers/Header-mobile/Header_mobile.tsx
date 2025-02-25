@@ -68,13 +68,11 @@ export default function () {
 							onClick={handleShowSubmenu}
 							onKeyDown={() => setIsShowSubmenu(!isShowSubmenu)}
 						>
-							<NavLink to="/profil" className="header__nav__list__item__link">
-								<img
-									src={pictoProfil}
-									alt=""
-									className="header__nav__list__item__link__img"
-								/>
-							</NavLink>
+							<img
+								src={pictoProfil}
+								alt=""
+								className="header__nav__list__item__link__img"
+							/>
 						</li>
 					</ul>
 				</nav>

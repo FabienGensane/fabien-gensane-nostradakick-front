@@ -1,9 +1,11 @@
 .menu__mobile {
+    display: none;
     position: fixed;
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
+    z-index: 3;
 }
 
 
@@ -78,4 +80,11 @@
 
         }
     }
+}
+
+
+@media screen and (max-width: 768px) {
+  .menu__mobile {
+    display: block;
+  }
 }

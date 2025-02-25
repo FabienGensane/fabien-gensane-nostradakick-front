@@ -22,6 +22,8 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Headers from "../Headers/Headers";
 import PublicRoute from "../ProtectedRoute/PublicRoute";
 import { ToastContainer } from "react-toastify";
+import HeaderProfil from "../ProfilPage/HeaderProfil/HeaderProfil";
+import Header_mobile from "../Headers/Header-mobile/Header_mobile";
 function App() {
 	const [sizeWindow, setSizeWindow] = useState(window.innerWidth);
 
@@ -41,7 +43,7 @@ function App() {
 
 	return (
 		<>
-			<ToastContainer/>
+			<ToastContainer />
 			<Headers />
 
 			<Routes>
@@ -109,7 +111,7 @@ function App() {
 				{/* Page 404 */}
 				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
-			{sizeWindow > 375 && <Footer />}
+			<Footer />
 		</>
 	);
 }
