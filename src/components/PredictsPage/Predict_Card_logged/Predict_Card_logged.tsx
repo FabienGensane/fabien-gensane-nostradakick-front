@@ -101,10 +101,7 @@ const Predict_Card_logged = ({
 			scorePredict.prediction_id,
 		);
 		try {
-			await apiRequest(
-				`/predictions/${initialPrediction?.prediction_id}`,
-				"DELETE",
-			);
+			await apiRequest(`/predictions/${scorePredict.prediction_id}`, "DELETE");
 			console.log("Suppression de la prédiction");
 
 			// Reset Front + from

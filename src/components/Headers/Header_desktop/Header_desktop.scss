@@ -20,6 +20,23 @@
         justify-content: space-between;
         align-items: center;
 
+            &__logo {
+                position: absolute;
+                width: 100px;
+                top: -1rem;
+                left: 50%;
+                transform: translateX(-50%);
+
+                cursor: pointer;
+                z-index: 10;
+                transition: 300ms;
+
+                &:hover {
+                  width: 110px;
+                top: -1.5rem;
+            }
+        }
+
         &::before {
             content: "";
             position: absolute;
@@ -47,23 +64,6 @@
 
         }
 
-        &__logo {
-            position: absolute;
-            top: -2.3rem;
-            left: 50%;
-            transform: translateX(-65%);
-
-            cursor: pointer;
-            width: 120px;
-            margin: 0.5rem 1.5rem;
-            z-index: 10;
-            transition: 300ms;
-
-            &:hover {
-                width: 130px;
-                
-            }
-        }
 
         &__buttons {
             display: flex;
@@ -105,4 +105,10 @@
             }
         }
     }
+}
+
+@media screen and (max-width: 768px) {
+  .menu__desktop {
+    display: none;
+  }
 }
