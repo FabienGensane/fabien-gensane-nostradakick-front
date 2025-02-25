@@ -17,7 +17,8 @@ const Headers = () => {
 	if (
 		location.pathname === "/predictions" ||
 		location.pathname === "/resultats" ||
-		location.pathname === "/classement"
+		location.pathname === "/classement" ||
+		location.pathname === "/profil"
 	) {
 		return (
 			<>

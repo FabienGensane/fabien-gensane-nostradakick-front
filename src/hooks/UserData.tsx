@@ -30,7 +30,6 @@ export const useUserData = () => {
 				if (isMounted) {
 					setUser(data);
 					// Déplacer le console.log ici pour voir uniquement les données reçues
-					console.log("Données reçues :", data);
 				}
 			} catch (error) {
 				console.error(error);

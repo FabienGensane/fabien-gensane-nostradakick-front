@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 
 // Import Composant Page
@@ -9,38 +8,23 @@ import { ResultPage } from "../ResultPage/ResultPage";
 import { ProfilPage } from "../ProfilPage/ProfilPage";
 import Signup from "../Signup/Signup";
 import { MainPage } from "../MainPage/MainPage";
-
-// Import composant Hearder et footer
-// import Header_mobile from "../Headers/Header-mobile/Header_mobile";
-// import Header_desktop from "../Headers/Header_desktop/Header_desktop";
-import Footer from "../Footer/Footer";
-// import Header_desktop_logged from "../Headers/Header_desktop_logged/Header_desktop_logged";
-
-import "./App.scss";
 import Auth from "../Authentification/authentification";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+
+// Import composant Header et Footer
 import Headers from "../Headers/Headers";
+import Footer from "../Footer/Footer";
+
+// Import SCSS
+import "./App.scss";
+
+// Composant de prtection de route
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import PublicRoute from "../ProtectedRoute/PublicRoute";
+
+// Import Toast
 import { ToastContainer } from "react-toastify";
-import HeaderProfil from "../ProfilPage/HeaderProfil/HeaderProfil";
-import Header_mobile from "../Headers/Header-mobile/Header_mobile";
+
 function App() {
-	const [sizeWindow, setSizeWindow] = useState(window.innerWidth);
-
-	useEffect(() => {
-		const handleResize = () => {
-			setSizeWindow(window.innerWidth);
-		};
-
-		// Ajouter un écouteur d'événement pour "resize"
-		window.addEventListener("resize", handleResize);
-
-		// Supprimer l'écouteur d'événement pour "resize"
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
-	}, []);
-
 	return (
 		<>
 			<ToastContainer />

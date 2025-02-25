@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 3%;
+    width: 100%;
+    height: auto;
+    color: #FEFFED;
+
+    margin: 4rem 0;
+
+    &__left, &__right {
+        width: 36%;
+        position: relative;
+        height: auto;
+        border-radius: 1rem;
+        padding: 2rem;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 1.5px; 
+            z-index: -1; /* Placer la bordure derrière le contenu */
+
+            border-radius: inherit; /* Hériter du border-radius du parent */
+            background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+            // Mask pour le contour en dégradé
+            mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+
+            -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            border-radius: 1rem;
+
+            background-color: #0D1F3C;
+            z-index: -2;
+        }
+    }
+
+    &__left {
+
+        &__title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+        &__container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5%;
+
+            margin-top: 1rem;
+
+            &__points {
+                width: 220px;
+                height: 220px;
+                border-radius: 1rem;
+                outline: 1px solid #FEFFED;
+
+                box-shadow: 0px 0px 10px black;
+
+
+                font-size: 1rem;
+                text-align: center;
+                align-content: center;
+
+                position: relative;
+
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+
+                            padding: 6px; 
+                            z-index: -1; /* Placer la bordure derrière le contenu */
+
+                            border-radius: inherit; /* Hériter du border-radius du parent */
+                            background: linear-gradient(45deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+                            // Mask pour le contour en dégradé
+                            mask: 
+                            linear-gradient(#fff 0 0) content-box, 
+                            linear-gradient(#fff 0 0);
+                            mask-composite: exclude;
+
+                            -webkit-mask: 
+                            linear-gradient(#fff 0 0) content-box, 
+                            linear-gradient(#fff 0 0);
+                            -webkit-mask-composite: destination-out;
+
+                        }
+
+                & strong {
+                    font-size: 3rem;
+                    font-family: "Montserrat", serif;
+                    font-optical-sizing: auto;
+                }
+            }
+
+            &__predict {
+                margin-bottom: 0.4rem;
+                &__pointImg {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
+        }
+    }
+
+    &__right {
+        &__title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        &__container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 1rem;
+            align-items: center;
+            text-align: center;
+
+            &__predict {
+
+                &__stats {
+                    position: relative;
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50%;
+                    outline: 1px solid #dedfc892;
+                    font-family: "Montserrat", serif;
+                    font-optical-sizing: auto;
+
+                    align-content: center;
+                    margin: 0 auto;
+
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+
+                        padding: 6px; 
+                        z-index: -1; /* Placer la bordure derrière le contenu */
+
+                        border-radius: inherit; /* Hériter du border-radius du parent */
+                        background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+                        // Mask pour le contour en dégradé
+                        mask: 
+                        linear-gradient(#fff 0 0) content-box, 
+                        linear-gradient(#fff 0 0);
+                        mask-composite: exclude;
+
+                        -webkit-mask: 
+                        linear-gradient(#fff 0 0) content-box, 
+                        linear-gradient(#fff 0 0);
+                        -webkit-mask-composite: destination-out;
+
+                    }
+
+                    & strong {
+                        font-size: 2rem;
+                        font-weight: 800;
+                    }
+
+                    &__number {
+                        font-size: 0.9rem;
+                        margin-top: -0.5rem;
+                    }
+
+                    &__title {
+                        font-size: 0.9rem;
+                        margin-top: 1rem;
+                        padding: 0 1rem;
+                    }
+                }
+            }
+        }
+    }
+}

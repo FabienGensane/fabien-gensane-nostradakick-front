@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router";
 import { apiRequest } from "../utils/api";
 import { toast } from "react-toastify";
-import { ToastContainer,toast } from "react-toastify";
 
 interface ICreateUser {
 	first_name: string;
@@ -19,11 +18,7 @@ interface ICreateUser {
 }
 
 export default function Signup() {
-
-	const toastCreatUser =  () => toast('Votre compte à été crée avec succé !');
-
-
-
+	const toastCreatUser = () => toast("Votre compte à été crée avec succé !");
 
 	const navigate = useNavigate();
 	const creationNotification = () =>
@@ -237,17 +232,16 @@ export default function Signup() {
 						et reconnaissez avoir lu la politique de protection des données.
 					</p>
 
-					
 					<div className="grid place-items-center h-dvh bg-zinc-900/15">
-					<button					
-						onClick={toastCreatUser}						
-						type="submit"
-						className="registrePage__registreCard__signupButton  "
-						disabled={password !== confirmPassword || error}>						
-						S'inscrire
-					</button>					
+						<button
+							onClick={toastCreatUser}
+							type="submit"
+							className="registrePage__registreCard__signupButton  "
+							disabled={password !== confirmPassword || error}
+						>
+							S'inscrire
+						</button>
 					</div>
-					
 
 					<br />
 

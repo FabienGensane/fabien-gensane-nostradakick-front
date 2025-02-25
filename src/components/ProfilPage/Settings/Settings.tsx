@@ -1,13 +1,15 @@
 import "./Settings.scss";
+import UpdateProfil from "./UpdateProfil/UpdateProfil";
 
 export default function Settings() {
 	return (
-		<div className="submenu">
-			<ul className="submenu__list">
-				<li className="submenu__list__profil">Changer mon profil</li>
-				<li className="submenu__list__password">Changer mon mot de passe</li>
-				<li className="submenu__list__account">Supprimer mon compte</li>
+		<div className="settings">
+			<ul className="settings__list">
+				<li className="settings__list__item">Changer mon profil</li>
+				<li className="settings__list__item">Changer mon mot de passe</li>
+				<li className="settings__list__item">Supprimer mon compte</li>
 			</ul>
+			<UpdateProfil />
 		</div>
 	);
 }

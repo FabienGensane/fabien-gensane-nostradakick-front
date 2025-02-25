@@ -57,6 +57,8 @@ const useAddPoints = ({
 		const points = calculatePoints();
 		if (!points) return; // Sortie si aucun point n'est calculé
 
+		console.log("modif points");
+
 		setPointsData(points); // Mise à jour de l'état avec les points calculés
 	}, [match, scorePredict, calculatePoints]);
 	// Dépendances : match et scorePredict
@@ -71,6 +73,7 @@ const useAddPoints = ({
 						"PATCH",
 						pointsData, // Envoie pointsData au lieu de addPointUser()
 					);
+
 					setAddPoint(addPointpatch);
 				} catch (error) {
 					console.error(error);

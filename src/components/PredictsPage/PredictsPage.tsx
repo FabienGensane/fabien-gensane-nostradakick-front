@@ -11,6 +11,8 @@ export const PredictsPage = () => {
 	const [filteredValue, setFilteredValue] = useState("");
 	const { user } = useUserData();
 
+	console.log(matchs);
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -28,12 +30,10 @@ export const PredictsPage = () => {
 	// Trier les débuts de matchs par ordre croissant
 	const sortedMatchs = matchs.sort((a, b) => a.date.localeCompare(b.date));
 
-	console.log(sortedMatchs);
-
 	const filteredMatchs = sortedMatchs.filter((match) => {
 		if (
-			match.team[0].name.includes(filteredValue.toLowerCase()) ||
-			match.team[1].name.includes(filteredValue.toLowerCase())
+			match.team[0].name.toLowerCase().includes(filteredValue.toLowerCase()) ||
+			match.team[1].name.toLowerCase().includes(filteredValue.toLowerCase())
 		) {
 			return true;
 		}

@@ -163,7 +163,7 @@ const Predict_Card_logged = ({
 			{/* Prédiction */}
 			<div className="predictCard__containerPredict">
 				{/* Home Team */}
-				<Team team={match.team[0]} />
+				<Team team={match.team[1]} />
 				<div className="predictCard__containerPredict__inputContent">
 					<Input
 						name={"home"}
@@ -178,7 +178,7 @@ const Predict_Card_logged = ({
 						onChange={(e) => setAwayScore(e.target.value)}
 					/>
 				</div>
-				<Team team={match.team[1]} />
+				<Team team={match.team[0]} />
 			</div>
 			<button type="submit" className="predictCard__btnValidate">
 				{isValidated || initialPrediction
