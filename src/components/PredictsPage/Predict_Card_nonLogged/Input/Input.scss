@@ -1,4 +1,4 @@
-.predictCard__containerPredict__input {
+.predictCardNoLogin__containerPredict__input {
 
             position: relative;
 
@@ -41,4 +41,13 @@
                     transform: scale(1.2);
                 }
             }
+    }
+
+    @media (max-width: 375px) {
+        .predictCardNoLogin__containerPredict__input{
+            &__score {
+                width: 45px;
+                
+            }
+        }
     }

@@ -21,7 +21,7 @@ margin-top: 2rem;
                 bottom: 0;
 
                 padding: 1.5px; 
-                z-index: 1; /* Placer la bordure derrière le contenu */
+                z-index: -1; /* Placer la bordure derrière le contenu */
 
                 border-radius: inherit; /* Hériter du border-radius du parent */
                 background: linear-gradient(180deg, #030D1E, #FEFFED, #030D1E);
@@ -66,7 +66,7 @@ margin-top: 2rem;
                 bottom: 0;
 
                 padding: 1.5px; 
-                z-index: 0; /* Placer la bordure derrière le contenu */
+                z-index: -1; /* Placer la bordure derrière le contenu */
 
                 border-radius: inherit; /* Hériter du border-radius du parent */
                 background: linear-gradient(180deg, #030D1E, #FEFFED, #030D1E);
@@ -124,6 +124,7 @@ margin-top: 2rem;
 .bestof3:first-child {
     // background-color: aqua;
     order: 2;
+    z-index: 0;
 }
 .bestof3:nth-child(2) {
     // background-color: chartreuse;

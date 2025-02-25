@@ -9,8 +9,6 @@ import Team from "./Team/Team";
 import { useUserData } from "../../../hooks/UserData";
 import { useNavigate } from "react-router";
 
-
-
 interface IPropsCreatePredict {
 	match_id: number;
 	score_predi_away: number;
@@ -19,34 +17,31 @@ interface IPropsCreatePredict {
 
 dayjs.extend(duration);
 
-const Predict_Card_nonLogged = ({ match }: {match:IMatch}) => {
+const Predict_Card_nonLogged = ({ match }: { match: IMatch }) => {
 	const navigate = useNavigate();
 	const [chrono, setChrono] = useState("");
 	const [scorePredict, setScorePredict] = useState<IPropsCreatePredict>();
 	// Etat qui permet de vérifier si une prédiction a été postée. D'origine, l'état est faux.
 	const [isValidated, setIsValidated] = useState(false);
 	const formRef = useRef<HTMLFormElement>(null);
-	const {user} = useUserData();
-	
-	
+	const { user } = useUserData();
 
 	// Méthode qui permet d'aller chercher en BDD les scores "prédits" par l'utilisateur afin de les afficher
-
 
 	// Méthode qui permet de récupérer dans le formulaire "predict_card" les informations nécessaires à la création d'une prédiction
 	const handleSubmitPredict = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-        // Votre logique de soumission ici
-        
-        // Redirection
-        navigate('/login');
+		// Votre logique de soumission ici
+
+		// Redirection
+		navigate("/login");
 	};
 
 	// Méthode qui permet de créer une prédiction en BDD
 	const createPredict = async (data: IPropsCreatePredict) => {
 		try {
 			console.log("étape5:", user);
-			const response = await fetch("http://localhost:3000/api/predictions/",{
+			const response = await fetch("http://localhost:3000/api/predictions/", {
 				method: "POST",
 				headers: {
 					"Content-type": "application/json; charset=UTF-8",
@@ -54,8 +49,6 @@ const Predict_Card_nonLogged = ({ match }: {match:IMatch}) => {
 				},
 				body: JSON.stringify(user),
 			});
-			
-			
 
 			if (!response.ok) {
 				const errorMessage = await response.text();
@@ -76,20 +69,23 @@ const Predict_Card_nonLogged = ({ match }: {match:IMatch}) => {
 	) => {
 		event.preventDefault();
 		try {
-			const response = await fetch(`http://localhost:3000/api/predictions/${scorePredict?.match_id}`, {
-				method: "DELETE",
-				headers: {
-					"Content-type": "application/json; charset=UTF-8",
-					Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+			const response = await fetch(
+				`http://localhost:3000/api/predictions/${scorePredict?.match_id}`,
+				{
+					method: "DELETE",
+					headers: {
+						"Content-type": "application/json; charset=UTF-8",
+						Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+					},
 				},
-			});
-	
+			);
+
 			if (!response.ok) {
 				const errorMessage = await response.text();
 				console.error(`Error: ${response.status} - ${errorMessage}`);
 				throw new Error(errorMessage);
 			}
-	
+
 			console.log("Suppression de la prédiction");
 			formRef.current!.reset();
 			setIsValidated(false);
@@ -100,7 +96,7 @@ const Predict_Card_nonLogged = ({ match }: {match:IMatch}) => {
 
 	return (
 		<form
-			className="predictCard"
+			className="predictCardNoLogin"
 			style={chrono === "00:00:00:00" ? { display: "none" } : {}}
 			onSubmit={handleSubmitPredict}
 			ref={formRef}
@@ -108,10 +104,10 @@ const Predict_Card_nonLogged = ({ match }: {match:IMatch}) => {
 			{/* Minuteur */}
 			<Chrono chrono={chrono} setChrono={setChrono} match={match} />
 			{/* Prédiction */}
-			<div className="predictCard__containerPredict">
+			<div className="predictCardNoLogin__containerPredict">
 				{/* Home Team */}
 				<Team team={match.team[0]} />
-				<div className="predictCard__containerPredict__inputContent">
+				<div className="predictCardNoLogin__containerPredict__inputContent">
 					<Input name={"home"} />
 					<p>VS</p>
 					{/* Away Team */}
@@ -119,16 +115,9 @@ const Predict_Card_nonLogged = ({ match }: {match:IMatch}) => {
 				</div>
 				<Team team={match.team[1]} />
 			</div>
-			<button type="submit" className="predictCard__btnValidate">
+			<button type="submit" className="predictCardNoLogin__btnValidate">
 				Prédis l'issue du match!
 			</button>
-			{/* <button
-				type="button"
-				className="predictCard__btnDelete"
-				// onClick={handleDeletePredict}
-			>
-				<img src={iconTrash} alt="" className="predictCard__btnDelete__icon" />
-			</button> */}
 		</form>
 	);
 };

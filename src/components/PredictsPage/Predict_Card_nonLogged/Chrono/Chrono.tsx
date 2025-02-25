@@ -36,13 +36,13 @@ const Chrono = ({ match, chrono, setChrono }: IProspChrono) => {
 	}, [match.date, setChrono]);
 
 	return (
-		<div className="predictCard__containerChrono">
+		<div className="predictCardNoLogin__containerChrono">
 			<img
 				src={iconChrono}
 				alt="Temps restant avant le dbut du match"
-				className="predictCard__containerChrono__icon"
+				className="predictCardNoLogin__containerChrono__icon"
 			/>
-			<p className="predictCard__containerChrono__chrono">{chrono}</p>
+			<p className="predictCardNoLogin__containerChrono__chrono">{chrono}</p>
 		</div>
 	);
 };

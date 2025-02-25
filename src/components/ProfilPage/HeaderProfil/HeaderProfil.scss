@@ -70,6 +70,47 @@
             transform: translateX(-50%);
             font-size: 1.5rem;
             font-weight: 700;
+            text-align: center;
+            width: 200px;
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+        .headerProfil{
+            padding: 0 1rem;
+            &__list {
+                display: none;
+            }
+            &__profil {
+                &__photo {
+                    top: -2rem;
+                }
+                &__pseudo {
+                    top: 2.5rem;
+                    font-size: 1.5rem;
+                }
+            } 
+     }
+}
+
+@media screen and (max-width: 375px) {
+    .headerProfil{
+        padding: 0 1rem;
+        &__list {
+            display: none;
+        }
+        &__profil {
+            &__photo {
+                top: -1rem;
+            }
+            &__pseudo {
+                top: 4rem;
+                font-size: 1.2rem;
+                width: 150px;
+            }
+        }
+    }
+    
+}
+    

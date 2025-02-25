@@ -10,3 +10,16 @@
             font-weight: 700;
         }
     }
+
+   @media screen and (max-width: 375px){
+        .predictCard__containerPredict__Team {
+            &__logo {
+                width: 45px;
+                height: 45px;
+            }
+            &__name {
+                font-size: 0.7rem;
+                padding: 0 1rem;
+            }
+        }
+    }

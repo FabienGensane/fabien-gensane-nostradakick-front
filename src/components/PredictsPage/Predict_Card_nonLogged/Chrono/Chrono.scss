@@ -1,4 +1,4 @@
-.predictCard__containerChrono {
+.predictCardNoLogin__containerChrono {
         z-index: 1;
         background-color: #112242;
         border-radius: 0.3rem;
@@ -10,3 +10,9 @@
         font-optical-sizing: auto;
 
 }
+
+   @media (max-width: 375px) {
+        .predictCardNoLogin__containerChrono{
+            width: 50%;        
+        }
+    }

@@ -3,13 +3,15 @@ import "./Team.scss";
 
 const Team = ({ team }: { team: ITeam }) => {
 	return (
-		<div className="predictCard__containerPredict__Team">
+		<div className="predictCardNoLogin__containerPredict__Team">
 			<img
 				src={team.logo}
 				alt=""
-				className="predictCard__containerPredict__Team__logo"
+				className="predictCardNoLogin__containerPredict__Team__logo"
 			/>
-			<p className="predictCard__containerPredict__Team__name">{team.name}</p>
+			<p className="predictCardNoLogin__containerPredict__Team__name">
+				{team.name}
+			</p>
 		</div>
 	);
 };

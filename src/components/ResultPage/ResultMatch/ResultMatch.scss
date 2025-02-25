@@ -75,6 +75,7 @@
             font-family: "Montserrat", serif;
             font-optical-sizing: auto;
             font-weight: 700;
+            text-align: center;
         }
     }
 
@@ -108,6 +109,28 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+            }
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .resultMatch {
+        width: 90%;
+        padding: 1rem;
+        &__match {
+            gap: 1rem;
+            &__score {
+                font-size: 2rem;
+                width: 100px;
+            }
+        }
+        &__prediction {
+            &__content {
+                &__totalPoints {
+                    width: 25%;
+                    transform: scale(0.9);
+                }
             }
         }
     }

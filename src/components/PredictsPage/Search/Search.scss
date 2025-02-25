@@ -29,4 +29,8 @@ border-radius: 0.5rem;
     }
 }
 
-
+@media screen and (max-width: 375px) {
+    .search__form  {
+        width: 80%;
+    }
+}

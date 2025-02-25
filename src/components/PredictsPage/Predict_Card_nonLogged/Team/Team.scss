@@ -1,4 +1,4 @@
-.predictCard__containerPredict__Team {
+.predictCardNoLogin__containerPredict__Team {
         text-align: center;
         width: 6rem;
         &__logo {
@@ -8,5 +8,18 @@
         }
         &__name{
             font-weight: 700;
+        }
+    }
+
+       @media (max-width: 375px) {
+        .predictCardNoLogin__containerPredict__Team{
+            &__logo {
+                width: 45px;
+                height: 45px;
+            }
+            &__name {
+                font-size: 0.7rem;
+                padding: 0 1rem;
+            }
         }
     }

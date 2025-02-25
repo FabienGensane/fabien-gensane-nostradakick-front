@@ -21,3 +21,19 @@
         }
     }
 }
+
+@media (max-width: 375px) {
+    .result {
+        padding: 3rem 0 7rem;
+
+        &__title {
+            font-size: 1.5rem;
+        }
+        
+        &__containerDate {
+            overflow: scroll;
+            padding: 1rem;  
+            transform: scale(0.9);      
+        }
+    }
+}

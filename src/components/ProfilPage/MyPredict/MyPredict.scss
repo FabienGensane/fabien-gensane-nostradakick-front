@@ -1,3 +1,18 @@
 .myPredict {
     margin-top: 5rem;
 }
+
+@media screen and (max-width: 768px) {
+        .myPredict{
+        padding: 1rem 0 4rem;
+
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .myPredict{
+        padding: 3rem 0 4rem;
+
+    }
+    
+}

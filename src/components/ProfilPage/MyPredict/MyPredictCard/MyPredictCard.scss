@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-.datePredict{
-    color: #FEFFED;
-    font-size: 1.2rem;
-    font-weight: 500;
-    text-align: center;
-}
+
 .myPredictCard {
     width: 50%;
     margin: 2rem auto;
@@ -81,6 +76,7 @@
             font-family: "Montserrat", serif;
             font-optical-sizing: auto;
             font-weight: 700;
+            text-align: center;
         }
     }
 
@@ -117,4 +113,49 @@
             }
         }
     }
+}
+
+@media screen and (max-width: 768px) {
+     .myPredictCard{
+        width: 70%;
+        padding: 1rem;
+        &__match {
+            gap: 1rem;
+            &__score{
+                font-size: 2rem;
+                width: 100px;
+            }
+        }
+        &__prediction {
+            &__content {
+                &__totalPoints {
+                    width: 25%;
+                    transform: scale(0.9);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .myPredictCard{
+        width: 90%;
+        padding: 1rem;
+        &__match {
+            gap: 1rem;
+            &__score{
+                font-size: 2rem;
+                width: 100px;
+            }
+        }
+        &__prediction {
+            &__content {
+                &__totalPoints {
+                    width: 25%;
+                    transform: scale(0.9);
+                }
+            }
+        }
+    }
+    
 }
