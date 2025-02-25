@@ -7,6 +7,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router";
 import { apiRequest } from "../utils/api";
+import { ToastContainer,toast } from "react-toastify";
 
 interface ICreateUser {
 	first_name: string;
@@ -17,6 +18,12 @@ interface ICreateUser {
 }
 
 export default function Signup() {
+
+	const toastCreatUser =  () => toast('Votre compte à été crée avec succé !');
+
+
+
+
 	const navigate = useNavigate();
 
 	const createUser = async (data?: ICreateUser) => {
@@ -25,8 +32,10 @@ export default function Signup() {
 
 			console.log(createUser);
 
-			if (createUser) {
-				navigate("/login");
+			if (createUser.user_id) {
+				toastCreatUser(),
+				setTimeout(()=>navigate("/login"),2000);
+				
 			}
 		} catch (error) {
 			console.error(error);
@@ -222,13 +231,18 @@ export default function Signup() {
 						et reconnaissez avoir lu la politique de protection des données.
 					</p>
 
-					<button
+					
+					<div className="grid place-items-center h-dvh bg-zinc-900/15">
+					<button					
+						onClick={toastCreatUser}						
 						type="submit"
 						className="registrePage__registreCard__signupButton  "
-						disabled={password !== confirmPassword || error}
-					>
+						disabled={password !== confirmPassword || error}>						
 						S'inscrire
 					</button>
+					<ToastContainer/>
+					</div>
+					
 
 					<br />
 
