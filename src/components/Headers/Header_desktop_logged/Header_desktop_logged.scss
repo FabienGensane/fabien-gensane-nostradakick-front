@@ -1,0 +1,149 @@
+.menu__desktop__logged {
+        width: 100%;
+        position: fixed;
+        font-size: 0.9rem;
+        z-index: 2;
+
+    &__header {
+        width: 90%;
+        margin: 3rem auto 0;
+        position: relative;
+        height: 50px;
+        
+        background-color: rgba(3, 13, 30, 0.2);
+        border-radius: 3rem;
+
+        backdrop-filter: blur(5px); /* mettre du flou en fond*/
+        -webkit-backdrop-filter: blur(5px);
+        /* compatibilité navigateur pour mettre du flou en fond*/
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__Logo {
+            position: absolute;
+            width: 100px;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            transition: 300ms;
+
+
+            &:hover {
+                width: 110px;
+                top: -1.5rem;
+            }
+
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 1.5px; 
+            z-index: -1; /* Placer la bordure derrière le contenu */
+
+            border-radius: inherit; /* Hériter du border-radius du parent */
+            background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+            // Mask pour le contour en dégradé
+            mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+
+            -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+
+        }
+
+        &__list {
+            display: flex;
+            list-style: none;
+            z-index: 1;
+            padding: 0;
+            margin-left: 0.3rem;
+            width: 100%;
+            
+
+            &__item {
+                position: relative;
+                color : #FEFFEF;
+                border-radius: 3rem;
+                position: relative;
+                mix-blend-mode: difference;   
+                cursor: pointer;
+                z-index: 3;
+
+                &--hover {
+                    background-color: #FEFFED;
+                    top: 0;
+                    border-radius: 5rem;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                }
+
+                &__link {
+                    text-decoration: none;
+                    color: #FEFFED;
+                    padding: 0.7rem 2rem;
+                    border-radius: 3rem;
+                }
+            }   
+        }
+        &__logProfile  {
+            display: flex;
+            justify-content: space-between;
+            gap : 1rem;
+            align-items: center;
+            margin-right: 0.3rem;
+            background-color: #0D1F3C;
+            border-radius: 3rem;
+            padding: 5px;
+            z-index: 10;
+            
+            &__profile img{
+                width: 50px;
+                transition: 300ms;
+                border-radius: 50%;
+
+                &:hover {
+                    outline: 2px solid #3B9CF1;
+                    border-radius: 50%;
+                }
+            }
+            
+            &__logout {
+                padding: 0.3rem 1rem;
+                background-color: #0D1F3C;
+                border: none;
+                color : #FEFFEF;
+                text-decoration: none;
+                border-radius: 3rem;
+                transition: 300ms;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #FEFFEF;
+                    color: #0D1F3C;
+                }
+            }
+        } 
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+  .menu__desktop__logged {
+    display: none;
+  }
+}

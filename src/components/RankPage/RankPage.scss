@@ -1,0 +1,141 @@
+.rank {
+    color: #feffeb;
+    padding-top: 10rem;
+
+    &__title {
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    &__bestof3 {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;  
+    }
+
+    &__List {
+        width: 50%;
+        height: auto;
+        margin: 3rem auto;
+
+        &__head {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            width: 100%;
+
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+
+                padding: 1.5px; 
+                z-index: -1; /* Placer la bordure derrière le contenu */
+
+                border-radius: inherit; /* Hériter du border-radius du parent */
+                background: linear-gradient(190deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+                // Mask pour le contour en dégradé
+                mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+                mask-composite: exclude;
+
+                -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+                -webkit-mask-composite: destination-out;
+
+            }
+
+            &__left {
+                display: flex;
+                gap: 3.4rem
+            }
+
+            &__right {
+                display: flex;
+                gap: 2rem;
+
+            }
+        }
+
+        &__body {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+    }
+
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .rank {
+        padding: 3rem 0;
+        &__bestof3 {
+            transform: scale(0.8);
+            margin: 1rem 0;
+        }
+        &__title {
+            font-size: 1.5rem;
+        }
+        &__List {
+            width: 95%;
+            font-size: 1rem;
+            padding: 0 1rem 3rem;
+
+            &__head {
+                padding: 0.5rem;
+                &__left {
+                    gap: 4rem;
+                    margin-left: 1rem;
+                }
+                &__right {
+                    gap: 2rem;
+                    margin-right: 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .rank {
+        padding: 3rem 0;
+        &__bestof3 {
+            transform: scale(0.5);
+            margin: -5rem 0;
+        }
+        &__title {
+            font-size: 1.5rem;
+        }
+        &__List {
+            width: 95%;
+            font-size: 0.7rem;
+            padding: 0 1rem 3rem;
+
+            &__head {
+                padding: 0.5rem;
+                &__left {
+                    gap: 1.8rem;
+                    margin-left: 0rem;
+                }
+                &__right {
+                    gap: 1rem;
+                    margin-right: 0.2rem;
+                }
+            }
+        }
+    }
+}
+    

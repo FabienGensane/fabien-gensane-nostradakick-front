@@ -1,0 +1,103 @@
+.updateProfil{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    width: 600px;
+    padding:3rem 0 3rem 3rem;
+
+    margin-bottom: 1rem;
+
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        padding-left: 1px; 
+        z-index: -1; /* Placer la bordure derrière le contenu */
+
+        border-radius: inherit; /* Hériter du border-radius du parent */
+        background: linear-gradient(0deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+        // Mask pour le contour en dégradé
+        mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+
+        -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+
+    }
+
+
+    &__form {
+        
+        & input {
+            display: block;
+            width: 400px;
+            height: 40px;
+            margin: 0.5rem 0 1rem;
+
+            background-color: #112443;
+            border: none;
+            border-radius: 0.5rem;
+
+            color: #FEFFED;
+            padding-left: 1rem;
+
+            &:nth-last-child(2) {
+                margin-bottom: 2rem ;
+            }
+        }
+
+        & label {
+            font-size: 0.9rem;
+        }
+
+        & button {
+            padding: 0.5rem 2rem;
+            color: #FEFFED;
+            background-color: #3B9CF1;
+            font-weight: 700;
+
+            border: none;
+            border-radius: 0.3rem;
+            cursor: pointer;
+            transition: 300ms;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &__photo {
+        &__profil {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        &__edit {
+            background-color: #FEFFED;
+            width: 20px;
+            height: 20px;
+            padding: 0.3rem;
+
+            border-radius: 50%;
+            outline: 2px solid #0D1F3C;
+
+            position: absolute;
+            top: 30%;
+            right: 1rem;
+
+        }
+    }
+}

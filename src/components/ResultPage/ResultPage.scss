@@ -1,0 +1,39 @@
+.result {
+    padding: 12rem 0 0;
+    color: #FEFFEF;
+
+    &__title {
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    &__containerDate {
+        margin: 1rem auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        &__hover {
+            transform: scale(1.3);
+            background-color: #3B9CF1;
+            border-radius: 5rem;
+        }
+    }
+}
+
+@media (max-width: 375px) {
+    .result {
+        padding: 3rem 0 7rem;
+
+        &__title {
+            font-size: 1.5rem;
+        }
+        
+        &__containerDate {
+            overflow: scroll;
+            padding: 1rem;  
+            transform: scale(0.9);      
+        }
+    }
+}

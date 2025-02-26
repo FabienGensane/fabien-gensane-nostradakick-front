@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.date:hover + .date {
+    transform: scale(1.1);
+}
+.date:has(+ .date:hover){
+    transform: scale(1.1);
+}
+.date {
+    color: #FEFFEF;
+    cursor: pointer;
+    border-radius: 5rem;
+    transition: 300ms;
+
+    &:hover {
+        transform: scale(1.3);
+    }
+
+
+    &__containerDate {
+        margin: 0 auto;
+
+            width: 60px;
+    height: 90px;
+        padding: 0.3rem;
+
+        border-radius: 4rem;
+        position: relative;
+        align-content: center;
+
+        &--Active {
+            margin: 0 auto;
+
+            width: 60px;
+            height: auto;
+            padding: 0.3rem;
+            background-color: #3B9CF1;
+            position: relative;
+            border-radius: 4rem;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+
+                padding: 1.5px; 
+                z-index: 0; /* Placer la bordure derrière le contenu */
+
+                border-radius: inherit; /* Hériter du border-radius du parent */
+                background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+                // Mask pour le contour en dégradé
+                mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+                mask-composite: exclude;
+
+                -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+                -webkit-mask-composite: destination-out;
+
+            }
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 1.5px; 
+            z-index: 0; /* Placer la bordure derrière le contenu */
+
+            border-radius: inherit; /* Hériter du border-radius du parent */
+            background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+            // Mask pour le contour en dégradé
+            mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+
+            -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+
+        }
+
+        &__date {
+            margin: 0 auto;
+            background: linear-gradient(#030D1E, #feffed27);
+            border-radius: 50%;
+
+            width: 45px;
+            height: 45px;
+
+            text-align: center;
+            align-content: center;
+
+            font-weight: 500;
+            font-size: 1.3rem;
+            font-family: "Montserrat", serif;
+            font-optical-sizing: auto;
+        }
+
+        &__day {
+            text-align: center;
+            padding: 0.2rem 0 0.5rem;
+        }
+    }
+}
