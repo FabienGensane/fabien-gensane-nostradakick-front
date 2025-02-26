@@ -11,13 +11,10 @@ export const PredictsPage = () => {
 	const [filteredValue, setFilteredValue] = useState("");
 	const { user } = useUserData();
 
-	console.log(matchs);
-
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const matchsToPlay = await apiRequest("/calendar/profil", "GET");
-
 				setMatchs(matchsToPlay);
 			} catch (error) {
 				console.error("Erreur lors de la récupération des données:", error);

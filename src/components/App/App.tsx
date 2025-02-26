@@ -23,12 +23,20 @@ import PublicRoute from "../ProtectedRoute/PublicRoute";
 
 // Import Toast
 import { ToastContainer } from "react-toastify";
+import { useState } from "react";
 
 function App() {
+	const [showStats, setShowStats] = useState(true);
+	const [showPredict, setShowPredict] = useState(false);
+	const [showSettings, setShowSettings] = useState(false);
 	return (
 		<>
 			<ToastContainer />
-			<Headers />
+			<Headers
+				setShowStats={setShowStats}
+				setShowPredict={setShowPredict}
+				setShowSettings={setShowSettings}
+			/>
 
 			<Routes>
 				{/* Page public */}
@@ -87,7 +95,14 @@ function App() {
 					path="/profil"
 					element={
 						<ProtectedRoute>
-							<ProfilPage />
+							<ProfilPage
+								showStats={showStats}
+								setShowStats={setShowStats}
+								showPredict={showPredict}
+								setShowPredict={setShowPredict}
+								showSettings={showSettings}
+								setShowSettings={setShowSettings}
+							/>
 						</ProtectedRoute>
 					}
 				/>

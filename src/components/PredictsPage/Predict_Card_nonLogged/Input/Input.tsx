@@ -1,5 +1,4 @@
 import "./Input.scss";
-import iconEdit from "../../../../assets/PredictPage/pen_edit.svg";
 
 const Input = ({ name }: { name: string }) => {
 	// Bloquer les inputs

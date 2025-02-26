@@ -2,30 +2,19 @@ import { useNavigate } from "react-router";
 import logo from "../../assets/Header/Logo.svg";
 import "./authentification.scss";
 import { Link } from "react-router";
-import { IUser } from "../../@types";
+import { apiRequest } from "../utils/api";
 
 export default function Auth() {
 	const navigate = useNavigate();
 
 	const loginFetch = async (user: { email: string; password: string }) => {
 		try {
-			const res = await fetch("http://localhost:3000/api/signin", {
-				method: "POST",
-				headers: {
-					"Content-type": "application/json; charset=UTF-8",
-				},
-				body: JSON.stringify(user),
-			});
-
-			if (!res.ok) {
-				return console.error("Mauvais identifiant !");
-			}
-
-			const data = await res.json();
-
+			// Login et récupération du Token JWT
+			const data = await apiRequest("/signin", "POST", user);
+			// Enregictrement du Token
 			localStorage.setItem("jwt", data.token);
-			console.log("token enregistré !");
 
+			// Redirection
 			if (data.message === "Authentifié avec succès") {
 				navigate("/predictions");
 			}
@@ -41,7 +30,6 @@ export default function Auth() {
 			email: myFormData.get("email") as string,
 			password: myFormData.get("password") as string,
 		};
-		console.log(userLogin);
 		loginFetch(userLogin);
 	};
 

@@ -7,7 +7,17 @@ import Submenu from "./Submenu/Submenu";
 import { useState } from "react";
 import { NavLink } from "react-router";
 
-export default function () {
+interface IPropsHearderMobile {
+	setShowStats: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowPredict: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function ({
+	setShowStats,
+	setShowPredict,
+	setShowSettings,
+}: IPropsHearderMobile) {
 	const [isShowSubmenu, setIsShowSubmenu] = useState(false);
 
 	function handleShowSubmenu(
@@ -19,7 +29,14 @@ export default function () {
 
 	return (
 		<div className="menu__mobile">
-			{isShowSubmenu && <Submenu />}
+			{isShowSubmenu && (
+				<Submenu
+					setIsShowSubmenu={setIsShowSubmenu}
+					setShowStats={setShowStats}
+					setShowPredict={setShowPredict}
+					setShowSettings={setShowSettings}
+				/>
+			)}
 			<header className="header">
 				<nav className="header__nav">
 					<ul className="header__nav__list">

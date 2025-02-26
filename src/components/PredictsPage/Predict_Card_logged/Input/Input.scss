@@ -42,3 +42,12 @@
                 }
             }
     }
+    
+
+      @media screen and (max-width: 375px){
+        .predictCard__containerPredict__input {
+            &__score {
+                width: 45px;
+            }
+        }
+    }

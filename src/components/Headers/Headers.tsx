@@ -3,7 +3,13 @@ import Header_mobile from "./Header-mobile/Header_mobile";
 import Header_desktop from "./Header_desktop/Header_desktop";
 import Header_desktop_logged from "./Header_desktop_logged/Header_desktop_logged";
 
-const Headers = () => {
+interface IPropsHearders {
+	setShowStats: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowPredict: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowSettings: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Headers = ({ setShowStats, setShowPredict, setShowSettings }:IPropsHearders) => {
 	const location = useLocation();
 
 	if (location.pathname === "/login" || location.pathname === "/signup") {
@@ -23,7 +29,11 @@ const Headers = () => {
 		return (
 			<>
 				<Header_desktop_logged />
-				<Header_mobile />
+				<Header_mobile
+					setShowStats={setShowStats}
+					setShowPredict={setShowPredict}
+					setShowSettings={setShowSettings}
+				/>
 			</>
 		);
 	}

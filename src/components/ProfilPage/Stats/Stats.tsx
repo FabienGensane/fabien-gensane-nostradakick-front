@@ -11,7 +11,7 @@ export const Stats = ({ matchs }: { matchs: IMatch[] | undefined }) => {
 
 	const calculMatchTotal = (matchs: IMatch[]) => {
 		let totalMatch = 0;
-		for (const match of matchs) {
+		for (let index = 0; index < matchs.length; index++) {
 			totalMatch++;
 		}
 		return totalMatch;
@@ -21,7 +21,7 @@ export const Stats = ({ matchs }: { matchs: IMatch[] | undefined }) => {
 
 	const calculPredict = (user: IUser) => {
 		let totalPredict = 0;
-		for (const predict of user.prediction) {
+		for (let index = 0; index < user.prediction.length; index++) {
 			totalPredict++;
 		}
 		return totalPredict;
@@ -59,7 +59,7 @@ export const Stats = ({ matchs }: { matchs: IMatch[] | undefined }) => {
 									className="stats__left__container__predict__pointImg__img"
 								/>
 							</div>
-							<p className="stats__left__container__predict__tilte">
+							<p className="stats__left__container__predict__title">
 								Prédictions
 							</p>
 						</div>
@@ -74,7 +74,7 @@ export const Stats = ({ matchs }: { matchs: IMatch[] | undefined }) => {
 									className="stats__left__container__predict__pointImg__img"
 								/>
 							</div>
-							<p className="stats__left__container__predict__tilte">
+							<p className="stats__left__container__predict__title">
 								Bonnes Prédictions
 							</p>
 						</div>
@@ -89,7 +89,7 @@ export const Stats = ({ matchs }: { matchs: IMatch[] | undefined }) => {
 									className="stats__left__container__predict__pointImg__img"
 								/>
 							</div>
-							<p className="stats__left__container__predict__tilte">
+							<p className="stats__left__container__predict__title">
 								Prédictions Exacts
 							</p>
 						</div>

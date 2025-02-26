@@ -212,3 +212,62 @@
         }
     }
 }
+
+@media screen and (max-width: 768px) {
+    .stats{
+        flex-direction: column;
+            margin: 9rem 0;
+            gap: 2rem;
+        &__left, &__right{
+            width: 70%;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .stats{
+        margin: 9rem 0 7rem;
+        &__left, &__right{
+            width: 90%;
+            height: 230px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        &__left {
+            &__title {
+                font-size: 1.2rem;
+            }
+            &__container {
+                &__points{
+                    width: 150px;
+                    height: 150px;
+                }
+                &__predict {
+                    &__title{
+                            font-size: 0.7rem;
+   
+                    }
+                }
+            }
+        }
+
+        &__right {
+            &__title{
+                font-size: 1.2rem;
+            }
+            &__container {
+                transform: scale(0.9);
+                margin-top: 0.5rem;
+
+                &__predict {
+                    &__stats {
+                        &__title {
+                            font-size: 0.8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

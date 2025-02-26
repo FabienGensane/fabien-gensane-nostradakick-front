@@ -1,14 +1,13 @@
 import "./Input.scss";
 import iconEdit from "../../../../assets/PredictPage/pen_edit.svg";
-import { RxValue } from "react-icons/rx";
 
 interface InputProps {
-    name: string;
-    value?: string;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	name: string;
+	value?: string;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<InputProps> = ({ name, value = "", onChange }) => {
+const Input = ({ name, value = "", onChange }: InputProps) => {
 	// Bloquer les inputs
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 		// Autoriser uniquement les touches numériques et quelques touches spéciales

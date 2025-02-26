@@ -1,12 +1,10 @@
 import "./Header_desktop_logged.scss";
 import logo from "../../../assets/Header/Logo.svg";
-import { Link, useNavigate, LinkProps } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useUserData } from "../../../hooks/UserData";
 
 import { motion } from "motion/react";
 import React, { useRef, useState } from "react";
-
-type LinkRefProps = LinkProps & { ref?: React.RefObject<HTMLAnchorElement> };
 
 export default function () {
 	const { user } = useUserData();
@@ -46,7 +44,7 @@ export default function () {
 								to="/predictions"
 								className="menu__desktop__logged__header__list__item__link"
 								onMouseMove={handleMouseMove}
-								ref={menuRef}
+								ref={menuRef as React.RefObject<HTMLAnchorElement>}
 							>
 								Prédiction
 							</Link>

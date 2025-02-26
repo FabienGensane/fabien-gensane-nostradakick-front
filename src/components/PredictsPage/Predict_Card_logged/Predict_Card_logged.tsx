@@ -22,7 +22,7 @@ const Predict_Card_logged = ({
 	match,
 	initialPrediction,
 }: PredictCardLoggedProps) => {
-	// useState
+	// ############# useState ####################
 	// Chrono
 	const [chrono, setChrono] = useState("");
 	// Score Prédiction
@@ -39,6 +39,8 @@ const Predict_Card_logged = ({
 	const [awayScore, setAwayScore] = useState(
 		initialPrediction?.score_predi_away.toString() || "",
 	);
+
+	// ########### Méthodes #######################
 
 	// Méthode qui permet de récupérer dans le formulaire "predict_card" les informations nécessaires à la création d'une prédiction
 	const handleSubmitPredict = (event: React.FormEvent<HTMLFormElement>) => {
@@ -68,8 +70,6 @@ const Predict_Card_logged = ({
 		try {
 			const predict = await apiRequest("/predictions", "POST", data);
 
-			console.log(predict);
-
 			if (!predict.prediction_id) {
 				console.error(
 					"❌ ERREUR: prediction_id est undefined après création !",
@@ -79,7 +79,6 @@ const Predict_Card_logged = ({
 			creationToast();
 			updateScorePredict(predict);
 			setIsValidated(true);
-			console.log("prédiction valide !!");
 		} catch (error) {
 			console.error(error);
 		}
@@ -96,10 +95,6 @@ const Predict_Card_logged = ({
 		if (!scorePredict) {
 			return;
 		}
-		console.log(
-			"🔍 Delete : scorePredict actuel =",
-			scorePredict.prediction_id,
-		);
 		try {
 			await apiRequest(`/predictions/${scorePredict.prediction_id}`, "DELETE");
 			console.log("Suppression de la prédiction");
@@ -125,8 +120,6 @@ const Predict_Card_logged = ({
 		if (!scorePredict) {
 			return;
 		}
-		console.log("🔍 PATCH : scorePredict actuel =", scorePredict);
-		console.log(localStorage.getItem("jwt"));
 
 		try {
 			const patchPredict = await apiRequest(
@@ -135,7 +128,6 @@ const Predict_Card_logged = ({
 				data,
 			);
 
-			console.log("Modification de la prédiction");
 			modificationToast();
 			setIsValidated(true);
 			updateScorePredict(patchPredict);
