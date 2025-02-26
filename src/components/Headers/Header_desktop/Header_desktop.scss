@@ -1,0 +1,114 @@
+.menu__desktop {
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+
+    &__header {
+        width: 90%;
+        margin: 3rem auto 0;
+        position: relative;
+        height: 50px;
+        
+        background-color: rgba(3, 13, 30, 0.2);
+        border-radius: 3rem;
+
+        backdrop-filter: blur(5px); /* mettre du flou en fond*/
+        -webkit-backdrop-filter: blur(5px);
+        /* compatibilité navigateur pour mettre du flou en fond*/
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+            &__logo {
+                position: absolute;
+                width: 100px;
+                top: -1rem;
+                left: 50%;
+                transform: translateX(-50%);
+
+                cursor: pointer;
+                z-index: 10;
+                transition: 300ms;
+
+                &:hover {
+                  width: 110px;
+                top: -1.5rem;
+            }
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 1.5px; 
+            z-index: 10; /* Placer la bordure derrière le contenu */
+
+            border-radius: inherit; /* Hériter du border-radius du parent */
+            background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+            // Mask pour le contour en dégradé
+            mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+
+            -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+
+        }
+
+
+        &__buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+
+            margin: 0.5rem 0.4rem;
+            z-index: 10;
+            width: 100%;
+
+            &__subscribe, &__login {
+                text-decoration: none;
+                border-radius: 3rem;
+                padding: 0.4rem 2rem;
+            }
+
+            &__subscribe {
+                background-color: #3B9CF1;
+                color: #FEFFED;
+                transition: 300ms;
+
+                &:hover {
+                    color: #3B9CF1;
+                    outline: 1px solid #3B9CF1;
+                    background-color: transparent;
+                }
+            }
+
+            &__login {
+                background-color: #3B9CF1;
+                color: #FEFFED;
+                transition: 300ms;
+
+                &:hover {
+                    color: #3B9CF1;
+                    outline: 1px solid #3B9CF1;
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+  .menu__desktop {
+    display: none;
+  }
+}

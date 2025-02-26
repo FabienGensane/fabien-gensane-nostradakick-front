@@ -1,0 +1,90 @@
+.menu__mobile {
+    display: none;
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    z-index: 3;
+}
+
+
+.header {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    height: 75px;
+    padding: 18px;
+
+    background-color: rgba(3, 13, 30, 0.2);
+    border-radius: 3rem;
+
+    backdrop-filter: blur(14.5px);/* mettre du flou en fond*/
+    -webkit-backdrop-filter: blur(14.5px);
+     /* compatibilité navigateur pour mettre du flou en fond*/
+
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        padding: 1.5px; 
+        z-index: 1; /* Placer la bordure derrière le contenu */
+
+        border-radius: inherit; /* Hériter du border-radius du parent */
+        background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
+        
+        mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+
+        -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+
+    }
+
+    &__nav {
+        position: relative;
+        z-index: 2;
+        background: transparent;
+        width: 100%;
+        height: 100%;
+
+        &__list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            list-style: none;
+            z-index: 10;
+            padding: 0;
+
+            &__item {
+                width: 40px;
+                height: 40px;
+
+                padding: 5px;
+
+                &--background {
+                    border-radius: 50%;
+                    background-color: #16325a;
+                }
+            }
+
+        }
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+  .menu__mobile {
+    display: block;
+  }
+}

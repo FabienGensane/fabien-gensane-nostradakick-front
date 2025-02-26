@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.predictCardNoLogin {
+  // Modification de la width passée de 30% à 80%
+    width: 80%;
+    // Modification passée 
+    margin: 2rem auto;
+    position: relative;
+    height: auto;
+    z-index: 0;
+        
+    background-color: #061126;
+    border-radius: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+
+    color: #FEFFED;
+
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        padding: 1.5px; 
+        z-index: -1; /* Placer la bordure derrière le contenu */
+
+        border-radius: inherit; /* Hériter du border-radius du parent */
+        background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+        // Mask pour le contour en dégradé
+        mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+
+        -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+
+    }
+    
+    &__containerPredict {
+        width: 100%;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__inputContent {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: -1.8rem;
+        }
+    } 
+
+    &__btnValidate {
+        // Passage de -1rem à 2rem
+        margin: 2rem auto 0;
+        padding: 0.5rem 2rem;
+        border-radius: 3rem;
+        background-color: #3B9CF1;
+        color: white;
+
+        font-weight: 700;
+        border: none;
+
+        cursor: pointer;
+
+        transition: 500ms;
+
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 8px #3B9CF1;
+        }
+        
+    }
+}
+
+@media (max-width: 375px) {
+    .predictCardNoLogin { 
+
+        &__containerPredict {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &__inputContent {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 0;
+                gap: 0.4rem;
+
+                & p {
+                    font-size: 0.7rem;
+                }
+            }
+        
+        }
+
+        &__btnValidate {
+            padding: 0.3rem 1.2rem;
+            font-size: 0.9rem;
+
+            font-weight: 700;
+            border: none;
+
+            cursor: pointer;
+
+            transition: 500ms;
+
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 8px #3B9CF1;
+            }
+        
+        }
+  
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .predictCardNoLogin { 
+
+        &__containerPredict {
+   
+
+            &__inputContent {
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+
+                margin-top: 0;
+            }
+        
+        }
+
+        &__btnValidate {
+            padding: 0.5rem 2rem;
+            font-size: 0.9rem;
+
+            font-weight: 700;
+            border: none;
+
+            cursor: pointer;
+
+            transition: 500ms;
+
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 8px #3B9CF1;
+            }
+        
+        }
+  
+    }
+    
+}
+
+@media (max-width: 375px) {
+    .predictCardNoLogin { 
+
+        &__containerPredict {
+   
+
+            &__inputContent {
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+
+                margin-top: 0;
+            }
+        
+        }
+
+        &__btnValidate {
+            padding: 0.5rem 2rem;
+            font-size: 0.9rem;
+
+            font-weight: 700;
+            border: none;
+
+            cursor: pointer;
+
+            transition: 500ms;
+
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 8px #3B9CF1;
+            }
+        
+        }
+  
+    }
+    
+}

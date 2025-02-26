@@ -1,0 +1,69 @@
+.settings {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 1rem;
+    color: #FEFFED;
+
+    margin-top: 4rem;
+
+    &__list {
+        width: 315px;
+        height: 150px;
+        list-style: none;
+        padding: 0;
+
+        &__item {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            position: relative;
+
+            &:nth-child(1), &:nth-child(2) {
+                position: relative;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+
+                    padding-bottom: 1px; 
+                    z-index: -1; /* Placer la bordure derrière le contenu */
+
+                    border-radius: inherit; /* Hériter du border-radius du parent */
+                    background: linear-gradient(90deg, #0D1F3C, #FEFFED, #0D1F3C);
+            
+                    // Mask pour le contour en dégradé
+                    mask: 
+                    linear-gradient(#fff 0 0) content-box, 
+                    linear-gradient(#fff 0 0);
+                    mask-composite: exclude;
+
+                    -webkit-mask: 
+                    linear-gradient(#fff 0 0) content-box, 
+                    linear-gradient(#fff 0 0);
+                    -webkit-mask-composite: destination-out;
+
+                }
+
+
+            }
+
+            &::after {
+                content: ">";
+                position: absolute;
+                top: 1rem;
+                right: 0;
+                font-weight: 700;
+            }
+        }
+    }
+
+    &__modificationProfil {
+        background-color: bisque;
+        width: 615px;
+        height: 400px;
+    }
+}
