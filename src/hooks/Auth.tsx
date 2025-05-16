@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { apiRequest } from "../components/utils/api";
 
 const useAuth = () => {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -7,12 +8,8 @@ const useAuth = () => {
 	useEffect(() => {
 		const checkAuthStatus = async () => {
 			try {
-				const response = await fetch("http://localhost:3000/api/auth/check", {
-					method: "GET",
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem("jwt")}`, // Ajouter le token dans le header Authorization
-					},
-				});
+				const response = await apiRequest("/api/auth/check", 'GET'
+				);
 
 				if (response.ok) {
 					setIsAuthenticated(true);
