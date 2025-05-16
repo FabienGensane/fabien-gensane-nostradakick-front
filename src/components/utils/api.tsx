@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3000/api";
+const API_BASE_URL = "https://fabien-gensane-nostradakick-back.onrender.com";
 
 export const apiRequest = async <D = any>(
 	endpoint: string,
